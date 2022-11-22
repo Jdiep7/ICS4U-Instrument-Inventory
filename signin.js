@@ -16,8 +16,7 @@
 
       let tokenClient;
       let gapiInited = false;
-      let gisInited = false;
-      weohoiwvoeihvoiwhevohweoihvoiwehvoih
+      let gisInited = true;
 
       document.getElementById('authorize_button').style.visibility = 'hidden';
 
