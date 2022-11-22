@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Main Page</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <p>This is the main page.</p>
+
+        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+        <button id="create_button" onclick="create(title, function() {
+
+        })">Create Spreadsheet</button>
+
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+
+        <script type="text/javascript" src = "signout.js"></script>
+        <script type="text/javascript">
+          var title = "Test Spreadsheet"
+
+          function create(title, callback) {
+  try {
+    gapi.client.sheets.spreadsheets.create({
+      properties: {
+        title: title,
+      },
+    }).then((response) => {
+      if (callback) callback(response);
+      console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
+    });
+  } catch (err) {
+    document.getElementById('content').innerText = err.message;
+    return;
+  }
+}
+        </script>
+            <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+            <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+    </body>
+</html>
