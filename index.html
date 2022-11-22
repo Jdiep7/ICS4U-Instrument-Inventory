@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="'en" dir="'ltr">
+    <head>
+        <meta charset="'utf-8">
+        <title>QR Code Generator</title>
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header><center><h1>QR Code Generator and Reader</h1></center></header>
+
+            <div class="form">
+                <button id="gqc">Generate QR Code</button>
+                <button id="rqc">Read QR Code</button>
+            </div>
+
+        </div>
+    </body>
+</html>
+
+<script>
+    let generateQrCode= document.getElementById("gqc");
+    let readQrCode = document.getElementById("rqc");
+
+    generateQrCode.addEventListener("click", ()=>{
+        window.location.href = "qr.html";
+    })
+
+    readQrCode.addEventListener("click", ()=>{
+        window.location.href = 'qr.html';
+
+    })
+</script>
