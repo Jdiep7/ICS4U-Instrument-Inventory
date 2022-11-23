@@ -54,7 +54,7 @@
        */
       function maybeEnableButtons() {
         if (gapiInited && gisInited) {
-          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').style.visibility = 'visible';
         }
       }
 
