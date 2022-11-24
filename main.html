@@ -5,11 +5,9 @@
     </head>
     <body>
         <p>This is the main page.</p>
-
+        
         <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
-        <button id="create_button" onclick="create(title, function() {
-
-        })">Create Spreadsheet</button>
+        <button id="create_button" onclick="create(title)">Create Spreadsheet</button>
 
         <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -71,14 +69,13 @@
                  }
           var title = "Test Spreadsheet"
 
-          function create(title, callback) {
+          function create(title) {
   try {
     gapi.client.sheets.spreadsheets.create({
       properties: {
         title: title,
       },
     }).then((response) => {
-      if (callback) callback(response);
       console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
     });
   } catch (err) {
