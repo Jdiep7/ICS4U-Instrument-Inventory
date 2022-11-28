@@ -68,7 +68,7 @@
             throw (resp);
           }
           document.getElementById('authorize_button').innerText = 'Refresh';
-          await openPage();
+          await openPage(title);
         };
 
         if (gapi.client.getToken() === null) {
@@ -101,7 +101,23 @@
 }
       }
       **/
-      async function openPage() {
-        window.location = 'main.html';
 
-};
+      var title = "Test Spreadsheet"
+      async function openPage(title) {
+        try {
+        gapi.client.sheets.spreadsheets.create({
+        properties: {
+        title: title,
+        },
+        }).then((response) => {
+        console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
+        });
+        } catch (err) {
+        document.getElementById('content').innerText = err.message;
+        return;
+        }
+        }
+      //async function openPage() {
+        //window.location = 'main.html';
+
+//};
