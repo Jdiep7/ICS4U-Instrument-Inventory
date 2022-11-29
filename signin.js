@@ -68,7 +68,7 @@
             throw (resp);
           }
           document.getElementById('authorize_button').innerText = 'Refresh';
-          await openPage(title);
+          await openPage();
         };
 
         if (gapi.client.getToken() === null) {
@@ -80,44 +80,30 @@
           tokenClient.requestAccessToken({prompt: ''});
         }
       }
-
-
-      /**
-       * Print the names and majors of students in a sample spreadsheet:
-       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-       
-      async function test() {
-        
-        const userAction = async () => {
-        const response = await fetch('https://people.googleapis.com/v1/people/me', {
-        method: 'POST',
-        body: myBody, // string or object
-        headers: {
-        'Content-Type': 'application/json'
-    }
-  });
-  const myJson = await response.json(); //extract JSON from the http response
-  // do something with myJson
-}
-      }
-      **/
+      function func1() {
+        tokenClient.callback = async () => {
+          await create(title);
+        };
+        tokenClient.requestAccessToken();
+        };
 
       var title = "Test Spreadsheet"
-      async function openPage(title) {
+      async function create(title) {
         try {
-        gapi.client.sheets.spreadsheets.create({
-        properties: {
-        title: title,
-        },
-        }).then((response) => {
-        console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
-        });
+          gapi.client.sheets.spreadsheets.create({
+            properties: {
+              title: title,
+            },
+          }).then((response) => {
+              console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
+          });
         } catch (err) {
-        document.getElementById('content').innerText = err.message;
-        return;
+          document.getElementById('content').innerText = err.message;
+          return;
         }
-        }
-      //async function openPage() {
-        //window.location = 'main.html';
+      }
 
-//};
+      async function openPage() {
+        window.location = 'main.html';
+
+};
