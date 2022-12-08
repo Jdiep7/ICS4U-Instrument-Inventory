@@ -32,9 +32,26 @@ body{
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+.container{
+    height:300px;
+    width:410px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 20px 25px 0;
+    transition: height 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+
 .wrapper.active{
     height:550px;
 }
+
+.container.scannerActive{
+    height:550px;
+}
+
 
 header h1{
     font-size: 21px;
@@ -84,6 +101,18 @@ header p{
     background: #3498DB
 }
 
+#gobackScan{
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    background: #3498DB
+}
+
+#gobackScan:hover{
+    background:#4b9bb4;
+}
+
 .form button:hover{
     background: #4b9bb4;
 }
@@ -99,7 +128,24 @@ header p{
     border: 1px solid #ccc;
 }
 
+.webcam{
+    margin-top: 10px;
+    display:flex;
+    opacity:0;
+    pointer-events: none;
+    padding:10px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
 .wrapper.active .qr-code{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.5s 0.05s ease;
+}
+
+.container.scannerActive .webcam{
     opacity:1;
     pointer-events: auto;
     transition: opacity 0.5s 0.05s ease;
@@ -126,6 +172,10 @@ header p{
         height: 550px;
     }
 
+    .wrapper.scannerActive{
+        height: 550px;
+    }
+
     header p{
         color: #696969;
     }
@@ -133,13 +183,23 @@ header p{
     form :where(input, button){
         height: 52px;
     }
+
     .qr-code img{
         width:160px;
+    }
+
+    .webcam video{
+        width: 400px
     }
 }
 
 .qr-code img{
     width: 170px;
+}
+
+.webcam video{
+    border-radius: 5px;
+    width: 400px
 }
 
 .footer{
