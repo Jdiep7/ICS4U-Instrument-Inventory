@@ -298,7 +298,7 @@ function func1() {
         }
 
       async function openPage() {
-        window.location = 'main.html';
+        window.location = 'api/main.html';
 
       };
       function handleAuthClick() {
