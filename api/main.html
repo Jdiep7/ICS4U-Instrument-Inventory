@@ -2,6 +2,7 @@
     <head>
         <title>Main Page</title>
         <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src = "https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     </head>
     <body>
         <!--<p>This is the main page.</p>-->
@@ -13,12 +14,16 @@
         <!--<label for="student">Change Value For <span id="field2"></span></label>-->
         <!--<input type="text" id="student" name="student" placeholder="Student Name"><br>-->
         <button id="test" onclick="handleAuthClick()">Test</button>
-
+        <button id="stopCam">Turn off cam</button>
         <div class="box">
             <a href = "#modify" class = "button" id="get_button">Pop Up</a>
             
         </div>
-        
+
+        <div class="webcam">
+            <video id="preview" width="100%"></video>
+        </div>
+
         <div class="overlay" id = "modify">
             <div class="wrapper">
                 <h2>Update Instrument<br>Information</h2>
@@ -66,6 +71,30 @@
             let sheetsId = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY'
             let r = "B2:C2"
 
+            let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
+                Instascan.Camera.getCameras().then(function(cameras){
+                if(cameras.length > 0){
+                    scanner.start(cameras[0]);
+                }else{
+                    modal.style.display = "block";
+                    modalText.innerHTML = `No cameras found`;
+                }
+                }).catch(function(e){
+                console.error(e);
+                });
+            
+            stopCam.addEventListener("click", ()=> {
+                Instascan.Camera.getCameras().then(function(cameras){
+                    if(cameras.length > 0){
+                        scanner.stop(cameras[0]);
+                    }else{
+                        modal.style.display = "block";
+                        modalText.innerHTML = `No cameras found`;
+                    }
+                }).catch(function(e){
+                    console.error(e);
+                });
+            })
             getbtn.addEventListener("click", ()=> {
                 getValues(sheetsId, r);
             });

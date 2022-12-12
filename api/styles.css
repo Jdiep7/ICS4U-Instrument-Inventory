@@ -212,3 +212,22 @@ input[type=text] {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
   }
+
+  .webcam{
+    margin-top: 10px;
+    display:flex;
+    opacity:0;
+    pointer-events: none;
+    padding:10px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.webcam video{
+    border-radius: 5px;
+    width: 400px
+}
+
+    .webcam video{
+        width: 400px
+    }
