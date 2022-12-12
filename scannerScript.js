@@ -49,6 +49,7 @@ scanner.addListener('scan', function(c){
         window.open(c, "_blank");
     }else{
         document.getElementById('text').value=c;
+        console.log(c);
     }
 });
 
