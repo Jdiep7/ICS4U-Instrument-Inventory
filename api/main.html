@@ -3,6 +3,10 @@
         <title>Main Page</title>
         <link rel="stylesheet" href="styles.css">
         <script type="text/javascript" src = "https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+        <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+        <script src="https://myskypower.net/components/modal/modal.js" defer></script>
+
     </head>
     <body>
         <!--<p>This is the main page.</p>-->
@@ -15,14 +19,16 @@
         <!--<input type="text" id="student" name="student" placeholder="Student Name"><br>-->
         <button id="test" onclick="handleAuthClick()">Test</button>
         <button id="stopCam">Turn off cam</button>
-        <div class="box">
-            <a href = "#modify" class = "button" id="get_button">Pop Up</a>
-            
-        </div>
 
         <div class="webcam">
             <video id="preview" width="100%"></video>
         </div>
+
+        <div class="box">
+            <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
+            
+        </div>
+
 
         <div class="overlay" id = "modify">
             <div class="wrapper">
@@ -68,12 +74,11 @@
         <script>
             let getbtn = document.getElementById("get_button");
             let setbtn = document.getElementById("submit_button");
-            let sheetsId = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY'
-            let r = "B2:C2"
 
             let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
                 Instascan.Camera.getCameras().then(function(cameras){
                 if(cameras.length > 0){
+                    console.log("camera")
                     scanner.start(cameras[0]);
                 }else{
                     modal.style.display = "block";
@@ -95,13 +100,57 @@
                     console.error(e);
                 });
             })
+
+            
+            scanner.addListener('scan', function(c){
+                //document.getElementById('text').value=c;
+                console.log('yes');
+                console.log(c);
+                let parameters = c.split(",");
+                findRow(parameters[0], parameters[1]);
+            });
+
+            function findRow(insId, sheetId) {
+                var params = {
+                    // The ID of the spreadsheet to retrieve data from.
+                    spreadsheetId: sheetId,  // TODO: Update placeholder value.
+
+                    // The A1 notation of the values to retrieve.
+                    ranges: ["Sheet1!D:D"],  // TODO: Update placeholder value.
+
+                    // How values should be represented in the output.
+                    // The default render option is ValueRenderOption.FORMATTED_VALUE.
+                    valueRenderOption: 'FORMATTED_VALUE',  // TODO: Update placeholder value.
+
+                    // How dates, times, and durations should be represented in the output.
+                    // This is ignored if value_render_option is
+                    // FORMATTED_VALUE.
+                    // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+                    dateTimeRenderOption: 'SERIAL_NUMBER',  // TODO: Update placeholder value.
+                };
+                let index;
+                var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
+                request.then(function(response) {
+                    // TODO: Change code below to process the `response` object:
+                    console.log(response.result.valueRanges[0].values);
+                    let values = `${response.result.valueRanges[0].values}`.split(",");
+                    index = values.indexOf(insId) + 1;
+                    console.log(index);
+                    ranges = "Sheet1!" + index + ":" + index;
+                    getValues(sheetId, ranges);
+                }, function(reason) {
+                    console.error('error: ' + reason.result.error.message);
+                });
+            }
+            /*
             getbtn.addEventListener("click", ()=> {
                 getValues(sheetsId, r);
             });
+            */
 
             setbtn.addEventListener("click", ()=> {
                 let v = [[document.getElementById("instrument").value, document.getElementById("student").value]];
-                setValues(v, r, sheetsId);
+                setValues(v, r, parameters[1]);
             });
         </script>
     </body>

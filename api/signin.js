@@ -1,13 +1,6 @@
-/* exported gapiLoaded */
-/* exported gisLoaded */
-/* exported handleAuthClick */
-/* exported handleSignoutClick */
-
-// TODO(developer): Set to client ID and API key from the Developer Console
 const CLIENT_ID = '1006167168710-oa4lmc9qmg27830sh1lh54conig3kacb.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyBGoOutLCJ-ptWUas05xoYgSOV9IRhVsrk';
 
-// Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
 
 // Authorization scopes required by the API; multiple scopes can be
@@ -20,9 +13,13 @@ let gisInited = false;
 let b = true; 
 let id = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY';
 let range = "B2:C2";
+const container = document.querySelector(".container");
+let scanbtn = document.getElementById("scan");
+let uploadbtn = document.getElementById("upload");
 
 document.getElementById('verify').style.visibility = 'hidden';
 document.getElementById('authorize_button').style.visibility = 'hidden';
+document.getElementById('get_button').style.visibility = 'hidden';
       
 
 /**
@@ -88,8 +85,9 @@ function getValues(sheetsId, r) {
     let values = `${response.result.valueRanges[0].values}`.split(",");
     if (values.includes('undefined') == false) {
       console.log('yess')
-      document.getElementById('instrument').placeholder= values[0];
-      document.getElementById('student').placeholder= values[1];
+      console.log(values);
+      document.getElementById('instrument').placeholder= values[1];
+      document.getElementById('student').placeholder= values[2];
     }
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -301,6 +299,8 @@ function func1() {
         window.location = 'api/main.html';
 
       };
+
+      
       function handleAuthClick() {
         tokenClient.callback = async (resp) => {
           if (resp.error !== undefined) {
