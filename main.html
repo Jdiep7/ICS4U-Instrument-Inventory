@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Main Page</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!--<p>This is the main page.</p>-->
+        <!--<button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>-->
+        <!--<button id="create_button" onclick="func1()">Read Spreadsheet</button>-->
+        <!--<h3>Update Instrument Information</h3>-->
+        <!--<label for="instrument">Change Value For <span id="field1"></span></label>-->
+        <!--<input type="text" id="instrument" name="instrument" placeholder="Instrument"><br>-->
+        <!--<label for="student">Change Value For <span id="field2"></span></label>-->
+        <!--<input type="text" id="student" name="student" placeholder="Student Name"><br>-->
+        <button id="test" onclick="handleAuthClick()">Test</button>
+
+        <div class="box">
+            <a href = "#modify" class = "button" id="get_button">Pop Up</a>
+            
+        </div>
+        
+        <div class="overlay" id = "modify">
+            <div class="wrapper">
+                <h2>Update Instrument<br>Information</h2>
+                <a href="#" class="close" onclick="makeTrue()">&times;</a>
+                <div class="content">
+                    <div class="container">
+                        <form>
+                            <div class="text">
+                                <input type="text" id="instrument" name="instrument" class="effect" placeholder="Instrument" autocomplete="off">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <input type="text" id="student" name="student" class="effect" placeholder="Student Name" autocomplete="off">
+                                <span class="focus-border"></span>
+                            </div>
+                            <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
+                            <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Scan</a>
+            <a href="edit.html">Sheets</a>
+            <a href="#account">Account</a>
+            <a href="#home">About</a>
+          </div>
+          
+          <div id="main">
+            <a class="openbtn" onclick="openNav()">&#9776;</a>
+          </div>
+
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+        <script type="text/javascript" src = "signin.js"></script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script async defer src="https://apis.google.com/js/api.js"></script>
+
+        <script>
+            let getbtn = document.getElementById("get_button");
+            let setbtn = document.getElementById("submit_button");
+            let sheetsId = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY'
+            let r = "B2:C2"
+
+            getbtn.addEventListener("click", ()=> {
+                getValues(sheetsId, r);
+            });
+
+            setbtn.addEventListener("click", ()=> {
+                let v = [[document.getElementById("instrument").value, document.getElementById("student").value]];
+                setValues(v, r, sheetsId);
+            });
+        </script>
+    </body>
+</html>

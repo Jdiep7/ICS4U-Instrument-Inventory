@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Generate QR Codes</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <h2>Generate QR Codes</h2><br>
+    <a id= "newQR" class= "button" href="#newQR" onclick="setButton()">New</a>
+    <a id="existingQR" class= "button" href="#fromSheets" onclick="setButton()">From Spreadsheet</a>
+    <a id="back" class="button" href="#" onclick="setButton()">Back</a>
+    <div id = "newQR">
+
+    </div>
+    <script>
+        document.getElementById("back").style.visibility = 'hidden';
+        let isVisible = true;
+        function setButton() {
+        if (isVisible) {
+            document.getElementById("newQR").style.visibility = 'hidden';
+            document.getElementById("existingQR").style.visibility = 'hidden';
+            document.getElementById("back").style.visibility = 'visible';
+            isVisible = false;
+        } else {
+            document.getElementById("newQR").style.visibility = 'visible';
+            document.getElementById("existingQR").style.visibility = 'visible';
+            document.getElementById("back").style.visibility = 'hidden';
+            isVisible = true;
+        }
+        }
+    </script>
+</html>
