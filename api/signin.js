@@ -17,6 +17,7 @@ const container = document.querySelector(".container");
 let scanbtn = document.getElementById("scan");
 let uploadbtn = document.getElementById("upload");
 
+document.getElementById('get_button').style.visibility = 'hidden';
 document.getElementById('verify').style.visibility = 'hidden';
 document.getElementById('authorize_button').style.visibility = 'hidden';
 document.getElementById('get_button').style.visibility = 'hidden';
@@ -66,28 +67,22 @@ let r = "B2:C2"
 */
 
 function getValues(sheetsId, r) {
+  console.log('yess')
   var params = {
-    // The spreadsheet to request.
-    spreadsheetId: sheetsId,  // TODO: Update placeholder value.
-
-    // The ranges to retrieve from the spreadsheet.
-    ranges: [r],  // TODO: Update placeholder value.
-
-    // True if grid data should be returned.
-    // This parameter is ignored if a field mask was set in the request.
-    includeGridData: false,  // TODO: Update placeholder value.
+    spreadsheetId: sheetsId,
+    ranges: [r],
+    includeGridData: false
   };
 
   var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
   request.then(function(response) {
-    // TODO: Change code below to process the `response` object:
     //console.log(response.result.valueRanges[0].values);
     let values = `${response.result.valueRanges[0].values}`.split(",");
-    if (values.includes('undefined') == false) {
-      console.log('yess')
+    if (values.includes('undefined') == false) {    
       console.log(values);
-      document.getElementById('instrument').placeholder= values[1];
-      document.getElementById('student').placeholder= values[2];
+      document.getElementById('ins_name').innerHTML= values[0];
+      document.getElementById('student').placeholder= values[1];
+      document.getElementById('grade').placeholder= values[2];
     }
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -183,9 +178,10 @@ function func1() {
       
 
         function setValues(v, r, sheetsId) {
+          //let b = true;
           //console.log(v[0]);
-          if (v[0].includes() && b == true) {
-            console.log(v);
+          if ((document.getElementById("student").value == null|| document.getElementById("grade").value == null) && b) {
+            console.log(verify);
             document.getElementById('verify').style.visibility = 'visible';
             b = false;
           } else {
@@ -217,13 +213,10 @@ function func1() {
             //document.getElementById('instrument').placeholder= values[0][0];
             //document.getElementById('student').placeholder= values[0][1];
             console.log("Cleared")
-            document.getElementById('instrument').value = "";
-            document.getElementById('student').value = "";
-            if (v[0][1].includes("Andrew") && v[0][0] == "Trumpet") {
-              console.log("Nothing is ever too high.");
-            }
+
             document.getElementById('verify').style.visibility = 'hidden';
             b = true;
+            document.getElementById('get_button').style.visibility = 'hidden'
             }
           }
 /*
@@ -291,6 +284,8 @@ function func1() {
         }
 
         function makeTrue() {
+          document.getElementById('verify').style.visibility = 'hidden';
+          document.getElementById('get_button').style.visibility = 'hidden'
           b = true;
           console.log(b);
         }
@@ -300,7 +295,7 @@ function func1() {
 
       };
 
-      
+
       function handleAuthClick() {
         tokenClient.callback = async (resp) => {
           if (resp.error !== undefined) {
@@ -316,7 +311,9 @@ function func1() {
             hint: 'ethan.mei06@gmail.com'});
         } else {
           // Skip display of account chooser and consent dialog for an existing session.
-          tokenClient.requestAccessToken({prompt: ''});
+          tokenClient.requestAccessToken({
+            prompt: '',
+            hint: 'ethan.mei06@gmail.com'});
         }
       }
 
