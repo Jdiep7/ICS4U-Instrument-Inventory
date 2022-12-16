@@ -5,7 +5,7 @@
         <script type="text/javascript" src = "https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
         <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
-        <script src="https://myskypower.net/components/modal/modal.js" defer></script>
+        <!--<script src="https://myskypower.net/components/modal/modal.js" defer></script>-->
 
     </head>
     <body>
@@ -33,16 +33,17 @@
         <div class="overlay" id = "modify">
             <div class="wrapper">
                 <h2>Update Instrument<br>Information</h2>
+                <br><h3 id="ins_name"></h3>
                 <a href="#" class="close" onclick="makeTrue()">&times;</a>
                 <div class="content">
                     <div class="container">
                         <form>
                             <div class="text">
-                                <input type="text" id="instrument" name="instrument" class="effect" placeholder="Instrument" autocomplete="off">
+                                <input type="text" id="student" name="student" class="effect" placeholder="Student Name" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="student" name="student" class="effect" placeholder="Student Name" autocomplete="off">
+                                <input type="text" id="grade" name="grade" class="effect" placeholder="Student Grade" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
@@ -101,57 +102,75 @@
                 });
             })
 
+            var parameters;
+            var sheetId;
+            var index = 3;
+            var ranges;
+            var setRanges;
+
             
             scanner.addListener('scan', function(c){
                 //document.getElementById('text').value=c;
+                document.getElementById('get_button').style.visibility= 'visible';
                 console.log('yes');
                 console.log(c);
-                let parameters = c.split(",");
-                findRow(parameters[0], parameters[1]);
+                
+
+                parameters = c.split(",");
+                sheetId = parameters[1];
+                //response.result.valueRanges[0].values
+                console.log("index: " + `${findRow(parameters[0], sheetId)}`)
+                findRow(parameters[0], sheetId)
+                console.log(ranges)
             });
 
+            getbtn.addEventListener("click", ()=> {
+                console.log(ranges)
+                console.log(sheetId)
+                getValues(sheetId, ranges);
+            });
+
+            setbtn.addEventListener("click", ()=> {
+                /*let v1 = document.getElementById("student").placeholder;
+                let v2 = document.getElementById("grade").placeholder;
+                if (document.getElementById("student").value != '') {
+                    v1 = document.getElementById("student").value;
+                }
+                if (document.getElementById("grade").value != '') {
+                    v2 = document.getElementById("grade").value;
+                }
+                */
+                let v = [[document.getElementById("student").value, document.getElementById("grade").value]];
+                console.log(document.getElementById("student").value)
+                setValues(v, setRanges, sheetId);
+                document.getElementById('student').value = "";
+            document.getElementById('grade').value = "";
+            });
+
+            
             function findRow(insId, sheetId) {
                 var params = {
-                    // The ID of the spreadsheet to retrieve data from.
-                    spreadsheetId: sheetId,  // TODO: Update placeholder value.
-
-                    // The A1 notation of the values to retrieve.
-                    ranges: ["Sheet1!D:D"],  // TODO: Update placeholder value.
-
-                    // How values should be represented in the output.
-                    // The default render option is ValueRenderOption.FORMATTED_VALUE.
-                    valueRenderOption: 'FORMATTED_VALUE',  // TODO: Update placeholder value.
-
-                    // How dates, times, and durations should be represented in the output.
-                    // This is ignored if value_render_option is
-                    // FORMATTED_VALUE.
-                    // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-                    dateTimeRenderOption: 'SERIAL_NUMBER',  // TODO: Update placeholder value.
+                    spreadsheetId: sheetId,
+                    ranges: ["Sheet1!E:E"],
+                    valueRenderOption: 'FORMATTED_VALUE',
+                    dateTimeRenderOption: 'SERIAL_NUMBER',
                 };
-                let index;
                 var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
                 request.then(function(response) {
-                    // TODO: Change code below to process the `response` object:
                     console.log(response.result.valueRanges[0].values);
-                    let values = `${response.result.valueRanges[0].values}`.split(",");
-                    index = values.indexOf(insId) + 1;
-                    console.log(index);
-                    ranges = "Sheet1!" + index + ":" + index;
-                    getValues(sheetId, ranges);
+                    values = `${response.result.valueRanges[0].values}`.split(",");
+                    this.index = values.indexOf(insId) + 1;
+                    console.log(this.index);
+                    ranges = "Sheet1!B" + index + ":D" + index;
+                    setRanges = "Sheet1!C" + index + ":D" + index;
+                    //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);
                 });
+                //return num;
             }
-            /*
-            getbtn.addEventListener("click", ()=> {
-                getValues(sheetsId, r);
-            });
-            */
-
-            setbtn.addEventListener("click", ()=> {
-                let v = [[document.getElementById("instrument").value, document.getElementById("student").value]];
-                setValues(v, r, parameters[1]);
-            });
         </script>
     </body>
 </html>
+
+

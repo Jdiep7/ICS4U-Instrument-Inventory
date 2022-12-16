@@ -15,6 +15,17 @@ h2 {
     line-height: 1.4;
     font-weight:normal
 }
+h3 {
+    text-align: left;
+    color: #454545;
+    font-size: 15px;
+    font-family: arial;
+    margin-top: -8px;
+    margin-left: 8px;
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-weight:normal
+}
 label {
     font-family: arial;
     font-size: 14px;
@@ -46,6 +57,7 @@ label {
     font-size: 14px;
     color: #5a886d;
     text-decoration: underline;
+    margin-left: 88px;
 }
 .continue:hover {
     color: #7fc79a;
@@ -87,7 +99,7 @@ label {
 }
 .wrapper .content {
     max-height: 30%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .container {
