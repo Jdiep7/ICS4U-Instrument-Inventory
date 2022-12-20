@@ -82,7 +82,8 @@ function getValues(sheetsId, r) {
       console.log(values);
       document.getElementById('ins_name').innerHTML= values[0];
       document.getElementById('student').placeholder= values[1];
-      document.getElementById('grade').placeholder= values[2];
+      document.getElementById('class').placeholder= values[2];
+      document.getElementById('condition').placeholder= values[3];
     }
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -180,7 +181,7 @@ function func1() {
         function setValues(v, r, sheetsId) {
           //let b = true;
           //console.log(v[0]);
-          if ((document.getElementById("student").value == null|| document.getElementById("grade").value == null) && b) {
+          if ((document.getElementById("student").value == null|| document.getElementById("class").value == null || document.getElementById("condition").value ==  null) && b) {
             console.log(verify);
             document.getElementById('verify').style.visibility = 'visible';
             b = false;

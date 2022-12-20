@@ -43,7 +43,11 @@
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="grade" name="grade" class="effect" placeholder="Student Grade" autocomplete="off">
+                                <input type="text" id="class" name="class" class="effect" placeholder="Student class" autocomplete="off">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <input type="text" id="condition" name="condition" class="effect" placeholder="Instrument Condition" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
@@ -140,18 +144,18 @@
                     v2 = document.getElementById("grade").value;
                 }
                 */
-                let v = [[document.getElementById("student").value, document.getElementById("grade").value]];
+                let v = [[document.getElementById("student").value, document.getElementById("class").value]];
                 console.log(document.getElementById("student").value)
                 setValues(v, setRanges, sheetId);
                 document.getElementById('student').value = "";
-            document.getElementById('grade').value = "";
+            document.getElementById('class').value = "";
             });
 
             
             function findRow(insId, sheetId) {
                 var params = {
                     spreadsheetId: sheetId,
-                    ranges: ["Sheet1!E:E"],
+                    ranges: ["Sheet1!F:F"],
                     valueRenderOption: 'FORMATTED_VALUE',
                     dateTimeRenderOption: 'SERIAL_NUMBER',
                 };
@@ -161,8 +165,8 @@
                     values = `${response.result.valueRanges[0].values}`.split(",");
                     this.index = values.indexOf(insId) + 1;
                     console.log(this.index);
-                    ranges = "Sheet1!B" + index + ":D" + index;
-                    setRanges = "Sheet1!C" + index + ":D" + index;
+                    ranges = "Sheet1!B" + index + ":E" + index;
+                    setRanges = "Sheet1!C" + index + ":E" + index;
                     //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);

@@ -98,8 +98,8 @@ label {
     color: #333;
 }
 .wrapper .content {
-    max-height: 30%;
-    overflow: hidden;
+    /*max-height: 30%;*/
+    overflow: auto;
 }
 
 .container {
