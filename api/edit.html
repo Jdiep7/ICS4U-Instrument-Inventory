@@ -14,17 +14,17 @@
         document.getElementById("back").style.visibility = 'hidden';
         let isVisible = true;
         function setButton() {
-        if (isVisible) {
-            document.getElementById("newQR").style.visibility = 'hidden';
-            document.getElementById("existingQR").style.visibility = 'hidden';
-            document.getElementById("back").style.visibility = 'visible';
-            isVisible = false;
-        } else {
-            document.getElementById("newQR").style.visibility = 'visible';
-            document.getElementById("existingQR").style.visibility = 'visible';
-            document.getElementById("back").style.visibility = 'hidden';
-            isVisible = true;
-        }
+            if (isVisible) {
+                document.getElementById("newQR").style.visibility = 'hidden';
+                document.getElementById("existingQR").style.visibility = 'hidden';
+                document.getElementById("back").style.visibility = 'visible';
+                isVisible = false;
+            } else {
+                document.getElementById("newQR").style.visibility = 'visible';
+                document.getElementById("existingQR").style.visibility = 'visible';
+                document.getElementById("back").style.visibility = 'hidden';
+                isVisible = true;
+            }
         }
     </script>
 </html>

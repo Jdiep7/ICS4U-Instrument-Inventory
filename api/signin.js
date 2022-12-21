@@ -81,9 +81,9 @@ function getValues(sheetsId, r) {
     if (values.includes('undefined') == false) {    
       console.log(values);
       document.getElementById('ins_name').innerHTML= values[0];
-      document.getElementById('student').placeholder= values[1];
-      document.getElementById('class').placeholder= values[2];
-      document.getElementById('condition').placeholder= values[3];
+      document.getElementById('text1').placeholder= values[1];
+      document.getElementById('text2').placeholder= values[2];
+      document.getElementById('text3').placeholder= values[3];
     }
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -181,7 +181,7 @@ function func1() {
         function setValues(v, r, sheetsId) {
           //let b = true;
           //console.log(v[0]);
-          if ((document.getElementById("student").value == null|| document.getElementById("class").value == null || document.getElementById("condition").value ==  null) && b) {
+          if ((document.getElementById("text1").value == null|| document.getElementById("text2").value == null || document.getElementById("text3").value ==  null) && b) {
             console.log(verify);
             document.getElementById('verify').style.visibility = 'visible';
             b = false;

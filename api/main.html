@@ -39,15 +39,15 @@
                     <div class="container">
                         <form>
                             <div class="text">
-                                <input type="text" id="student" name="student" class="effect" placeholder="Student Name" autocomplete="off">
+                                <input type="text" id="text1" name="text1" class="effect" placeholder="Student Name" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="class" name="class" class="effect" placeholder="Student class" autocomplete="off">
+                                <input type="text" id="text2" name="text2" class="effect" placeholder="Student class" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="condition" name="condition" class="effect" placeholder="Instrument Condition" autocomplete="off">
+                                <input type="text" id="text3" name="text3" class="effect" placeholder="Instrument Condition" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
@@ -135,20 +135,24 @@
             });
 
             setbtn.addEventListener("click", ()=> {
-                /*let v1 = document.getElementById("student").placeholder;
-                let v2 = document.getElementById("grade").placeholder;
-                if (document.getElementById("student").value != '') {
-                    v1 = document.getElementById("student").value;
+                let v1 = document.getElementById("text1").placeholder;
+                let v2 = document.getElementById("text2").placeholder;
+                let v3 = document.getElementById("text3").placeholder;
+                if (document.getElementById("text1").value != '') {
+                    v1 = document.getElementById("text1").value;
                 }
-                if (document.getElementById("grade").value != '') {
-                    v2 = document.getElementById("grade").value;
+                if (document.getElementById("text2").value != '') {
+                    v2 = document.getElementById("text2").value;
+                } 
+                if (document.getElementById("text3").value != '') {
+                    v3 = document.getElementById("text3").value;
                 }
-                */
-                let v = [[document.getElementById("student").value, document.getElementById("class").value]];
-                console.log(document.getElementById("student").value)
+                
+                let v = [[v1, v2, v3]];
+                console.log(document.getElementById("text1").value)
                 setValues(v, setRanges, sheetId);
-                document.getElementById('student').value = "";
-            document.getElementById('class').value = "";
+                document.getElementById('text1').value = "";
+            document.getElementById('text2').value = "";
             });
 
             
@@ -172,6 +176,9 @@
                     console.error('error: ' + reason.result.error.message);
                 });
                 //return num;
+            }
+            function findColumn() {
+
             }
         </script>
     </body>
