@@ -15,6 +15,16 @@ h2 {
     line-height: 1.4;
     font-weight:normal
 }
+.title_name {
+    text-align: left;
+    color: #000000;
+    font-size: 20px;
+    font-family: arial;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-weight:normal
+}
 h3 {
     text-align: left;
     color: #454545;
@@ -228,13 +238,16 @@ input[type=text] {
   .webcam{
     margin-top: 10px;
     display:flex;
+
     pointer-events: none;
     padding:10px 0;
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+
 }
 .webcam video{
     border-radius: 5px;
-    width: 400px;
+    width: 600px;
+
 }

@@ -24,16 +24,15 @@
             <video id="preview" width="100%"></video>
         </div>
 
+                
         <div class="box">
-            <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
+            <br><a href = "#modify" class = "button" id="get_button" onclick= "enableText()">Pop Up</a>
             
         </div>
-
-
         <div class="overlay" id = "modify">
             <div class="wrapper">
-                <h2>Update Instrument<br>Information</h2>
-                <br><h3 id="ins_name"></h3>
+                <h2>Update <span id = "title_name"></span><br>Information</h2>
+                <br><h3 id="item_name"></h3>
                 <a href="#" class="close" onclick="makeTrue()">&times;</a>
                 <div class="content">
                     <div class="container">
@@ -58,6 +57,10 @@
             </div>
         </div>
 
+
+
+
+
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">Scan</a>
@@ -77,6 +80,12 @@
         <script async defer src="https://apis.google.com/js/api.js"></script>
 
         <script>
+            function enableText() {
+                document.getElementById("text3").readOnly= false;
+            }
+            function disableText() {
+                document.getElementById("text3").readOnly= true;
+            }
             let getbtn = document.getElementById("get_button");
             let setbtn = document.getElementById("submit_button");
 
@@ -111,21 +120,22 @@
             var index = 3;
             var ranges;
             var setRanges;
+            var placeholders;
 
             
             scanner.addListener('scan', function(c){
                 //document.getElementById('text').value=c;
-                document.getElementById('get_button').style.visibility= 'visible';
                 console.log('yes');
                 console.log(c);
-                
 
                 parameters = c.split(",");
                 sheetId = parameters[1];
+                findColumn(sheetId);
                 //response.result.valueRanges[0].values
                 console.log("index: " + `${findRow(parameters[0], sheetId)}`)
                 findRow(parameters[0], sheetId)
                 console.log(ranges)
+                document.getElementById('get_button').style.visibility= 'visible';
             });
 
             getbtn.addEventListener("click", ()=> {
@@ -177,8 +187,29 @@
                 });
                 //return num;
             }
-            function findColumn() {
-
+            function findColumn(sheetId) {
+                var params = {
+                    spreadsheetId: sheetId,
+                    ranges: ["Sheet1!1:1"],
+                    valueRenderOption: 'FORMATTED_VALUE',
+                    dateTimeRenderOption: 'SERIAL_NUMBER',
+                };
+                var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
+                request.then(function(response) {
+                    console.log(response.result.valueRanges[0].values);
+                    values = `${response.result.valueRanges[0].values}`.split(",");
+                    placeholders = values.filter(elm => elm);
+                    document.getElementById('title_name').textContent= placeholders[0];
+                    document.getElementById('text1').placeholder= placeholders[0];
+                    document.getElementById('text2').placeholder= placeholders[1];
+                    document.getElementById('text3').placeholder= placeholders[2];
+                    document.getElementById('text3').style.visibility= "visible";
+                    if (placeholders[0] == "Book") {
+                        document.getElementById('text3').style.visibility= "hidden";
+                    }
+                }, function(reason) {
+                    console.error('error: ' + reason.result.error.message);
+                });
             }
         </script>
     </body>

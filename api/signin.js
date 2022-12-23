@@ -80,7 +80,7 @@ function getValues(sheetsId, r) {
     let values = `${response.result.valueRanges[0].values}`.split(",");
     if (values.includes('undefined') == false) {    
       console.log(values);
-      document.getElementById('ins_name').innerHTML= values[0];
+      document.getElementById('item_name').innerHTML= values[0];
       document.getElementById('text1').placeholder= values[1];
       document.getElementById('text2').placeholder= values[2];
       document.getElementById('text3').placeholder= values[3];
@@ -218,6 +218,7 @@ function func1() {
             document.getElementById('verify').style.visibility = 'hidden';
             b = true;
             document.getElementById('get_button').style.visibility = 'hidden'
+            document.getElementById("text3").readOnly= true;
             }
           }
 /*
@@ -287,6 +288,7 @@ function func1() {
         function makeTrue() {
           document.getElementById('verify').style.visibility = 'hidden';
           document.getElementById('get_button').style.visibility = 'hidden'
+          document.getElementById("text3").readOnly= true;
           b = true;
           console.log(b);
         }
@@ -316,6 +318,10 @@ function func1() {
             prompt: '',
             hint: 'ethan.mei06@gmail.com'});
         }
+      }
+
+      function changeOrder() {
+        
       }
 
 
