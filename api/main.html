@@ -26,27 +26,36 @@
 
                 
         <div class="box">
-            <br><a href = "#modify" class = "button" id="get_button" onclick= "enableText()">Pop Up</a>
+            <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
             
         </div>
         <div class="overlay" id = "modify">
             <div class="wrapper">
                 <h2>Update <span id = "title_name"></span><br>Information</h2>
-                <br><h3 id="item_name"></h3>
+                <h3 id="item_name"></h3>
+                <h3 id="item_desc"></h3>
                 <a href="#" class="close" onclick="makeTrue()">&times;</a>
                 <div class="content">
                     <div class="container">
                         <form>
                             <div class="text">
-                                <input type="text" id="text1" name="text1" class="effect" placeholder="Student Name" autocomplete="off">
+                                <h4 id="text1_desc">Student Name</h4>
+                                <input type="text" id="text1" name="text1" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="text2" name="text2" class="effect" placeholder="Student class" autocomplete="off">
+                                <h4 id="text2_desc">Student class</h4>
+                                <input type="text" id="text2" name="text2" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <input type="text" id="text3" name="text3" class="effect" placeholder="Instrument Condition" autocomplete="off">
+                                <h4 id="text3_desc">Condition</h4>
+                                <input type="text" id="text3" name="text3" class="effect" placeholder="" autocomplete="off">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h4 id="text4_desc">Notes</h4>
+                                <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
@@ -80,12 +89,6 @@
         <script async defer src="https://apis.google.com/js/api.js"></script>
 
         <script>
-            function enableText() {
-                document.getElementById("text3").readOnly= false;
-            }
-            function disableText() {
-                document.getElementById("text3").readOnly= true;
-            }
             let getbtn = document.getElementById("get_button");
             let setbtn = document.getElementById("submit_button");
 
@@ -124,13 +127,13 @@
 
             
             scanner.addListener('scan', function(c){
-                //document.getElementById('text').value=c;
+
                 console.log('yes');
                 console.log(c);
 
                 parameters = c.split(",");
                 sheetId = parameters[1];
-                findColumn(sheetId);
+                //findColumn(sheetId);
                 //response.result.valueRanges[0].values
                 console.log("index: " + `${findRow(parameters[0], sheetId)}`)
                 findRow(parameters[0], sheetId)
@@ -148,6 +151,7 @@
                 let v1 = document.getElementById("text1").placeholder;
                 let v2 = document.getElementById("text2").placeholder;
                 let v3 = document.getElementById("text3").placeholder;
+                let v4 = document.getElementById("text4").placeholder;
                 if (document.getElementById("text1").value != '') {
                     v1 = document.getElementById("text1").value;
                 }
@@ -157,19 +161,22 @@
                 if (document.getElementById("text3").value != '') {
                     v3 = document.getElementById("text3").value;
                 }
+                if (document.getElementById("text4").value != '') {
+                    v4 = document.getElementById("text4").value;
+                }
                 
-                let v = [[v1, v2, v3]];
+                let v = [[v1, v2, v3, v4]];
                 console.log(document.getElementById("text1").value)
                 setValues(v, setRanges, sheetId);
                 document.getElementById('text1').value = "";
-            document.getElementById('text2').value = "";
+                document.getElementById('text2').value = "";
             });
 
             
             function findRow(insId, sheetId) {
                 var params = {
                     spreadsheetId: sheetId,
-                    ranges: ["Sheet1!F:F"],
+                    ranges: ["Sheet1!A:A"],
                     valueRenderOption: 'FORMATTED_VALUE',
                     dateTimeRenderOption: 'SERIAL_NUMBER',
                 };
@@ -179,15 +186,15 @@
                     values = `${response.result.valueRanges[0].values}`.split(",");
                     this.index = values.indexOf(insId) + 1;
                     console.log(this.index);
-                    ranges = "Sheet1!B" + index + ":E" + index;
-                    setRanges = "Sheet1!C" + index + ":E" + index;
+                    ranges = "Sheet1!A" + index + ":F" + index;
+                    setRanges = "Sheet1!C" + index + ":F" + index;
                     //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);
                 });
                 //return num;
             }
-            function findColumn(sheetId) {
+            /*function findColumn(sheetId) {
                 var params = {
                     spreadsheetId: sheetId,
                     ranges: ["Sheet1!1:1"],
@@ -203,14 +210,12 @@
                     document.getElementById('text1').placeholder= placeholders[0];
                     document.getElementById('text2').placeholder= placeholders[1];
                     document.getElementById('text3').placeholder= placeholders[2];
-                    document.getElementById('text3').style.visibility= "visible";
-                    if (placeholders[0] == "Book") {
-                        document.getElementById('text3').style.visibility= "hidden";
-                    }
+                    document.getElementById('text4').placeholder= placeholders[3];
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);
                 });
             }
+            */
         </script>
     </body>
 </html>

@@ -67,7 +67,7 @@ let r = "B2:C2"
 */
 
 function getValues(sheetsId, r) {
-  console.log('yess')
+  console.log(r)
   var params = {
     spreadsheetId: sheetsId,
     ranges: [r],
@@ -78,12 +78,30 @@ function getValues(sheetsId, r) {
   request.then(function(response) {
     //console.log(response.result.valueRanges[0].values);
     let values = `${response.result.valueRanges[0].values}`.split(",");
-    if (values.includes('undefined') == false) {    
-      console.log(values);
+    console.log(response.result.valueRanges[0].values)
+    console.log(values)
+    /*if (values.includes("") == false) {    
       document.getElementById('item_name').innerHTML= values[0];
-      document.getElementById('text1').placeholder= values[1];
-      document.getElementById('text2').placeholder= values[2];
-      document.getElementById('text3').placeholder= values[3];
+      document.getElementById('text1').placeholder= values[2];
+      document.getElementById('text2').placeholder= values[3];
+      document.getElementById('text3').placeholder= values[4];
+      document.getElementById('text4').placeholder= values[5];
+    }
+    */
+   if (values[0] != "") {
+    document.getElementById('item_name').innerHTML= values[0];
+   }
+   if (values[1] != "") {
+    document.getElementById('item_desc').innerHTML= values[1];
+   }
+    
+    for (let i = 2; i < values.length + 1; i++) {
+      let textId = "text";
+      textId += i-1;
+      console.log(textId)
+      if (values[i] != "") {
+        document.getElementById(textId).placeholder= values[i];
+      }
     }
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -218,7 +236,6 @@ function func1() {
             document.getElementById('verify').style.visibility = 'hidden';
             b = true;
             document.getElementById('get_button').style.visibility = 'hidden'
-            document.getElementById("text3").readOnly= true;
             }
           }
 /*
@@ -288,7 +305,6 @@ function func1() {
         function makeTrue() {
           document.getElementById('verify').style.visibility = 'hidden';
           document.getElementById('get_button').style.visibility = 'hidden'
-          document.getElementById("text3").readOnly= true;
           b = true;
           console.log(b);
         }
