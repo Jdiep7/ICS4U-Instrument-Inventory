@@ -285,7 +285,7 @@ function func1() {
             b = true;
           }
         }
-        */
+
 
 
         var title = "Test Spreadsheet"
@@ -303,6 +303,7 @@ function func1() {
             return;
           }
         }
+                */
 
         function makeTrue() {
           document.getElementById('verify').style.visibility = 'hidden';
