@@ -27,7 +27,6 @@
                 
         <div class="box">
             <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
-            
         </div>
         <div class="overlay" id = "modify">
             <div class="wrapper">
@@ -39,12 +38,12 @@
                     <div class="container">
                         <form>
                             <div class="text">
-                                <h4 id="text1_desc">Student Name</h4>
+                                <h4 id="text1_desc">Student Class</h4>
                                 <input type="text" id="text1" name="text1" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
                             <div class="text">
-                                <h4 id="text2_desc">Student class</h4>
+                                <h4 id="text2_desc">Student Name</h4>
                                 <input type="text" id="text2" name="text2" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
@@ -94,10 +93,10 @@
 
             let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
                 Instascan.Camera.getCameras().then(function(cameras){
-                if(cameras.length > 0){
+                if(cameras.length > 0) {
                     console.log("camera")
                     scanner.start(cameras[0]);
-                }else{
+                }else {
                     modal.style.display = "block";
                     modalText.innerHTML = `No cameras found`;
                 }
@@ -176,7 +175,7 @@
             function findRow(insId, sheetId) {
                 var params = {
                     spreadsheetId: sheetId,
-                    ranges: ["Sheet1!A:A"],
+                    ranges: ["A:A"],
                     valueRenderOption: 'FORMATTED_VALUE',
                     dateTimeRenderOption: 'SERIAL_NUMBER',
                 };
@@ -186,8 +185,8 @@
                     values = `${response.result.valueRanges[0].values}`.split(",");
                     this.index = values.indexOf(insId) + 1;
                     console.log(this.index);
-                    ranges = "Sheet1!A" + index + ":F" + index;
-                    setRanges = "Sheet1!C" + index + ":F" + index;
+                    ranges = "A" + index + ":F" + index;
+                    setRanges = "C" + index + ":F" + index;
                     //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);

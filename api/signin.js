@@ -57,7 +57,8 @@ function gisLoaded() {
  */
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
-    document.getElementById('authorize_button').style.visibility = 'visible';
+    console.log("login")
+    handleAuthClick();
   }
 }
 
@@ -95,10 +96,11 @@ function getValues(sheetsId, r) {
     document.getElementById('item_desc').innerHTML= values[1];
    }
     
-    for (let i = 2; i < values.length + 1; i++) {
+    for (let i = 2; i < values.length; i++) {
       let textId = "text";
       textId += i-1;
       console.log(textId)
+      console.log(values.length)
       if (values[i] != "") {
         document.getElementById(textId).placeholder= values[i];
       }
@@ -309,9 +311,8 @@ function func1() {
           console.log(b);
         }
 
-      async function openPage() {
-        window.location = 'api/main.html';
-
+      function openPage() {
+        window.location.href = 'main.html';
       };
 
 
@@ -334,10 +335,6 @@ function func1() {
             prompt: '',
             hint: 'ethan.mei06@gmail.com'});
         }
-      }
-
-      function changeOrder() {
-        
       }
 
 
