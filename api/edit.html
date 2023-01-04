@@ -7,25 +7,77 @@
     <a id= "newQR" class= "button" href="#newQR" onclick="setButton()">New</a>
     <a id="existingQR" class= "button" href="#fromSheets" onclick="setButton()">From Spreadsheet</a>
     <a id="back" class="button" href="#" onclick="setButton()">Back</a>
-    <div id = "newQR">
-        <h2>Generate QR Codes</h2>
+
+    <br><br><div id = "newQR">
+        <h2>New QR</h2>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+              <a onclick="setInstrument()">Instruments</a>
+              <a onclick="setBook()">Books</a>
+            </div>
+        </div>
+        <div class="ranges">
+            <h3>From</h3>
+            <input type="number" id="setStartRange" placeholder="Start row">
+        </div>
+        <div class="ranges">
+            <h3>Amount</h3>
+            <input type="number" id="setAmount" placeholder="Amount">
+        </div>
+        <div class="newValues">
+            <h3>Name</h3>
+            <input type="text" id= "newName" placeholder="Instrument/Book Name">
+        </div>
+        <div class="newValues">
+            <h3>Company</h3>
+            <input type="text" id= "newCompany" placeholder="Company">
+        </div>
+        <br><a id="generateNew" class="button">Generate</a>
     </div>
+    
+    <br><div id = "fromSheets">
+        <h2>From Sheets</h2>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+              <a onclick="setInstrument()">Instruments</a>
+              <a onclick="setBook()">Books</a>
+            </div>
+        </div>
+        <div class="ranges">
+            <h3>From</h3>
+            <input type="number" id="startRange" placeholder="Start row">
+        </div>
+        <div class="ranges">
+            <h3>To</h3>
+            <input type="number" id="endRange" placeholder="End row">
+        </div>
+        <br><a id="generate" class="button">Generate</a>
+
+    </div>
+    
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Scan</a>
         <a href="edit.html">Sheets</a>
         <a href="#account">Account</a>
         <a href="#home">About</a>
-      </div>
-      
-      <div id="main">
-        <a class="openbtn" onclick="openNav()">&#9776;</a>
-      </div>
+    </div>
+    
+    <div id="main">
+       <a class="openbtn" onclick="openNav()">&#9776;</a>
+    </div>
+
     <script type="text/javascript" src = "edit.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script async defer src="https://apis.google.com/js/api.js"></script>
     <script>
+        let genbtn = document.getElementById("generate");
+        let genNewBtn = document.getElementById("generateNew");
+        var sheetsId = "none";
+        var r;
         document.getElementById("back").style.visibility = 'hidden';
         let isVisible = true;
         function setButton() {
@@ -40,6 +92,32 @@
                 document.getElementById("back").style.visibility = 'hidden';
                 isVisible = true;
             }
+        }
+
+        genbtn.addEventListener("click", ()=> {
+            let start = document.getElementById("startRange").value;
+            let end = document.getElementById("endRange").value;
+            if (start < 4) {
+                start = 4;
+            }
+            r = "A" + start + ":A" + end;
+            console.log(r);
+            getValues(sheetsId, r);
+        });
+
+        genNewBtn.addEventListener("click", ()=> {
+            let index = document.getElementById("setStartRange").value;
+            let amount = document.getElementById("setAmount").value;
+            let name = document.getElementById("newName").value;
+            let company = document.getElementById("newCompany").value;
+            newQR(index, amount, name, company, sheetsId);
+        });
+
+        function setInstrument() {
+            sheetsId = "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY"
+        }
+        function setBook() {
+            sheetsId = "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0"
         }
     </script>
 </html>

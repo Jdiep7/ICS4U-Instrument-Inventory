@@ -57,7 +57,11 @@ function gapiLoaded() {
       //console.log(response.result.valueRanges[0].values);
       this.values = `${response.result.valueRanges[0].values}`.split(",");
       //console.log(response.result.valueRanges[0].values)
-      //console.log(values)
+      console.log(values)
+      values.forEach((element, index) => {
+        values[index] = element + "," + sheetsId;
+      });
+      console.log(values)
       /*if (values.includes("") == false) {    
         document.getElementById('item_name').innerHTML= values[0];
         document.getElementById('text1').placeholder= values[2];
@@ -69,6 +73,17 @@ function gapiLoaded() {
     }, function(reason) {
       console.error('error: ' + reason.result.error.message);
     });
+  }
+
+  function newQR (index, amount, name, company, sheetsId) {
+    let newItems = [];
+    let ind;
+    if (sheetsId = "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+      for (let i = 0; i < amount; i++) {
+        newItems[i] = name + " " + i + "," + sheetsId;
+      }
+      console.log(newItems)
+    }
   }
 
   function handleAuthClick() {
