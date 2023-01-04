@@ -10,15 +10,17 @@
 
     <br><br><div id = "newQR">
         <h2>New QR</h2>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-              <a onclick="setInstrument()">Instruments</a>
-              <a onclick="setBook()">Books</a>
-            </div>
-        </div>
+        <select name="selectSheet" id="selectSheet" onchange="setSheet()">
+            <option value="none" selected disabled hidden>Select a Spreadsheet</option>
+            <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+            <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+        </select>
         <div class="ranges">
             <h3>From</h3>
+            <input type="number" id="setStartRange" placeholder="Start row">
+        </div>
+        <div class="ranges">
+            <h3>index</h3>
             <input type="number" id="setStartRange" placeholder="Start row">
         </div>
         <div class="ranges">
@@ -27,7 +29,28 @@
         </div>
         <div class="newValues">
             <h3>Name</h3>
-            <input type="text" id= "newName" placeholder="Instrument/Book Name">
+            <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
+                <option value="none" selected disabled hidden>Instrument Name</option>
+                <option value="FL">Flute</option>
+                <option value="PIC">Piccolo</option>
+                <option value="OBOE">Oboe</option>
+                <option value="CL">Clarinet</option>
+                <option value="ACL">Alto Clarinet</option>
+                <option value="BCL">Bass Clarinet</option>
+                <option value="AS">Alto Sax</option>
+                <option value="TS">Tenor Sax</option>
+                <option value="BS">Bari Sax</option>
+                <option value="FH">French Horn</option>
+                <option value="TRPT">Trumpet</option>
+                <option value="TRBN">Trombone</option>
+                <option value="BARBC">Baritone</option>
+                <option value="BSN">Bassoon</option>
+                <option value="TUBA">Tuba</option>
+                <option value="PERC">Percussion</option>
+                <option value="EB">Electric Bass</option>
+                <option value="Piano">Piano</option>
+                <option value="Conductor">Conductor</option>
+            </select>
         </div>
         <div class="newValues">
             <h3>Company</h3>
@@ -38,13 +61,11 @@
     
     <br><div id = "fromSheets">
         <h2>From Sheets</h2>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-              <a onclick="setInstrument()">Instruments</a>
-              <a onclick="setBook()">Books</a>
-            </div>
-        </div>
+        <select name="selectSheet" id="selectSheet">
+            <option value="none" selected disabled hidden>Select a Spreadsheet</option>
+            <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+            <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+        </select>
         <div class="ranges">
             <h3>From</h3>
             <input type="number" id="startRange" placeholder="Start row">
@@ -77,6 +98,8 @@
         let genbtn = document.getElementById("generate");
         let genNewBtn = document.getElementById("generateNew");
         var sheetsId = "none";
+        var longName = "none";
+        var shortName = "none";
         var r;
         document.getElementById("back").style.visibility = 'hidden';
         let isVisible = true;
@@ -108,16 +131,25 @@
         genNewBtn.addEventListener("click", ()=> {
             let index = document.getElementById("setStartRange").value;
             let amount = document.getElementById("setAmount").value;
-            let name = document.getElementById("newName").value;
             let company = document.getElementById("newCompany").value;
-            newQR(index, amount, name, company, sheetsId);
+            if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+                newInsQR(index, amount, longName, company, sheetsId);
+            } 
+            if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
+                newBookQR(index, amount, shortName, sheetsId);
+            }
         });
 
-        function setInstrument() {
-            sheetsId = "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY"
+        function setSheet() {
+            let index = document.getElementById("selectSheet").selectedIndex;
+            console.log(document.getElementById("selectSheet").options[index].text)
+            sheetsId = document.getElementById("selectSheet").options[index].value;
         }
-        function setBook() {
-            sheetsId = "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0"
+
+        function setInstrument() {
+            let index = document.getElementById("selectInstrument").selectedIndex;
+            longName = document.getElementById("selectInstrument").options[index].text;
+            shortName = document.getElementById("selectInstrument").options[index].value;
         }
     </script>
 </html>

@@ -75,15 +75,23 @@ function gapiLoaded() {
     });
   }
 
-  function newQR (index, amount, name, company, sheetsId) {
+  function newBookQR (index, amount, name, sheetsId) {
     let newItems = [];
     let ind;
-    if (sheetsId = "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+      for (let i = 0; i < amount; i++) {
+        ind = parseInt(i) + parseInt(index);
+        newItems[i] = "EM-" + name + "-" + ind + "," + sheetsId;
+      }
+      console.log(newItems)
+  }
+
+  function newInsQR (index, amount, name, company, sheetsId) {
+    let newItems = [];
+    let ind;
       for (let i = 0; i < amount; i++) {
         newItems[i] = name + " " + i + "," + sheetsId;
       }
       console.log(newItems)
-    }
   }
 
   function handleAuthClick() {

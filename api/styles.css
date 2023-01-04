@@ -65,12 +65,12 @@ label {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease-out;
-    background: #7fc79a;
+    background: #48aa69;
     border-radius: 5px;
 }
 
 .button:hover {
-    background-color: #9ad1b2;
+    background-color: #6eb48e;
   }
 .continue {
     cursor: pointer;
@@ -168,7 +168,7 @@ input[type=text] {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #7fc79a;
+    background-color: #48aa69;
     transition: 0.4s;
     
 }
@@ -265,7 +265,7 @@ input[type=text] {
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #04AA6D;
+    background-color: #48aa69;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -303,4 +303,4 @@ input[type=text] {
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .dropdown:hover .dropbtn {background-color: #6eb48e;}
