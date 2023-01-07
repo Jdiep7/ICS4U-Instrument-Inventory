@@ -13,7 +13,10 @@
     <body>
         <div class="wrapper">
             <header>
-                <h1>QR Code Generator</h1>
+                <div class="clearPos">
+                    <h1>QR Code Generator</h1>
+                    <button id="clearbtn">Clear</button>
+                </div>
                 <p>Paste a url or enter text to create QR</p>
             </header>
             <div class="form">
@@ -28,6 +31,8 @@
             <div class="qr-code">
                 <img src="C:\Users\Jamie Diep\Documents\ICS4U Project\ICS4U-Instrument-Inventory\Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
             </div>
+
+            <button id="downloadbtn">Download</button>
         </div>
 
         <div id="myModal" class="modal">
@@ -37,6 +42,7 @@
             </div>
         </div>   
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script src="generatorScript.js"></script>
     </body>
 </html>
