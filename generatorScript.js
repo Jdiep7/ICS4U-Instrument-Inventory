@@ -14,10 +14,10 @@ generateBtn.addEventListener("click", () => {
         modal.style.display = "block";
         modalText.innerHTML = `Please Enter a Text or URL in the QR Input`;
     } 
-    /*else if (preValue == qrValue){
+    else if (preValue == qrValue){
         modal.style.display = "block";
         modalText.innerHTML = `QR Code already generated for this text/URL`;
-    }*/
+    }
     else{
         preValue = qrValue;
         generateBtn.innerText = "Generating QR Code...";
