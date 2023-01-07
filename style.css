@@ -28,7 +28,7 @@ body{
     background: #fff;
     border-radius: 7px;
     padding: 20px 25px 0;
-    transition: height 0.2s ease;
+    transition: height 0.2s ease    ;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
@@ -45,7 +45,7 @@ body{
 
 
 .wrapper.active{
-    height:550px;
+    height:600px;
 }
 
 .container.scannerActive{
@@ -158,6 +158,29 @@ header p{
     gap: 8px;
 }
 
+.clearPos {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+}
+
+.clearPos button{
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    background: #3498DB;
+    width: 65px;
+    height:30px;    
+    border:none;
+    outline:none;
+    border-radius:4px;
+    transition: 0.1 ease;
+}
+
+.clearPs button:hover{
+    background: #4b9bb4;
+}
+
 .btnPos button{
     font-size: 15px;
 }
@@ -206,6 +229,25 @@ header p{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#downloadbtn {
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 12px;
+    background: #3498DB;
+    width: 75px;
+    height:35px;    
+    border:none;
+    outline:none;
+    border-radius:4px;
+    transition: 0.1 ease;
+}
+
+#downloadbtn:hover{
+    background: #4b9bb4;
+}
+
 
 .footer .footer-link{
     text-decoration: none;
