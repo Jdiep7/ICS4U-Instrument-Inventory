@@ -128,7 +128,7 @@ label {
     background-color: #fff;
     padding-top: 20px 0;
 }
-/*
+
 input[type=text], textarea {
     width: 100%;
     padding: 10px;
@@ -141,7 +141,7 @@ input[type=text], textarea {
     margin-bottom: 16px;
     resize: vertical;
 }
-*/
+
 .text{
     width: 280px;
     margin: 8px;
@@ -149,8 +149,7 @@ input[type=text], textarea {
     margin-bottom: 18px;
 }
 
-
-input[type=text] {
+/*input[type=text] {
     width: 100%;
     padding: 10px;
     border: none;
@@ -161,7 +160,9 @@ input[type=text] {
     margin-top: 0;
     margin-bottom: 0;
     resize: vertical;
-}
+}*/
+
+
 .effect ~ .focus-border {
     position: absolute;
     bottom: 0;

@@ -13,14 +13,10 @@ let gisInited = false;
 let b = true; 
 let id = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY';
 let range = "B2:C2";
-const container = document.querySelector(".container");
-let scanbtn = document.getElementById("scan");
-let uploadbtn = document.getElementById("upload");
 
 document.getElementById('get_button').style.visibility = 'hidden';
 document.getElementById('verify').style.visibility = 'hidden';
-document.getElementById('authorize_button').style.visibility = 'hidden';
-document.getElementById('get_button').style.visibility = 'hidden';
+/*document.getElementById('authorize_button').style.visibility = 'hidden';*/
       
 
 /**
@@ -307,7 +303,7 @@ function func1() {
 
         function makeTrue() {
           document.getElementById('verify').style.visibility = 'hidden';
-          document.getElementById('get_button').style.visibility = 'hidden'
+          document.getElementById('get_button').style.visibility = 'hidden';
           b = true;
           console.log(b);
         }

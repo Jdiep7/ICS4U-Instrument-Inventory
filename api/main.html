@@ -33,7 +33,8 @@
                 <h2>Update <span id = "title_name"></span><br>Information</h2>
                 <h3 id="item_name"></h3>
                 <h3 id="item_desc"></h3>
-                <a href="#" class="close" onclick="makeTrue()">&times;</a>
+                <!--<button id="close_button" href="#" class="close">&times;</button>-->
+                <a href="#" class="close" id="close_button">&times;</a>
                 <div class="content">
                     <div class="container">
                         <form>
@@ -57,7 +58,7 @@
                                 <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
-                            <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
+                            <button id="submit_button" class = "button">Submit</button>
                             <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
                         </form>
                     </div>
@@ -90,6 +91,7 @@
         <script>
             let getbtn = document.getElementById("get_button");
             let setbtn = document.getElementById("submit_button");
+            let closebutton = document.getElementById('close_button');
 
             let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
                 Instascan.Camera.getCameras().then(function(cameras){
@@ -214,6 +216,11 @@
                 });
             }
             */
+            
+            closebutton.addEventListener("click", ()=>{
+                makeTrue()
+            });
+            
         </script>
     </body>
 </html>
