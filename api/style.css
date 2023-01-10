@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins'); 
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow:hidden;
+}
+
+body{
+    display: flex;
+    padding: 0 10px;
+    min-height: 100vh;
+    align-items:center;
+    background: #3498DB;
+    justify-content:center;
+}
+
+::selection{
+    color: #fff;
+    background: #3498DB;
+}
+
+.wrapper{
+    height:275px;
+    width:410px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 20px 25px 0;
+    transition: height 0.2s ease    ;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.container{
+    height:300px;
+    width:410px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 20px 25px 0;
+    transition: height 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+
+.wrapper.active{
+    height:600px;
+}
+
+.container.scannerActive{
+    height:550px;
+}
+
+
+header h1{
+    font-size: 21px;
+    font-weight: 500px;
+}
+
+header p{
+    margin-top:5px;
+    color: #474747;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.wrapper.form{
+    margin:20px 0 25px;
+}
+
+.form :where(input,button){
+    width:100%;
+    height:55px;    
+    border:none;
+    outline:none;
+    border-radius:5px;
+    transition: 0.1 ease;
+}
+
+.form input{
+    font-size:18px;
+    padding: 0 17px;
+    border: 1px solid #999;
+    margin-top: 5px;
+}
+
+.form input:focus{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+.form input::placeholder{
+    color:#999;
+}
+
+.form button{
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 17px;
+    background: #3498DB
+}
+
+#gobackScan{
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    background: #3498DB
+}
+
+#gobackScan:hover{
+    background:#4b9bb4;
+}
+
+.form button:hover{
+    background: #4b9bb4;
+}
+
+.qr-code{
+    display:flex;
+    opacity:0;
+    pointer-events: none;
+    padding:55px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+
+.webcam{
+    margin-top: 10px;
+    display:flex;
+    opacity:0;
+    pointer-events: none;
+    padding:10px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper.active .qr-code{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.5s 0.05s ease;
+}
+
+.container.scannerActive .webcam{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.5s 0.05s ease;
+}
+
+.btnPos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.clearPos {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+}
+
+.clearPos button{
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    background: #3498DB;
+    width: 65px;
+    height:30px;    
+    border:none;
+    outline:none;
+    border-radius:4px;
+    transition: 0.1 ease;
+}
+
+.clearPs button:hover{
+    background: #4b9bb4;
+}
+
+.btnPos button{
+    font-size: 15px;
+}
+
+@media (max-width: 430px){
+    .wrapper{
+        height: 290px;
+        padding: 16px 20px;
+    }
+
+    .wrapper.active{
+        height: 550px;
+    }
+
+    .wrapper.scannerActive{
+        height: 550px;
+    }
+
+    header p{
+        color: #696969;
+    }
+
+    form :where(input, button){
+        height: 52px;
+    }
+
+    .qr-code img{
+        width:160px;
+    }
+
+    .webcam video{
+        width: 400px
+    }
+}
+
+.qr-code img{
+    width: 170px;
+}
+
+.webcam video{
+    border-radius: 5px;
+    width: 400px
+}
+
+.footer{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#downloadbtn {
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 12px;
+    background: #3498DB;
+    width: 75px;
+    height:35px;    
+    border:none;
+    outline:none;
+    border-radius:4px;
+    transition: 0.1 ease;
+}
+
+#downloadbtn:hover{
+    background: #4b9bb4;
+}
+
+
+.footer .footer-link{
+    text-decoration: none;
+    color: #575757;
+    font-size: small;
+}
+
+.footer .footer-link:hover{
+    color: #4b9bb4;
+}
+

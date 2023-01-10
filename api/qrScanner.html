@@ -1,0 +1,49 @@
+<html>
+	<head>
+    	<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+    	<script type="text/javascript" src = "https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+		<link rel="stylesheet" href="https://myskypower.net/components/modal/modal.css">
+        <script src="https://myskypower.net/components/modal/modal.js" defer></script>
+    	<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+    	<div class = "container">
+      		<header>
+        		<h1>QR Code Scanner</h1>
+        		<p>Upload QR Code or Scan with Webcam</p>
+      		</header>
+      		<div class="form">
+				<input type="file" id="fileInp" hidden>
+        		<input type="text" name="text" id="text" readonly="" placeholder="QR Code Result" class="form-control">
+        		<div class="btnPos">
+          			<button id="upload">Upload QR Code</button>
+          			<button id="scan">Scan QR Code</button>
+        		</div>
+        		<button id="gobackScan">Go Back</button>
+      		</div>
+
+      		<div class="webcam">
+          		<video id="preview" width="100%"></video>
+      		</div>
+    	</div>
+
+		<div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalText"></p>
+            </div>
+        </div>  
+
+		<script src="scannerScript.js"></script>
+
+  </body>
+</html>
+
+<script>
+	let goback = document.getElementById("gobackScan");
+
+	goback.addEventListener("click", ()=>{
+		window.location.href = "index.html";
+	});
+</script>
