@@ -89,41 +89,41 @@ function getValues(sheetsId, r) {
       document.getElementById('text4').placeholder= values[5];
     }
     */
-  if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-    document.getElementById('title_name').innerHTML= "Book";
-    if (values[0] != "") {
-      document.getElementById('item_name').innerHTML= values[0];
-    }
-    if (values[1] != "") {
-      document.getElementById('item_desc').innerHTML= values[1];
-    }
-    
-    for (let i = 2; i < values.length; i++) {
-      let textId = "text";
-      textId += i-1;
-      console.log(textId)
-      console.log(values.length)
-      if (values[i] != "") {
-        document.getElementById(textId).placeholder= values[i];
+    if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+      document.getElementById('title_name').innerHTML= "Book";
+      if (values[0] != "") {
+        document.getElementById('item_name').innerHTML= values[0];
       }
-    }
-    
-  } else {
-    document.getElementById('title_name').innerHTML= "Book";
-    if (values[0] != "") {
-      document.getElementById('item_name').innerHTML= values[0];
-    }
+      if (values[1] != "") {
+        document.getElementById('item_desc').innerHTML= values[1];
+      }
+      
+      for (let i = 2; i < values.length; i++) {
+        let textId = "text";
+        textId += i-1;
+        console.log(textId)
+        console.log(values.length)
+        if (values[i] != "") {
+          document.getElementById(textId).placeholder= values[i];
+        }
+      }
+      
+    } else {
+      document.getElementById('title_name').innerHTML= "Book";
+      if (values[0] != "") {
+        document.getElementById('item_name').innerHTML= values[0];
+      }
 
-    for (let i = 1; i < values.length - 1; i++) {
-      let textId = "text";
-      textId += i;
-      console.log(textId)
-      console.log(values.length)
-      if (values[i] != "") {
-        document.getElementById(textId).placeholder= values[i];
+      for (let i = 1; i < values.length - 1; i++) {
+        let textId = "text";
+        textId += i;
+        console.log(textId)
+        console.log(values.length)
+        if (values[i] != "") {
+          document.getElementById(textId).placeholder= values[i];
+        }
       }
     }
-  }
 
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
@@ -234,7 +234,6 @@ function func1() {
             var params = {
               spreadsheetId: sheetsId
             };
-            window.location.href= "#"
             let values = [['Sax', 'Matthew Chen']];
             values = v;
             const data = [];

@@ -60,8 +60,7 @@ const isValidUrl = urlString=>{
 var parameters;
 var sheetId;
 var index = 3;
-var ranges;
-var setRanges;
+var ranges = -3;
 var placeholders;
 
 
@@ -71,23 +70,28 @@ scanner.addListener('scan', function(c){
     if(isValidUrl(c) === true){
         window.open(c, "_blank");
     }else{
+        console.log(c);
         parameters = c.split(",");
-        document.getElementById('text').value=c;
+        /*console.log(parameters[0]);*/
+        document.getElementById('text').value=parameters[0];
         sheetId = parameters[1];
         //findColumn(sheetId);
         //response.result.valueRanges[0].values
-        console.log("index: " + `${findRow(parameters[0], sheetId)}`)
+        /*console.log("index: " + `${findRow(parameters[0], sheetId)}`)*/
         findRow(parameters[0], sheetId)
+        console.log(parameters)
+        console.log(sheetId)
         console.log(ranges)
+        console.log(index)
         /*document.getElementById('get_button').style.visibility= 'visible';*/
-        getbtn.click();
     }
 
 });
 
 getbtn.addEventListener("click", ()=> {
-    console.log(ranges)
-    console.log(sheetId)
+    console.log("hello");
+    /*console.log(ranges);
+    console.log(sheetId);*/
     getValues(sheetId, ranges);
 });
 
@@ -111,12 +115,13 @@ setbtn.addEventListener("click", ()=> {
     
     let v = [[v1, v2, v3, v4]];
     console.log(document.getElementById("text1").value)
-    setValues(v, setRanges, sheetId);
+    setValues(v, index, sheetId);
     document.getElementById('text1').value = "";
     document.getElementById('text2').value = "";
 });
 
 function findRow(insId, sheetId) {
+    console.log('hello');
     var params = {
         spreadsheetId: sheetId,
         ranges: ["A:A"],
@@ -125,27 +130,20 @@ function findRow(insId, sheetId) {
     };
     var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
     request.then(function(response) {
-        console.log(response.result.valueRanges[0].values);
+        /*console.log(response.result.valueRanges[0].values);*/
         values = `${response.result.valueRanges[0].values}`.split(",");
-        this.index = values.indexOf(insId) + 1;
-        console.log(this.index);
+        index = values.indexOf(insId) + 1;
+        console.log(index);
         ranges = "A" + index + ":F" + index;
-        setRanges = "C" + index + ":F" + index;
+        console.log(ranges);
+        getbtn.click();
+        /*setRanges = "C" + index + ":F" + index;*/
         //return num;
     }, function(reason) {
         console.error('error: ' + reason.result.error.message);
     });
     //return num;
 }
-
-scanner.addListener('scan', function(c){
-    if(isValidUrl(c) === true){
-        window.open(c, "_blank");
-    }else{
-        document.getElementById('text').value=c;
-        console.log(c);
-    }
-});
 
 url_http = "http://api.qrserver.com/v1/read-qr-code/";
 url_https = "https://api.qrserver.com/v1/read-qr-code/";
