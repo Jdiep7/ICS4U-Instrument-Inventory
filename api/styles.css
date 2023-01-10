@@ -162,6 +162,30 @@ input[type=text] {
     margin-bottom: 0;
     resize: vertical;
 }
+input[type=number] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgb(163, 163, 163);
+  background-color: #fff;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  resize: vertical;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgb(163, 163, 163);
+  background-color: #fff;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  resize: vertical;
+}
 .effect ~ .focus-border {
     position: absolute;
     bottom: 0;

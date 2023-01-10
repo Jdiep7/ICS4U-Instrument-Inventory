@@ -121,7 +121,7 @@
             var sheetId;
             var index = 3;
             var ranges;
-            var setRanges;
+            var index;
             var placeholders;
 
             
@@ -165,9 +165,13 @@
                 
                 let v = [[v1, v2, v3, v4]];
                 console.log(document.getElementById("text1").value)
-                setValues(v, setRanges, sheetId);
+                setValues(v, index, sheetId);
+                document.getElementById('item_name').innerHTML = "";
+                document.getElementById('item_desc').innerHTML = "";
                 document.getElementById('text1').value = "";
                 document.getElementById('text2').value = "";
+                document.getElementById('text3').value = "";
+                document.getElementById('text4').value = "";
             });
 
             
@@ -182,10 +186,10 @@
                 request.then(function(response) {
                     console.log(response.result.valueRanges[0].values);
                     values = `${response.result.valueRanges[0].values}`.split(",");
-                    this.index = values.indexOf(insId) + 1;
-                    console.log(this.index);
+                    index = values.indexOf(insId) + 1;
+                    console.log(index);
                     ranges = "A" + index + ":F" + index;
-                    setRanges = "C" + index + ":F" + index;
+                    //setRanges = "C" + index + ":F" + index;
                     //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);
