@@ -49,6 +49,7 @@ function gapiLoaded() {
   var longName = "none";
   var shortName = "none";
   var r;
+  var getRanges;
 
   document.getElementById("back").style.visibility = 'hidden';
   let isVisible = true;
@@ -72,9 +73,9 @@ function gapiLoaded() {
       if (start < 4) {
           start = 4;
       }
-      r = "A" + start + ":A" + end;
-      console.log(r);
-      getValues(sheetsId, r);
+      getRanges = "A" + start + ":A" + end;
+      console.log(getRanges);
+      getValues(sheetsId, getRanges);
   });
 
   genNewBtn.addEventListener("click", ()=> {
@@ -137,6 +138,74 @@ function gapiLoaded() {
         newItems[i] = name + " " + i + "," + sheetsId;
       }
       console.log(newItems)
+  }
+
+  function addRows(index, amount, sheetsId, name, company) {
+    var params = {
+      spreadsheetId: sheetsId
+    };
+    const data = [];
+    let startIndex = parseInt(index);
+    console.log(startIndex)
+    let endIndex = parseInt(index) + parseInt(amount);
+    console.log(endIndex)
+    data.push({
+      "insertDimension": {
+        "range": {
+          "sheetId": 0,
+          "dimension": "ROWS",
+          "startIndex": startIndex,
+          "endIndex": endIndex
+        },
+        "inheritFromBefore": false
+      }
+      
+    });
+    console.log(startIndex)
+    console.log(endIndex)
+    const body = {
+      requests: data,
+    };
+      var request = gapi.client.sheets.spreadsheets.batchUpdate(params, body);
+      request.then(function(response) {
+        // TODO: Change code below to process the `response` object:
+        console.log(response.result);
+        let singleRow = [name, company]
+        let allRows = Array(parseInt(amount)).fill(singleRow)
+        console.log(allRows)
+        let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
+        fillCells(allRows, range, sheetsId);
+      }, function(reason) {
+        console.error('error: ' + reason.result.error.message);
+      });
+  }
+
+  function fillCells(v, r, sheetsId) {
+    var params = {
+      spreadsheetId: sheetsId
+    };
+    let values = [['Sax'], ['Matthew Chen']];
+    values = v;
+    console.log(v)
+    console.log(r)
+    const data = [];
+    data.push({
+      range: r,
+      values: values,
+    });
+    // Additional ranges to update.
+  
+    const body = {
+      data: data,
+      valueInputOption: 'USER_ENTERED',
+    };
+      var request = gapi.client.sheets.spreadsheets.values.batchUpdate(params, body);
+      request.then(function(response) {
+        // TODO: Change code below to process the `response` object:
+        console.log(response.result);
+      }, function(reason) {
+        console.error('error: ' + reason.result.error.message);
+      });
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
