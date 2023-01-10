@@ -8,27 +8,38 @@
     <a id="existingQR" class= "button" href="#fromSheets" onclick="setButton()">From Spreadsheet</a>
     <a id="back" class="button" href="#" onclick="setButton()">Back</a>
 
-    <br><br><div id = "newQR">
+    <br><br>
+    <div id = "newQR">
         <h2>New QR</h2>
-        <select name="selectSheet" id="selectSheet" onchange="setSheet()">
-            <option value="none" selected disabled hidden>Select a Spreadsheet</option>
-            <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
-            <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
-        </select>
-        <div class="ranges">
+        <div class="text">
+            <select name="selectSheet" id="selectSheet" class="effect" onchange="setSheet()">
+                <option value="none" selected disabled hidden>Select a Spreadsheet</option>
+                <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+                <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+            </select>
+            <span class="focus-border"></span>
+        </div>
+        <div class="text">
             <h3>From</h3>
-            <input type="number" id="setStartRange" placeholder="Start row">
+            <input type="number" id="setStartRange" class="effect" placeholder="Start row">
+            <span class="focus-border"></span>
         </div>
-        <div class="ranges">
-            <h3>index</h3>
-            <input type="number" id="setStartRange" placeholder="Start row">
+        <div class="text">
+            <h3>Index</h3>
+            <input type="number" id="setStartRange" class="effect" placeholder="Start row">
+            <span class="focus-border"></span>
         </div>
-        <div class="ranges">
+        <div class="text">
             <h3>Amount</h3>
-            <input type="number" id="setAmount" placeholder="Amount">
+            <input type="number" id="setAmount" class="effect" placeholder="Amount">
+            <span class="focus-border"></span>
         </div>
         <div class="newValues">
             <h3>Name</h3>
+            <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
+            like a hash map, to access both the full and shortened names of instruments.
+            The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
+            The setInstrument function runs whenever the option is changed.-->
             <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
                 <option value="none" selected disabled hidden>Instrument Name</option>
                 <option value="FL">Flute</option>
@@ -52,9 +63,10 @@
                 <option value="Conductor">Conductor</option>
             </select>
         </div>
-        <div class="newValues">
+        <div class="text">
             <h3>Company</h3>
-            <input type="text" id= "newCompany" placeholder="Company">
+            <input type="text" id= "newCompany" class="effect" placeholder="Company">
+            <span class="focus-border"></span>
         </div>
         <br><a id="generateNew" class="button">Generate</a>
     </div>
@@ -94,62 +106,4 @@
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script async defer src="https://apis.google.com/js/api.js"></script>
-    <script>
-        let genbtn = document.getElementById("generate");
-        let genNewBtn = document.getElementById("generateNew");
-        var sheetsId = "none";
-        var longName = "none";
-        var shortName = "none";
-        var r;
-        document.getElementById("back").style.visibility = 'hidden';
-        let isVisible = true;
-        function setButton() {
-            if (isVisible) {
-                document.getElementById("newQR").style.visibility = 'hidden';
-                document.getElementById("existingQR").style.visibility = 'hidden';
-                document.getElementById("back").style.visibility = 'visible';
-                isVisible = false;
-            } else {
-                document.getElementById("newQR").style.visibility = 'visible';
-                document.getElementById("existingQR").style.visibility = 'visible';
-                document.getElementById("back").style.visibility = 'hidden';
-                isVisible = true;
-            }
-        }
-
-        genbtn.addEventListener("click", ()=> {
-            let start = document.getElementById("startRange").value;
-            let end = document.getElementById("endRange").value;
-            if (start < 4) {
-                start = 4;
-            }
-            r = "A" + start + ":A" + end;
-            console.log(r);
-            getValues(sheetsId, r);
-        });
-
-        genNewBtn.addEventListener("click", ()=> {
-            let index = document.getElementById("setStartRange").value;
-            let amount = document.getElementById("setAmount").value;
-            let company = document.getElementById("newCompany").value;
-            if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-                newInsQR(index, amount, longName, company, sheetsId);
-            } 
-            if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
-                newBookQR(index, amount, shortName, sheetsId);
-            }
-        });
-
-        function setSheet() {
-            let index = document.getElementById("selectSheet").selectedIndex;
-            console.log(document.getElementById("selectSheet").options[index].text)
-            sheetsId = document.getElementById("selectSheet").options[index].value;
-        }
-
-        function setInstrument() {
-            let index = document.getElementById("selectInstrument").selectedIndex;
-            longName = document.getElementById("selectInstrument").options[index].text;
-            shortName = document.getElementById("selectInstrument").options[index].value;
-        }
-    </script>
 </html>
