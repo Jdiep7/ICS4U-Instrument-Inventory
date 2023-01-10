@@ -49,6 +49,7 @@ function gapiLoaded() {
   var longName = "none";
   var shortName = "none";
   var r;
+  var getRanges;
 
   document.getElementById("back").style.visibility = 'hidden';
   let isVisible = true;
@@ -72,11 +73,11 @@ function gapiLoaded() {
       if (start < 4) {
           start = 4;
       }
-      r = "A" + start + ":A" + end;
-      console.log(r);
-      getValues(sheetsId, r);
+      getRanges = "A" + start + ":A" + end;
+      console.log(getRanges);
+      getValues(sheetsId, getRanges);
   });
-  
+
   genNewBtn.addEventListener("click", ()=> {
     let index = document.getElementById("setStartRange").value;
     let amount = document.getElementById("setAmount").value;
@@ -146,9 +147,9 @@ function gapiLoaded() {
       spreadsheetId: sheetsId
     };
     const data = [];
-    let startIndex = parseInt(index) + 1;
+    let startIndex = parseInt(index);
     console.log(startIndex)
-    let endIndex = parseInt(index) + parseInt(amount) + 1;
+    let endIndex = parseInt(index) + parseInt(amount);
     console.log(endIndex)
     data.push({
       "insertDimension": {
@@ -160,7 +161,10 @@ function gapiLoaded() {
         },
         "inheritFromBefore": false
       }
+      
     });
+    console.log(startIndex)
+    console.log(endIndex)
     const body = {
       requests: data,
     };
@@ -168,13 +172,11 @@ function gapiLoaded() {
       request.then(function(response) {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
-        let names = [Array(parseInt(amount)).fill(name)]
-        console.log(names)
-        let companies = [Array(parseInt(amount)).fill(company)]
-        let nameRows = "A" + startIndex + ":A" + endIndex
-        let companyRows = "B" + startIndex + ":B" + endIndex
-        fillCells(names, nameRows, sheetsId);
-        fillCells(companies, companyRows, sheetsId);
+        let singleRow = [name, company]
+        let allRows = Array(parseInt(amount)).fill(singleRow)
+        console.log(allRows)
+        let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
+        fillCells(allRows, range, sheetsId);
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
@@ -184,8 +186,10 @@ function gapiLoaded() {
     var params = {
       spreadsheetId: sheetsId
     };
-    let values = [['Sax', 'Matthew Chen']];
+    let values = [['Sax'], ['Matthew Chen']];
     values = v;
+    console.log(v)
+    console.log(r)
     const data = [];
     data.push({
       range: r,
