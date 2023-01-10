@@ -42,52 +42,7 @@ function gapiLoaded() {
     }
   }
 
-  let genbtn = document.getElementById("generate");
-  let genNewBtn = document.getElementById("generateNew");
   var values;
-  var sheetsId = "none";
-  var longName = "none";
-  var shortName = "none";
-  var r;
-
-  document.getElementById("back").style.visibility = 'hidden';
-  let isVisible = true;
-  function setButton() {
-      if (isVisible) {
-          document.getElementById("newQR").style.visibility = 'hidden';
-          document.getElementById("existingQR").style.visibility = 'hidden';
-          document.getElementById("back").style.visibility = 'visible';
-          isVisible = false;
-      } else {
-          document.getElementById("newQR").style.visibility = 'visible';
-          document.getElementById("existingQR").style.visibility = 'visible';
-          document.getElementById("back").style.visibility = 'hidden';
-          isVisible = true;
-      }
-  }
-
-  genbtn.addEventListener("click", ()=> {
-      let start = document.getElementById("startRange").value;
-      let end = document.getElementById("endRange").value;
-      if (start < 4) {
-          start = 4;
-      }
-      r = "A" + start + ":A" + end;
-      console.log(r);
-      getValues(sheetsId, r);
-  });
-
-  genNewBtn.addEventListener("click", ()=> {
-      let index = document.getElementById("setStartRange").value;
-      let amount = document.getElementById("setAmount").value;
-      let company = document.getElementById("newCompany").value;
-      if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-          newInsQR(index, amount, longName, company, sheetsId);
-      } 
-      if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
-          newBookQR(index, amount, shortName, sheetsId);
-      }
-  });
 
   function getValues(sheetsId, r) {
     //console.log(r)
@@ -139,20 +94,6 @@ function gapiLoaded() {
       console.log(newItems)
   }
 
-  //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
-  function setSheet() {
-      let index = document.getElementById("selectSheet").selectedIndex;
-      console.log(document.getElementById("selectSheet").options[index].text)
-      sheetsId = document.getElementById("selectSheet").options[index].value;
-  }
-
-  //Using the options from the instrument dropdown menu, sets the full/shortened name of selected instrument.
-  function setInstrument() {
-      let index = document.getElementById("selectInstrument").selectedIndex;
-      longName = document.getElementById("selectInstrument").options[index].text;
-      shortName = document.getElementById("selectInstrument").options[index].value;
-  }
-
   function handleAuthClick() {
     tokenClient.callback = async (resp) => {
       if (resp.error !== undefined) {
@@ -161,12 +102,13 @@ function gapiLoaded() {
       //document.getElementById('authorize_button').innerText = 'Refresh';
     };
     if (gapi.client.getToken() === null) {
-      //Prompt the user to select a Google Account and ask for consent to share their data when establishing a new session.
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
       tokenClient.requestAccessToken({
         prompt: '',
         hint: 'ethan.mei06@gmail.com'});
     } else {
-      //Skip display of account chooser and consent dialog for an existing session.
+      // Skip display of account chooser and consent dialog for an existing session.
       tokenClient.requestAccessToken({
         prompt: '',
         hint: 'ethan.mei06@gmail.com'});
