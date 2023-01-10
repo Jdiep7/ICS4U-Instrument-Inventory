@@ -35,7 +35,66 @@
             </div>
         </div>  
 
-		<script src="scannerScript.js"></script>
+        <div class="popup">
+            <div class="box">
+                <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
+            </div>
+            <div class="overlay" id = "modify">
+                <div class="wrapper2">
+                    <h2>Update <span id = "title_name"></span><br>Information</h2>
+                    <h3 id="item_name"></h3>
+                    <h3 id="item_desc"></h3>
+                    <a href="#" class="close" id="close_button">&times;</a>
+                    <div class="content">
+                        <div class="container2">
+                            <form>
+                                <div class="text">
+                                    <h4 id="text1_desc">Student Class</h4>
+                                    <input type="text" id="text1" name="text1" class="effect" placeholder="" autocomplete="off">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <div class="text">
+                                    <h4 id="text2_desc">Student Name</h4>
+                                    <input type="text" id="text2" name="text2" class="effect" placeholder="" autocomplete="off">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <div class="text">
+                                    <h4 id="text3_desc">Condition</h4>
+                                    <input type="text" id="text3" name="text3" class="effect" placeholder="" autocomplete="off">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <div class="text">
+                                    <h4 id="text4_desc">Notes</h4>
+                                    <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <button id="submit_button" class = "button2">Submit</button>
+                                <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Scan</a>
+            <a href="edit.html">Sheets</a>
+            <a href="#account">Account</a>
+            <a href="#home">About</a>
+          </div>
+          
+          <div id="main">
+            <a class="openbtn" onclick="openNav()">&#9776;</a>
+          </div>
+
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+        <script type="text/javascript" src = "signin.js"></script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script async defer src="https://apis.google.com/js/api.js"></script>
+
+		    <script src="scannerScript.js"></script>
 
   </body>
 </html>
