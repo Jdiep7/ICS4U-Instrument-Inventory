@@ -13,10 +13,14 @@ let gisInited = false;
 let b = true; 
 let id = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY';
 let range = "B2:C2";
+/*const container = document.querySelector(".container");
+let scanbtn = document.getElementById("scan");
+let uploadbtn = document.getElementById("upload");*/
 
 document.getElementById('get_button').style.visibility = 'hidden';
 document.getElementById('verify').style.visibility = 'hidden';
 /*document.getElementById('authorize_button').style.visibility = 'hidden';*/
+document.getElementById('get_button').style.visibility = 'hidden';
       
 
 /**
@@ -186,7 +190,6 @@ function func1() {
             return;
           }
         }
-
         /*
         function sus() {
           var params = {
@@ -307,9 +310,6 @@ function func1() {
             b = true;
           }
         }
-
-
-
         var title = "Test Spreadsheet"
         async function create(title) {
           try {
@@ -327,12 +327,18 @@ function func1() {
         }
                 */
 
-        function makeTrue() {
-          document.getElementById('verify').style.visibility = 'hidden';
-          document.getElementById('get_button').style.visibility = 'hidden';
-          b = true;
-          console.log(b);
-        }
+      function makeTrue() {
+        document.getElementById('item_name').innerHTML = "";
+        document.getElementById('item_desc').innerHTML = "";
+        document.getElementById('text1').value = "";
+        document.getElementById('text2').value = "";
+        document.getElementById('text3').value = "";
+        document.getElementById('text4').value = "";
+        document.getElementById('verify').style.visibility = 'hidden';
+        document.getElementById('get_button').style.visibility = 'hidden'
+        b = true;
+        console.log(b);
+      }
 
       function openPage() {
         window.location.href = 'main.html';

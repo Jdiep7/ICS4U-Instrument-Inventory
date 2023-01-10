@@ -79,18 +79,16 @@ function gapiLoaded() {
   });
 
   genNewBtn.addEventListener("click", ()=> {
-    let index = document.getElementById("setStartRange").value;
-    let amount = document.getElementById("setAmount").value;
-    let company = document.getElementById("newCompany").value;
-    if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-        newInsQR(index, amount, longName, company, sheetsId);
-        addRows(index, amount, sheetsId, longName, company);
-    } 
-    if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
-        newBookQR(index, amount, shortName, sheetsId);
-        addRows(index, amount, sheetsId, shortName, "");
-    }
-});
+      let index = document.getElementById("setStartRange").value;
+      let amount = document.getElementById("setAmount").value;
+      let company = document.getElementById("newCompany").value;
+      if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+          newInsQR(index, amount, longName, company, sheetsId);
+      } 
+      if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
+          newBookQR(index, amount, shortName, sheetsId);
+      }
+  });
 
   function getValues(sheetsId, r) {
     //console.log(r)
@@ -254,4 +252,3 @@ function gapiLoaded() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
   }
-  

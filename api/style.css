@@ -259,8 +259,6 @@ header p{
     color: #4b9bb4;
 }
 
-
-
 h2 {
     text-align: left;
     color: #000000;
@@ -324,6 +322,7 @@ label {
     transition: all 0.3s ease-out;
     background: #48aa69;
     border-radius: 5px;
+    border:transparent;
 }
 
 .button2:hover {
