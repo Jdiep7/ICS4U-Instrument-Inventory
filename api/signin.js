@@ -13,10 +13,14 @@ let gisInited = false;
 let b = true; 
 let id = '1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY';
 let range = "B2:C2";
+/*const container = document.querySelector(".container");
+let scanbtn = document.getElementById("scan");
+let uploadbtn = document.getElementById("upload");*/
 
 document.getElementById('get_button').style.visibility = 'hidden';
 document.getElementById('verify').style.visibility = 'hidden';
 /*document.getElementById('authorize_button').style.visibility = 'hidden';*/
+document.getElementById('get_button').style.visibility = 'hidden';
       
 
 /**
@@ -85,12 +89,14 @@ function getValues(sheetsId, r) {
       document.getElementById('text4').placeholder= values[5];
     }
     */
-   if (values[0] != "") {
-    document.getElementById('item_name').innerHTML= values[0];
-   }
-   if (values[1] != "") {
-    document.getElementById('item_desc').innerHTML= values[1];
-   }
+  if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+    document.getElementById('title_name').innerHTML= "Book";
+    if (values[0] != "") {
+      document.getElementById('item_name').innerHTML= values[0];
+    }
+    if (values[1] != "") {
+      document.getElementById('item_desc').innerHTML= values[1];
+    }
     
     for (let i = 2; i < values.length; i++) {
       let textId = "text";
@@ -101,6 +107,24 @@ function getValues(sheetsId, r) {
         document.getElementById(textId).placeholder= values[i];
       }
     }
+    
+  } else {
+    document.getElementById('title_name').innerHTML= "Book";
+    if (values[0] != "") {
+      document.getElementById('item_name').innerHTML= values[0];
+    }
+
+    for (let i = 1; i < values.length - 1; i++) {
+      let textId = "text";
+      textId += i;
+      console.log(textId)
+      console.log(values.length)
+      if (values[i] != "") {
+        document.getElementById(textId).placeholder= values[i];
+      }
+    }
+  }
+
   }, function(reason) {
     console.error('error: ' + reason.result.error.message);
   });
@@ -166,7 +190,6 @@ function func1() {
             return;
           }
         }
-
         /*
         function sus() {
           var params = {
@@ -194,7 +217,7 @@ function func1() {
         */
       
 
-        function setValues(v, r, sheetsId) {
+        function setValues(v, index, sheetsId) {
           //let b = true;
           //console.log(v[0]);
           if ((document.getElementById("text1").value == null|| document.getElementById("text2").value == null || document.getElementById("text3").value ==  null) && b) {
@@ -202,6 +225,12 @@ function func1() {
             document.getElementById('verify').style.visibility = 'visible';
             b = false;
           } else {
+            let r;
+            if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+              r = "C" + index + ":F" + index;
+            } else {
+              r= "B" + index + ":E" + index;
+            }
             var params = {
               spreadsheetId: sheetsId
             };
@@ -281,9 +310,6 @@ function func1() {
             b = true;
           }
         }
-
-
-
         var title = "Test Spreadsheet"
         async function create(title) {
           try {
@@ -301,12 +327,18 @@ function func1() {
         }
                 */
 
-        function makeTrue() {
-          document.getElementById('verify').style.visibility = 'hidden';
-          document.getElementById('get_button').style.visibility = 'hidden';
-          b = true;
-          console.log(b);
-        }
+      function makeTrue() {
+        document.getElementById('item_name').innerHTML = "";
+        document.getElementById('item_desc').innerHTML = "";
+        document.getElementById('text1').value = "";
+        document.getElementById('text2').value = "";
+        document.getElementById('text3').value = "";
+        document.getElementById('text4').value = "";
+        document.getElementById('verify').style.visibility = 'hidden';
+        document.getElementById('get_button').style.visibility = 'hidden'
+        b = true;
+        console.log(b);
+      }
 
       function openPage() {
         window.location.href = 'main.html';

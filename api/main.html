@@ -33,8 +33,7 @@
                 <h2>Update <span id = "title_name"></span><br>Information</h2>
                 <h3 id="item_name"></h3>
                 <h3 id="item_desc"></h3>
-                <!--<button id="close_button" href="#" class="close">&times;</button>-->
-                <a href="#" class="close" id="close_button">&times;</a>
+                <a href="#" class="close" onclick="makeTrue()">&times;</a>
                 <div class="content">
                     <div class="container">
                         <form>
@@ -58,7 +57,7 @@
                                 <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
                                 <span class="focus-border"></span>
                             </div>
-                            <button id="submit_button" class = "button">Submit</button>
+                            <br><a id="submit_button" class = "button" onclick="setValues()">Submit</a>
                             <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
                         </form>
                     </div>
@@ -91,7 +90,6 @@
         <script>
             let getbtn = document.getElementById("get_button");
             let setbtn = document.getElementById("submit_button");
-            let closebutton = document.getElementById('close_button');
 
             let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
                 Instascan.Camera.getCameras().then(function(cameras){
@@ -123,7 +121,7 @@
             var sheetId;
             var index = 3;
             var ranges;
-            var setRanges;
+            var index;
             var placeholders;
 
             
@@ -167,9 +165,13 @@
                 
                 let v = [[v1, v2, v3, v4]];
                 console.log(document.getElementById("text1").value)
-                setValues(v, setRanges, sheetId);
+                setValues(v, index, sheetId);
+                document.getElementById('item_name').innerHTML = "";
+                document.getElementById('item_desc').innerHTML = "";
                 document.getElementById('text1').value = "";
                 document.getElementById('text2').value = "";
+                document.getElementById('text3').value = "";
+                document.getElementById('text4').value = "";
             });
 
             
@@ -184,10 +186,10 @@
                 request.then(function(response) {
                     console.log(response.result.valueRanges[0].values);
                     values = `${response.result.valueRanges[0].values}`.split(",");
-                    this.index = values.indexOf(insId) + 1;
-                    console.log(this.index);
+                    index = values.indexOf(insId) + 1;
+                    console.log(index);
                     ranges = "A" + index + ":F" + index;
-                    setRanges = "C" + index + ":F" + index;
+                    //setRanges = "C" + index + ":F" + index;
                     //return num;
                 }, function(reason) {
                     console.error('error: ' + reason.result.error.message);
@@ -216,13 +218,7 @@
                 });
             }
             */
-            
-            closebutton.addEventListener("click", ()=>{
-                makeTrue()
-            });
-            
         </script>
     </body>
 </html>
-
 

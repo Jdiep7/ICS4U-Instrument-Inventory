@@ -39,7 +39,7 @@ scanbtn.addEventListener("click", ()=>{
     }
 });
 
-/*const isValidUrl = urlString=>{
+const isValidUrl = urlString=>{
     try{
         return Boolean(new URL(urlString));
     }catch(e){
@@ -47,7 +47,7 @@ scanbtn.addEventListener("click", ()=>{
     }
 }
 
-scanner.addListener('scan', function(c){
+/*scanner.addListener('scan', function(c){
     if(isValidUrl(c) === true){
         window.open(c, "_blank");
     }else{
@@ -65,18 +65,22 @@ var placeholders;
 
 
 scanner.addListener('scan', function(c){
-    console.log('yes');
     console.log(c);
 
-    parameters = c.split(",");
-    sheetId = parameters[1];
-    //findColumn(sheetId);
-    //response.result.valueRanges[0].values
-    console.log("index: " + `${findRow(parameters[0], sheetId)}`)
-    findRow(parameters[0], sheetId)
-    console.log(ranges)
-    /*document.getElementById('get_button').style.visibility= 'visible';*/
-    getbtn.click();
+    if(isValidUrl(c) === true){
+        window.open(c, "_blank");
+    }else{
+        parameters = c.split(",");
+        document.getElementById('text').value=c;
+        sheetId = parameters[1];
+        //findColumn(sheetId);
+        //response.result.valueRanges[0].values
+        console.log("index: " + `${findRow(parameters[0], sheetId)}`)
+        findRow(parameters[0], sheetId)
+        console.log(ranges)
+        /*document.getElementById('get_button').style.visibility= 'visible';*/
+        getbtn.click();
+    }
 
 });
 
@@ -156,6 +160,17 @@ function fetchRequest(file, formData){
             textBox.value=result;
             console.log(result);
         }
+
+        parameters = result.split(",");
+        sheetId = parameters[1];
+        //findColumn(sheetId);
+        //response.result.valueRanges[0].values
+        console.log("index: " + `${findRow(parameters[0], sheetId)}`)
+        findRow(parameters[0], sheetId)
+        console.log(ranges)
+        /*document.getElementById('get_button').style.visibility= 'visible';*/
+        getbtn.click();
+
     }).catch(()=> {
         modal.style.display = "block";
         modalText.innerHTML = `Cannot scan QR Code`;
