@@ -4,6 +4,7 @@ let scanner = new Instascan.Scanner({video: document.getElementById('preview')})
 let uploadbtn = document.getElementById("upload");
 let textBox = document.getElementById("text");
 let fileInp = document.getElementById("fileInp")
+
 let getbtn = document.getElementById("get_button");
 let setbtn = document.getElementById("submit_button");
 let closebutton = document.getElementById('close_button');
@@ -137,6 +138,16 @@ function findRow(insId, sheetId) {
     //return num;
 }
 
+=======
+scanner.addListener('scan', function(c){
+    if(isValidUrl(c) === true){
+        window.open(c, "_blank");
+    }else{
+        document.getElementById('text').value=c;
+        console.log(c);
+    }
+});
+
 url_http = "http://api.qrserver.com/v1/read-qr-code/";
 url_https = "https://api.qrserver.com/v1/read-qr-code/";
 
@@ -171,12 +182,14 @@ function fetchRequest(file, formData){
         /*document.getElementById('get_button').style.visibility= 'visible';*/
         getbtn.click();
 
+
     }).catch(()=> {
         modal.style.display = "block";
         modalText.innerHTML = `Cannot scan QR Code`;
     });
 
 }
+
 
 closebutton.addEventListener("click", ()=>{
     makeTrue()
