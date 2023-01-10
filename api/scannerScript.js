@@ -138,7 +138,6 @@ function findRow(insId, sheetId) {
     //return num;
 }
 
-=======
 scanner.addListener('scan', function(c){
     if(isValidUrl(c) === true){
         window.open(c, "_blank");
