@@ -13,7 +13,7 @@ body{
     padding: 0 10px;
     min-height: 100vh;
     align-items:center;
-    background: #f0f0f0;
+    background: #ffffff;
     justify-content:center;
 }
 
@@ -26,20 +26,22 @@ body{
     height:275px;
     width:410px;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease    ;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid rgb(192, 192, 192);
+    /*box-shadow: 0 10px 30px rgba(0,0,0,0.1);*/
 }
 
 .container{
     height:300px;
     width:410px;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid rgb(192, 192, 192);
+    /*box-shadow: 0 10px 30px rgba(0,0,0,0.1);*/
 }
 
 
@@ -55,7 +57,7 @@ body{
 
 header h1{
     font-size: 21px;
-    font-weight: 500px;
+    /*font-weight: 500px;*/
     text-align: left;
 }
 
@@ -75,19 +77,20 @@ header p{
     height:55px;    
     border:none;
     outline:none;
-    border-radius:3px;
+    border-radius:5px;
     transition: 0.1 ease;
 }
 
 .form input{
     font-size:18px;
     padding: 0 17px;
-    border: 1px solid #999;
+    /*border: 1px solid #999;*/
     margin-top: 5px;
+    background:rgb(240, 240, 240);
 }
 
 .form input:focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    /*box-shadow: 0 3px 6px rgba(0,0,0,0.13);*/
 }
 
 .form input::placeholder{
@@ -95,27 +98,33 @@ header p{
 }
 
 .form button{
-    color: #fff;
+    color: rgb(112, 112, 112);
     cursor: pointer;
     margin-top: 20px;
-    font-size: 17px;
-    background: #48aa69
+    font-size: 15px;
+    background:#ffffff;
+    border: 1px solid rgb(212, 212, 212);
 }
 
 #gobackScan{
-    color: #fff;
+    color: rgb(112, 112, 112);
     cursor: pointer;
     margin-top: 10px;
-    font-size: 17px;
-    background: #48aa69
+    font-size: 15px;
+    background:#ffffff;
+    border: 1px solid rgb(212, 212, 212);
 }
 
 #gobackScan:hover{
-    background:#6eb48e;
+    color: rgb(70, 116, 64);
+    background: rgb(217, 247, 216);
+    border: 1px solid rgb(201, 231, 198);
 }
 
 .form button:hover{
-    background: #6eb48e;
+    color: rgb(70, 116, 64);
+    background: rgb(217, 247, 216);
+    border: 1px solid rgb(201, 231, 198);
 }
 
 .qr-code{
@@ -554,7 +563,7 @@ input[type=text], textarea {
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
     z-index: 1;
 }
 
