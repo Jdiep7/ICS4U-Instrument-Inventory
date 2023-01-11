@@ -327,6 +327,7 @@ function findRow(insId, sheetId) {
         valueRenderOption: 'FORMATTED_VALUE',
         dateTimeRenderOption: 'SERIAL_NUMBER',
     };
+    console.log(sheetId)
     var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
     request.then(function(response) {
         /*console.log(response.result.valueRanges[0].values);*/
