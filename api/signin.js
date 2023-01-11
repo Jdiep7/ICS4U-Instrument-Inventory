@@ -253,6 +253,7 @@ function func1() {
                 // TODO: Change code below to process the `response` object:
                 console.log(response.result);
                 makeTrue();
+                makeTrue()
               }, function(reason) {
                 console.error('error: ' + reason.result.error.message);
               });

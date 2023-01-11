@@ -202,8 +202,8 @@ setbtn.addEventListener("click", ()=> {
     let v = [[v1, v2, v3, v4]];
     console.log(document.getElementById("text1").value)
     setValues(v, index, sheetId);
-    document.getElementById('text1').value = "";
-    document.getElementById('text2').value = "";
+    /*document.getElementById('text1').value = "";
+    document.getElementById('text2').value = "";*/
 });
 
 function getValues(sheetsId, r) {
