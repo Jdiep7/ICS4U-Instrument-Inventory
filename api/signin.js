@@ -251,6 +251,7 @@ function func1() {
               request.then(function(response) {
                 // TODO: Change code below to process the `response` object:
                 console.log(response.result);
+                makeTrue()
               }, function(reason) {
                 console.error('error: ' + reason.result.error.message);
               });
@@ -333,6 +334,10 @@ function func1() {
         document.getElementById('text2').value = "";
         document.getElementById('text3').value = "";
         document.getElementById('text4').value = "";
+        document.getElementById('text1').placeholder = "";
+        document.getElementById('text2').placeholder = "";
+        document.getElementById('text3').placeholder = "";
+        document.getElementById('text4').placeholder = "";
         document.getElementById('verify').style.visibility = 'hidden';
         document.getElementById('get_button').style.visibility = 'hidden'
         b = true;
