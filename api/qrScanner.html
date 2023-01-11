@@ -87,14 +87,15 @@
           <div id="main">
             <a class="openbtn" onclick="openNav()">&#9776;</a>
           </div>
-
+    
         <pre id="content" style="white-space: pre-wrap;"></pre>
-        <script type="text/javascript" src = "signin.js"></script>
+        <!--<script type="text/javascript" src = "signin.js"></script>-->
+        <script src="scannerScript.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
         <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
         <script async defer src="https://apis.google.com/js/api.js"></script>
 
-		    <script src="scannerScript.js"></script>
+		    
 
   </body>
 </html>
@@ -105,4 +106,15 @@
 	goback.addEventListener("click", ()=>{
 		window.location.href = "index.html";
 	});
+          /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
 </script>
