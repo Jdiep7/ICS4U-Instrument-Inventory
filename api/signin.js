@@ -225,6 +225,7 @@ function func1() {
             document.getElementById('verify').style.visibility = 'visible';
             b = false;
           } else {
+            window.location.href="#";
             let r;
             if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
               r = "C" + index + ":F" + index;
@@ -251,13 +252,14 @@ function func1() {
               request.then(function(response) {
                 // TODO: Change code below to process the `response` object:
                 console.log(response.result);
+                makeTrue();
               }, function(reason) {
                 console.error('error: ' + reason.result.error.message);
               });
               //let values = `${response.result.valueRanges[0].values}`.split(",");
             //document.getElementById('instrument').placeholder= values[0][0];
             //document.getElementById('student').placeholder= values[0][1];
-            console.log("Cleared")
+            //console.log("Cleared")
 
             document.getElementById('verify').style.visibility = 'hidden';
             b = true;
@@ -333,8 +335,12 @@ function func1() {
         document.getElementById('text2').value = "";
         document.getElementById('text3').value = "";
         document.getElementById('text4').value = "";
-        document.getElementById('verify').style.visibility = 'hidden';
-        document.getElementById('get_button').style.visibility = 'hidden'
+        document.getElementById('text1').placeholder = "";
+        document.getElementById('text2').placeholder = "";
+        document.getElementById('text3').placeholder = "";
+        document.getElementById('text4').placeholder = "";
+        //document.getElementById('verify').style.visibility = 'hidden';
+        //document.getElementById('get_button').style.visibility = 'hidden'
         b = true;
         console.log(b);
       }
