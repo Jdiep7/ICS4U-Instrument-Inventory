@@ -1,23 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Open Sans'); 
+@import url('https://fonts.googleapis.com/css?family=Lato'); 
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
     overflow:hidden;
 }
 
 #heading {
     text-align: left;
-    color: #5c5c5c;
+    color: #282828;
     font-size: 22px;
     font-family: arial;
     margin-top: 0;
     margin-left: 8px;
     margin-bottom: 0;
     line-height: 1.4;
-    font-weight: normal;
+    font-weight: light;
 }
 
 h3 {
@@ -37,6 +37,7 @@ h3 {
     background-color: #eeeeee;
     padding: 12px;
     padding-left: 20px;
+    box-shadow: 5px;
 }
 
 .button {
@@ -50,7 +51,7 @@ h3 {
 }
 
 .button:hover {
-    color: #249b2e;
+    color: #21a934;
 }
 
 .vl {
@@ -126,6 +127,7 @@ h3 {
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
     padding-bottom: 10px;
+    padding-left: 0;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
