@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Lato'); 
+@import url('https://fonts.googleapis.com/css?family=Roboto'); 
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     overflow:hidden;
 }
 
@@ -34,7 +34,9 @@ h3 {
 
 #chooseType {
     margin-top: 10px;
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
+    border-top:1px solid rgb(209, 209, 209);
+    border-bottom: 1px solid rgb(209, 209, 209);
     padding: 12px;
     padding-left: 20px;
     box-shadow: 5px;
@@ -42,16 +44,17 @@ h3 {
 
 .button {
     font-size: 15px;
-    font-weight: bold;
-    padding: 10px;
+    font-weight: normal;
+    padding: 7px;
     color: #5c5c5c;
     text-decoration: none;
     cursor: pointer;
     background: #48aa6900;
+    border-radius: 2px;
 }
 
 .button:hover {
-    color: #21a934;
+    background-color: rgb(240, 240, 240);
 }
 
 .vl {
@@ -110,16 +113,16 @@ h3 {
     padding: 10px 10px;
     left: 0;
     margin-bottom: 35px;
+    margin-left: 20px;
     color: rgb(0, 0, 0);
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease-out;
     background: rgba(255, 255, 255, 0);
     border-radius: 22px;
 }
 
 .openbtn:hover {
-    background-color: #dfdfdf;
+    background-color: rgb(240, 240, 240);
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
