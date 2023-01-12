@@ -18,8 +18,8 @@ body{
 }
 
 ::selection{
-    color: rgb(0, 0, 0);
-    background: #52a2d8a4;
+    color: #fff;
+    background: #48aa69;
 }
 
 .wrapper{
@@ -178,7 +178,7 @@ header p{
     font-size: 12px;
     color: #fff;
     cursor: pointer;
-    background: #3498DB;
+    background: #48aa69;
     width: 65px;
     height:30px;    
     border:none;
@@ -188,7 +188,7 @@ header p{
 }
 
 .clearPs button:hover{
-    background: #4b9bb4;
+    background: #6eb48e;
 }
 
 .btnPos button{
@@ -245,7 +245,7 @@ header p{
     cursor: pointer;
     margin-top: 10px;
     font-size: 12px;
-    background: #3498DB;
+    background: #48aa69;
     width: 75px;
     height:35px;    
     border:none;
@@ -255,7 +255,7 @@ header p{
 }
 
 #downloadbtn:hover{
-    background: #4b9bb4;
+    background: #6eb48e;
 }
 
 
@@ -266,7 +266,7 @@ header p{
 }
 
 .footer .footer-link:hover{
-    color: #4b9bb4;
+    color: #6eb48e;
 }
 
 h2 {
