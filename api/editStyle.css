@@ -8,16 +8,16 @@
     overflow:hidden;
 }
 
-h2 {
+#heading {
     text-align: left;
-    color: #000000;
-    font-size: 20px;
+    color: #5c5c5c;
+    font-size: 22px;
     font-family: arial;
     margin-top: 0;
     margin-left: 8px;
     margin-bottom: 0;
     line-height: 1.4;
-    font-weight:normal
+    font-weight: normal;
 }
 
 h3 {
@@ -31,6 +31,38 @@ h3 {
     line-height: 1.4;
     font-weight:normal
   }
+
+#chooseType {
+    margin-top: 10px;
+    background-color: #eeeeee;
+    padding: 12px;
+    padding-left: 20px;
+}
+
+.button {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    color: #5c5c5c;
+    text-decoration: none;
+    cursor: pointer;
+    background: #48aa6900;
+}
+
+.button:hover {
+    color: #249b2e;
+}
+
+.vl {
+    border-left: 2px solid rgb(126, 126, 126);
+    height: 40px;
+    margin-right: 5px;
+}
+
+.placeholder {
+    visibility: hidden;
+    margin-right: 3px;
+}
 
 /* The sidebar menu */
 .sidebar {
@@ -73,27 +105,27 @@ h3 {
 /* The button used to open the sidebar */
 .openbtn {
     font-family: arial;
-    font-size: 14px;
+    font-size: 20px;
     padding: 10px 10px;
-    
     left: 0;
-    margin: -29;
-    color: #fff;
+    margin-bottom: 35px;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease-out;
-    background: rgb(199, 199, 199);
-    border-radius: 0 5px 5px 0;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 22px;
 }
 
 .openbtn:hover {
-    background-color: #898989;
+    background-color: #dfdfdf;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
+    padding-bottom: 10px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
