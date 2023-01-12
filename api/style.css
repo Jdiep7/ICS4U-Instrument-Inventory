@@ -7,7 +7,6 @@
     font-family: 'Poppins', sans-serif;
     overflow:hidden;
 }
-
 body{
     display: flex;
     padding: 0 10px;
@@ -18,19 +17,19 @@ body{
 }
 
 ::selection{
-    color: #fff;
-    background: #48aa69;
+    color: rgb(0, 0, 0);
+    background: #57a6ef9d;
 }
 
 .wrapper{
-    height:275px;
+    height:300px;
     width:410px;
     background: #fff;
     border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease    ;
     border: 1px solid rgb(192, 192, 192);
-    /*box-shadow: 0 10px 30px rgba(0,0,0,0.1);*/
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .container{
@@ -41,13 +40,13 @@ body{
     padding: 20px 25px 0;
     transition: height 0.2s ease;
     border: 1px solid rgb(192, 192, 192);
-    /*box-shadow: 0 10px 30px rgba(0,0,0,0.1);*/
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 
 
 .wrapper.active{
-    height:600px;
+    height:630px;
 }
 
 .container.scannerActive{
@@ -57,7 +56,7 @@ body{
 
 header h1{
     font-size: 21px;
-    /*font-weight: 500px;*/
+    font-weight: 500px;
     text-align: left;
 }
 
@@ -84,13 +83,13 @@ header p{
 .form input{
     font-size:18px;
     padding: 0 17px;
-    /*border: 1px solid #999;*/
+    border: 1px solid #999;
     margin-top: 5px;
     background:rgb(240, 240, 240);
 }
 
 .form input:focus{
-    /*box-shadow: 0 3px 6px rgba(0,0,0,0.13);*/
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
 .form input::placeholder{

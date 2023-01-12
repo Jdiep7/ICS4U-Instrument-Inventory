@@ -7,8 +7,10 @@ let clearBtn = document.getElementById("clearbtn");
 
 let preValue;
 var imageUrls = [];
+var qrList = ["What's up", "What's good", "Ethan Boeier", "Jam DEEEEEp"]
 
 generateBtn.addEventListener("click", () => {
+    QRmultiGen(qrList);
     let qrValue=qrInput.value.trim();
     if(qrValue == ""){
         modal.style.display = "block";
@@ -22,7 +24,7 @@ generateBtn.addEventListener("click", () => {
         preValue = qrValue;
         generateBtn.innerText = "Generating QR Code...";
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
-        imageUrls.push(qrImg.src);
+        /*imageUrls.push(qrImg.src);*/
         console.log(imageUrls);
         qrImg.addEventListener("load", ()=>{
             wrapper.classList.add("active");
@@ -30,6 +32,16 @@ generateBtn.addEventListener("click", () => {
         });
     }
 });
+
+function QRmultiGen(qrList){
+    for (var i = 0; i < qrList.length; i++) { 
+        let qrValue=qrList[i];
+        generateBtn.innerText = "Generating QR Code...";
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
+        imageUrls.push(qrImg.src);
+        console.log(imageUrls);
+    }
+}
 
 downloadBtn.addEventListener("click", () => {
     var doc = new jsPDF('p', 'mm', 'a3');
