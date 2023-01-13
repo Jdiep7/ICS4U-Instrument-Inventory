@@ -7,6 +7,7 @@
     font-family: 'Poppins', sans-serif;
     overflow:hidden;
 }
+
 body{
     display: flex;
     padding: 0 10px;
@@ -14,6 +15,40 @@ body{
     align-items:center;
     background: #ffffff;
     justify-content:center;
+}
+
+.split{
+    /*resize:horizontal;*/
+    display: flex;
+    height: 100%;
+    width: 50%;
+    position:fixed;
+    padding-top:20px;
+    min-width:10px;
+    height: 100%;
+    top:0;
+}
+
+.left{
+    /*resize:horizontal;*/
+    flex: 1;
+    float:left;
+    left:0;
+    width:100%;
+    background-color:#ffffff;
+}
+
+.right{
+    flex: 3;
+    border-left: 3px dashed #7fc79a;
+    resize:horizontal;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    width:100%;
+    right:0;
+    background-color:#ffffff;
+    direction:rtl;
 }
 
 ::selection{
@@ -24,7 +59,7 @@ body{
 .wrapper{
     height:300px;
     width:410px;
-    background: #fff;
+    background: #ffffff;
     border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease    ;
@@ -35,7 +70,7 @@ body{
 .container{
     height:300px;
     width:410px;
-    background: #fff;
+    /*background: #fff;*/
     border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease;
@@ -61,6 +96,7 @@ header h1{
 }
 
 header p{
+    text-align: left;
     margin-top:5px;
     color: #474747;
     font-size: 14px;
@@ -414,6 +450,10 @@ input[type=text], textarea {
     margin-bottom: 18px;
 }
 
+::-webkit-input-placeholder{
+    text-align: left;
+}
+
 
 /*input[type=text] {
     width: 100%;
@@ -493,7 +533,7 @@ input[type=text], textarea {
     cursor: pointer;
     transition: all 0.3s ease-out;
     background: rgb(199, 199, 199);
-    border-radius: 0 5px 5px 0;
+    border-radius: 10px;
 }
 
 .openbtn:hover {
@@ -503,7 +543,9 @@ input[type=text], textarea {
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20px;
+    padding-top: 6px;
+    padding-left: 20px;
+    border-radius: 0 5px 5px 0;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
