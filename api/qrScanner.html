@@ -8,113 +8,127 @@
     	<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
-    	<div class = "container">
-      		<header>
-        		<h1 id="gHeader">QR Code Scanner</h1>
-        		<p>Upload QR Code or Scan with Webcam</p>
-      		</header>
-      		<div class="form">
-				<input type="file" id="fileInp" hidden>
-        		<input type="text" name="text" id="text" readonly="" placeholder="QR Code Result" class="form-control">
-        		<div class="btnPos">
-          			<button id="upload">Upload QR Code</button>
-          			<button id="scan">Scan QR Code</button>
-        		</div>
-        		<button id="gobackScan">Go Back</button>
-      		</div>
-
-      		<div class="webcam">
-          		<video id="preview" width="100%"></video>
-      		</div>
-    	</div>
-
-		<div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p id="modalText"></p>
+        <div class="split left">
+            <div id="main">
+                <a class="openbtn" id="opener" role="button">&#9776;</a>
             </div>
-        </div>  
+            
+        </div>
+        <div class="split right">
+            <div class = "container">
+                <header>
+                    <h1 id="gHeader">QR Code Scanner</h1>
+                    <p>Upload QR Code or Scan with Webcam</p>
+                </header>
+                <div class="form">
+                    <input type="file" id="fileInp" hidden>
+                    <input type="text" name="text" id="text" readonly="" placeholder="QR Code Result" class="form-control">
+                    <div class="btnPos">
+                        <button id="upload">Upload QR Code</button>
+                        <button id="scan">Scan QR Code</button>
+                    </div>
+                    <button id="gobackScan">Go Back</button>
+                </div>
 
-        <div class="popup">
-            <div class="box">
-                <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
+                <div class="webcam">
+                    <video id="preview" width="100%"></video>
+                </div>
             </div>
-            <div class="overlay" id = "modify">
-                <div class="wrapper2">
-                    <h2>Update <span id = "title_name"></span><br>Information</h2>
-                    <h3 id="item_name"></h3>
-                    <h3 id="item_desc"></h3>
-                    <a href="#" class="close" id="close_button">&times;</a>
-                    <div class="content">
-                        <div class="container2">
-                            <form>
-                                <div class="text">
-                                    <h4 id="text1_desc">Student Class</h4>
-                                    <input type="text" id="text1" name="text1" class="effect" placeholder="" autocomplete="off">
-                                    <span class="focus-border"></span>
-                                </div>
-                                <div class="text">
-                                    <h4 id="text2_desc">Student Name</h4>
-                                    <input type="text" id="text2" name="text2" class="effect" placeholder="" autocomplete="off">
-                                    <span class="focus-border"></span>
-                                </div>
-                                <div class="text">
-                                    <h4 id="text3_desc">Condition</h4>
-                                    <input type="text" id="text3" name="text3" class="effect" placeholder="" autocomplete="off">
-                                    <span class="focus-border"></span>
-                                </div>
-                                <div class="text">
-                                    <h4 id="text4_desc">Notes</h4>
-                                    <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
-                                    <span class="focus-border"></span>
-                                </div>
-                                <a href="#" id="submit_button" class = "button2" role="button">Submit</a> 
-                                <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
-                            </form>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="modalText"></p>
+                </div>
+            </div>  
+
+            <div class="popup">
+                <div class="box">
+                    <br><a href = "#modify" class = "button" id="get_button">Pop Up</a>
+                </div>
+                <div class="overlay" id = "modify">
+                    <div class="wrapper2">
+                        <h2>Update <span id = "title_name"></span><br>Information</h2>
+                        <h3 id="item_name"></h3>
+                        <h3 id="item_desc"></h3>
+                        <a href="#" class="close" id="close_button">&times;</a>
+                        <div class="content">
+                            <div class="container2">
+                                <form>
+                                    <div class="text">
+                                        <h4 id="text1_desc">Student Class</h4>
+                                        <input type="text" id="text1" name="text1" class="effect" placeholder="" autocomplete="off">
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h4 id="text2_desc">Student Name</h4>
+                                        <input type="text" id="text2" name="text2" class="effect" placeholder="" autocomplete="off">
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h4 id="text3_desc">Condition</h4>
+                                        <input type="text" id="text3" name="text3" class="effect" placeholder="" autocomplete="off">
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h4 id="text4_desc">Notes</h4>
+                                        <input type="text" id="text4" name="text4" class="effect" placeholder="" autocomplete="off">
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <a href="#" id="submit_button" class = "button2" role="button">Submit</a> 
+                                    <label id= "verify">Field(s) are empty. <a onclick = "func2()" class="continue">Continue</a>?</label>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">Scan</a>
+                <a href="edit.html">Sheets</a>
+                <a href="#account">Account</a>
+                <a href="#home">About</a>
+            </div>
+        
+            <pre id="content" style="white-space: pre-wrap;"></pre>
+            <!--<script type="text/javascript" src = "signin.js"></script>-->
+            <script src="scannerScript.js"></script>
+            <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+            <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+            <script async defer src="https://apis.google.com/js/api.js"></script>
         </div>
-		<div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Scan</a>
-            <a href="edit.html">Sheets</a>
-            <a href="#account">Account</a>
-            <a href="#home">About</a>
-          </div>
-          
-          <div id="main">
-            <a class="openbtn" onclick="openNav()">&#9776;</a>
-          </div>
-    
-        <pre id="content" style="white-space: pre-wrap;"></pre>
-        <!--<script type="text/javascript" src = "signin.js"></script>-->
-        <script src="scannerScript.js"></script>
-        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-        <script async defer src="https://apis.google.com/js/api.js"></script>
-
-		    
-
-  </body>
+    </body>
 </html>
 
 <script>
     let goback = document.getElementById("gobackScan");
+    let navOpener = document.getElementById("opener");
+    let openStatus = false;
+
+
+    navOpener.addEventListener("click", ()=>{
+        if(openStatus==false){
+            openNav();
+        }else if(openStatus== true){
+            closeNav();
+        }
+    });
 
     goback.addEventListener("click", ()=>{
         window.location.href = "index.html";
     });
         /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
     function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+        openStatus = true;
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
     }
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
     function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+        openStatus=false;
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
     }
 </script>
