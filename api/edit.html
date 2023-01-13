@@ -4,10 +4,15 @@
         <!--<link rel="stylesheet" href="styles.css">-->
         <link href="editStyle.css" rel="stylesheet">
     </head>
-    <h2>Generate QR Codes</h2><br>
-    <a id= "newQR" class= "button" href="#newQR" onclick="setButton()">New</a>
-    <a id="existingQR" class= "button" href="#fromSheets" onclick="setButton()">From Spreadsheet</a>
-    <a id="back" class="button" href="#" onclick="setButton()">Back</a>
+    <div id="main">
+        <a class="openbtn" onclick="openNav()">&#9776;</a>
+        <span id="Heading">Generate QR Codes</span><br>
+        <div id="chooseType">
+            <a id= "newQR" class= "button" href="#newQR">New</a>
+            <a id="existingQR" class= "button" href="#fromSheets">From Spreadsheet</a>
+            <!--<a id="back" class="button" href="#">Back</a>-->
+        </div>    
+     </div>
 
     <br><br>
     <div id = "newQR">
@@ -21,13 +26,13 @@
             <span class="focus-border"></span>
         </div>
         <div class="text">
-            <h3>From</h3>
-            <input type="number" id="setStartRange" class="effect" placeholder="Start row">
+            <h3>Index</h3>
+            <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
             <span class="focus-border"></span>
         </div>
         <div class="text">
-            <h3>Index</h3>
-            <input type="number" id="setStartRange" class="effect" placeholder="Start row">
+            <h3>From</h3>
+            <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
             <span class="focus-border"></span>
         </div>
         <div class="text">
@@ -98,14 +103,23 @@
         <a href="#account">Account</a>
         <a href="#home">About</a>
     </div>
-    
-    <div id="main">
-       <a class="openbtn" onclick="openNav()">&#9776;</a>
-    </div>
+
 
     <script type="text/javascript" src = "edit.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script async defer src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            //document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            //document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
 </html>
