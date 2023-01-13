@@ -7,6 +7,10 @@ const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
 // included, separated by spaces.
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets.readonly';
 
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+
 function gapiLoaded() {
     gapi.load('client', intializeGapiClient);
   }
@@ -50,8 +54,8 @@ function gapiLoaded() {
   var shortName = "none";
   var r;
 
-  document.getElementById("back").style.visibility = 'hidden';
-  let isVisible = true;
+  //document.getElementById("back").style.visibility = 'hidden';
+  /*let isVisible = true;
   function setButton() {
       if (isVisible) {
           document.getElementById("newQR").style.visibility = 'hidden';
@@ -65,6 +69,7 @@ function gapiLoaded() {
           isVisible = true;
       }
   }
+  */
 
   genbtn.addEventListener("click", ()=> {
       let start = document.getElementById("startRange").value;
@@ -79,15 +84,16 @@ function gapiLoaded() {
   
   genNewBtn.addEventListener("click", ()=> {
     let index = document.getElementById("setStartRange").value;
+    let startNumber = document.getElementById("setStartNumber").value;
     let amount = document.getElementById("setAmount").value;
     let company = document.getElementById("newCompany").value;
     if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-        newInsQR(index, amount, longName, company, sheetsId);
-        addRows(index, amount, sheetsId, longName, company);
+        newInsQR(startNumber, amount, longName, company, sheetsId);
+        addRows(index, amount, sheetsId, longName, company, startNumber);
     } 
     if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
-        newBookQR(index, amount, shortName, sheetsId);
-        addRows(index, amount, sheetsId, shortName, "");
+        newBookQR(startNumber, amount, shortName, sheetsId);
+        addRows(index, amount, sheetsId, shortName, "", startNumber);
     }
 });
 
@@ -122,34 +128,35 @@ function gapiLoaded() {
     });
   }
 
-  function newBookQR (index, amount, name, sheetsId) {
+  function newBookQR (startNumber, amount, name, sheetsId) {
     let newItems = [];
     let ind;
       for (let i = 0; i < amount; i++) {
-        ind = parseInt(i) + parseInt(index);
+        ind = parseInt(i) + parseInt(startNumber);
         newItems[i] = "EM-" + name + "-" + ind + "," + sheetsId;
       }
       console.log(newItems)
   }
 
-  function newInsQR (index, amount, name, company, sheetsId) {
+  function newInsQR (startNumber, amount, name, company, sheetsId) {
     let newItems = [];
     let ind;
       for (let i = 0; i < amount; i++) {
-        newItems[i] = name + " " + i + "," + sheetsId;
+        ind = parseInt(i) + parseInt(startNumber);
+        newItems[i] = name + " " + ind + "," + sheetsId;
       }
       console.log(newItems)
   }
 
-  function addRows(index, amount, sheetsId, name, company) {
+  function addRows(index, amount, sheetsId, name, company, startNumber) {
     var params = {
       spreadsheetId: sheetsId
     };
     const data = [];
-    let startIndex = parseInt(index) + 1;
-    console.log(startIndex)
-    let endIndex = parseInt(index) + parseInt(amount) + 1;
-    console.log(endIndex)
+    let startIndex = parseInt(index);
+    //console.log(startIndex)
+    let endIndex = parseInt(index) + parseInt(amount);
+    //console.log(endIndex)
     data.push({
       "insertDimension": {
         "range": {
@@ -160,7 +167,10 @@ function gapiLoaded() {
         },
         "inheritFromBefore": false
       }
+      
     });
+    console.log(startIndex)
+    console.log(endIndex)
     const body = {
       requests: data,
     };
@@ -168,13 +178,17 @@ function gapiLoaded() {
       request.then(function(response) {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
-        let names = [Array(parseInt(amount)).fill(name)]
-        console.log(names)
-        let companies = [Array(parseInt(amount)).fill(company)]
-        let nameRows = "A" + startIndex + ":A" + endIndex
-        let companyRows = "B" + startIndex + ":B" + endIndex
-        fillCells(names, nameRows, sheetsId);
-        fillCells(companies, companyRows, sheetsId);
+        let allRows = [];
+        let ind;
+        for (let i = 0; i < amount; i++) {
+          ind = parseInt(i) + parseInt(startNumber);
+          allRows[i] = [(name + " " + ind), company]
+        }
+        //let singleRow = [nameAndNumber, company]
+        //let allRows = Array(parseInt(amount)).fill(singleRow)
+        console.log(allRows)
+        let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
+        fillCells(allRows, range, sheetsId);
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
