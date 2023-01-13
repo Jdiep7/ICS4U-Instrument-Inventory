@@ -6,6 +6,14 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+body{
+    display: flex;
+    padding: 0 10px;
+    min-height: 100vh;
+    align-items:center;
+    background: #ffffff;
+    justify-content:center;
+}
 
 #heading {
     text-align: left;
@@ -76,6 +84,44 @@ h3 {
     align-items: center;
     justify-content: center;
     border: 1px solid #ccc;
+}
+
+.split{
+    /*resize:horizontal;*/
+    display: flex;
+    height: 100%;
+    width: 50%;
+    position:fixed;
+    padding-top:20px;
+    min-width:10px;
+    height: 100%;
+    top:0;
+}
+
+.left{
+    /*resize:horizontal;*/
+    flex: 1;
+    float:left;
+    left:0;
+    width:100%;
+    background-color:#ffffff;
+}
+
+.right{
+    flex: 3;
+    border-left: 3px solid #c7c7c7;
+    resize:horizontal;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    width:100%;
+    right:0;
+    background-color:#ffffff;
+    direction:rtl;
+}
+
+::-webkit-input-placeholder{
+    text-align: left;
 }
 
 /* The sidebar menu */

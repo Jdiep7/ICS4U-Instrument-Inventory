@@ -4,114 +4,120 @@
         <!--<link rel="stylesheet" href="styles.css">-->
         <link href="editStyle.css" rel="stylesheet">
         <script src="https://myskypower.net/components/modal/modal.js" defer></script>
+        <link rel="stylesheet" href="https://myskypower.net/components/modal/modal.css">
+
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
     </head>
-    <div id="main">
-        <a class="openbtn" onclick="openNav()">&#9776;</a>
-        <span id="Heading">Generate QR Codes</span><br>
-        <div id="chooseType">
-            <a id= "newQR" class= "button" href="#newQR" onclick="setNewButton()">New</a>
-            <a id="existingQR" class= "button" href="#fromSheets" onclick="setExistingButton()"">From Spreadsheet</a>
-            <!--<a id="back" class="button" href="#">Back</a>-->
-        </div>    
-     </div>
-
-    <br><br>
-    <div id = "newQR">
-        <h2>New QR</h2>
-        <div class="text">
-            <select name="selectSheet" id="selectSheet" class="effect" onchange="setSheet()">
-                <option value="none" selected disabled hidden>Select a Spreadsheet</option>
-                <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
-                <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
-            </select>
-            <span class="focus-border"></span>
-        </div>
-        <div class="text">
-            <h3>Index</h3>
-            <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
-            <span class="focus-border"></span>
-        </div>
-        <div class="text">
-            <h3>From</h3>
-            <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
-            <span class="focus-border"></span>
-        </div>
-        <div class="text">
-            <h3>Amount</h3>
-            <input type="number" id="setAmount" class="effect" placeholder="Amount">
-            <span class="focus-border"></span>
-        </div>
-        <div class="newValues">
-            <h3>Name</h3>
-            <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
-            like a hash map, to access both the full and shortened names of instruments.
-            The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
-            The setInstrument function runs whenever the option is changed.-->
-            <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
-                <option value="none" selected disabled hidden>Instrument Name</option>
-                <option value="FL">Flute</option>
-                <option value="PIC">Piccolo</option>
-                <option value="OBOE">Oboe</option>
-                <option value="CL">Clarinet</option>
-                <option value="ACL">Alto Clarinet</option>
-                <option value="BCL">Bass Clarinet</option>
-                <option value="AS">Alto Sax</option>
-                <option value="TS">Tenor Sax</option>
-                <option value="BS">Bari Sax</option>
-                <option value="FH">French Horn</option>
-                <option value="TRPT">Trumpet</option>
-                <option value="TRBN">Trombone</option>
-                <option value="BARBC">Baritone</option>
-                <option value="BSN">Bassoon</option>
-                <option value="TUBA">Tuba</option>
-                <option value="PERC">Percussion</option>
-                <option value="EB">Electric Bass</option>
-                <option value="Piano">Piano</option>
-                <option value="Conductor">Conductor</option>
-            </select>
-        </div>
-        <div class="text">
-            <h3>Company</h3>
-            <input type="text" id= "newCompany" class="effect" placeholder="Company">
-            <span class="focus-border"></span>
-        </div>
-        <br><a id="generateNew" class="button">Generate</a>
-    </div>
+        <div id="main">
+        
+            <span id="Heading">Generate QR Codes</span><br>
+            <div id="chooseType">
+                <a id= "newQR" class= "button" href="#newQR" onclick="setNewButton()">New</a>
+                <a id="existingQR" class= "button" href="#fromSheets" onclick="setExistingButton()"">From Spreadsheet</a>
+                <!--<a id="back" class="button" href="#">Back</a>-->
+            </div>    
+         </div>
     
-    <br><div id = "fromSheets">
-        <h2>From Sheets</h2>
-        <select name="selectSheet" id="selectSheet">
-            <option value="none" selected disabled hidden>Select a Spreadsheet</option>
-            <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
-            <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
-        </select>
-        <div class="ranges">
-            <h3>From</h3>
-            <input type="number" id="startRange" placeholder="Start row">
+        <div class="split left">   
+            <div id="main">
+                <a class="openbtn" id="opener" role="button">&#9776;</a>
+            </div>
+            <div id = "newQR">
+                <h2>New QR</h2>
+                <div class="text">
+                    <select name="selectSheet" id="selectSheet" class="effect" onchange="setSheet()">
+                        <option value="none" selected disabled hidden>Select a Spreadsheet</option>
+                        <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+                        <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+                    </select>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="text">
+                    <h3>Index</h3>
+                    <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
+                    <span class="focus-border"></span>
+                </div>
+                <div class="text">
+                    <h3>From</h3>
+                    <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
+                    <span class="focus-border"></span>
+                </div>
+                <div class="text">
+                    <h3>Amount</h3>
+                    <input type="number" id="setAmount" class="effect" placeholder="Amount">
+                    <span class="focus-border"></span>
+                </div>
+                <div class="newValues">
+                    <h3>Name</h3>
+                    <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
+                    like a hash map, to access both the full and shortened names of instruments.
+                    The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
+                    The setInstrument function runs whenever the option is changed.-->
+                    <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
+                        <option value="none" selected disabled hidden>Instrument Name</option>
+                        <option value="FL">Flute</option>
+                        <option value="PIC">Piccolo</option>
+                        <option value="OBOE">Oboe</option>
+                        <option value="CL">Clarinet</option>
+                        <option value="ACL">Alto Clarinet</option>
+                        <option value="BCL">Bass Clarinet</option>
+                        <option value="AS">Alto Sax</option>
+                        <option value="TS">Tenor Sax</option>
+                        <option value="BS">Bari Sax</option>
+                        <option value="FH">French Horn</option>
+                        <option value="TRPT">Trumpet</option>
+                        <option value="TRBN">Trombone</option>
+                        <option value="BARBC">Baritone</option>
+                        <option value="BSN">Bassoon</option>
+                        <option value="TUBA">Tuba</option>
+                        <option value="PERC">Percussion</option>
+                        <option value="EB">Electric Bass</option>
+                        <option value="Piano">Piano</option>
+                        <option value="Conductor">Conductor</option>
+                    </select>
+                </div>
+                <div class="text">
+                    <h3>Company</h3>
+                    <input type="text" id= "newCompany" class="effect" placeholder="Company">
+                    <span class="focus-border"></span>
+                </div>
+                <br><a id="generateNew" class="button">Generate</a>
+            </div>
         </div>
-        <div class="ranges">
-            <h3>To</h3>
-            <input type="number" id="endRange" placeholder="End row">
+    
+        <div class="split right">        
+            <br><div id = "fromSheets">
+                <h2>From Sheets</h2>
+                <select name="selectSheet" id="selectSheet">
+                    <option value="none" selected disabled hidden>Select a Spreadsheet</option>
+                    <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+                    <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+                </select>
+                <div class="ranges">
+                    <h3>From</h3>
+                    <input type="number" id="startRange" placeholder="Start row">
+                </div>
+                <div class="ranges">
+                    <h3>To</h3>
+                    <input type="number" id="endRange" placeholder="End row">
+                </div>
+                <br><a id="generate" class="button">Generate</a>
+            </div>
+            <button id="downloadbtn">Download</button>
+    
         </div>
-        <br><a id="generate" class="button">Generate</a>
-    </div>
-    <button id="downloadbtn">Download</button>
-    <div class="qr-code">
-        <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
-
-    </div>
-
     
-    
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Scan</a>
-        <a href="edit.html">Sheets</a>
-        <a href="#account">Account</a>
-        <a href="#home">About</a>
-    </div>
-
+        <div class="qr-code">
+            <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
+        </div>
+        
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Scan</a>
+            <a href="edit.html">Sheets</a>
+            <a href="#account">Account</a>
+            <a href="#home">About</a>
+        </div>
 
     <script type="text/javascript" src = "edit.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
@@ -119,15 +125,34 @@
     <script async defer src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script>
+
+        let navOpener = document.getElementById("opener");
+        let openStatus = false;
+
+
+        navOpener.addEventListener("click", ()=>{
+            if(openStatus==false){
+                openNav();
+            }else if(openStatus== true){
+                closeNav();
+            }
+        });
+
+        goback.addEventListener("click", ()=>{
+            window.location.href = "index.html";
+        });
+            /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
         function openNav() {
+            openStatus = true;
             document.getElementById("mySidebar").style.width = "250px";
-            //document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
-        
+
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
+            openStatus=false;
             document.getElementById("mySidebar").style.width = "0";
-            //document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
     </script>
 </html>
