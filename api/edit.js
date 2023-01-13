@@ -7,9 +7,20 @@ const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
 // included, separated by spaces.
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets.readonly';
 
+let preValue;
+var imageUrls = [];
+
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
+
+//const wrapper = document.querySelector(".wrapper"),
+//qrInput = wrapper.querySelector(".form input"),
+//generateBtn = wrapper.querySelector(".form button");
+qrImg = document.querySelector(".qr-code img");
+let downloadBtn = document.getElementById("downloadbtn");
+let clearBtn = document.getElementById("clearbtn");
+
 
 function gapiLoaded() {
     gapi.load('client', intializeGapiClient);
@@ -55,21 +66,20 @@ function gapiLoaded() {
   var r;
 
   //document.getElementById("back").style.visibility = 'hidden';
-  /*let isVisible = true;
-  function setButton() {
-      if (isVisible) {
-          document.getElementById("newQR").style.visibility = 'hidden';
-          document.getElementById("existingQR").style.visibility = 'hidden';
-          document.getElementById("back").style.visibility = 'visible';
-          isVisible = false;
-      } else {
-          document.getElementById("newQR").style.visibility = 'visible';
-          document.getElementById("existingQR").style.visibility = 'visible';
-          document.getElementById("back").style.visibility = 'hidden';
-          isVisible = true;
-      }
+  let isSelected = false;
+  function setNewButton() {
+    document.getElementById("newQR").style.backgroundColor = '#e6f4ea';
+    document.getElementById("newQR").style.color = '#188038';
+    document.getElementById("existingQR").style.backgroundColor = '';
+    document.getElementById("existingQR").style.color = '';
   }
-  */
+
+  function setExistingButton() {
+    document.getElementById("existingQR").style.color = '#188038';
+    document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
+    document.getElementById("newQR").style.backgroundColor = '';
+    document.getElementById("newQR").style.color = '';
+  }
 
   genbtn.addEventListener("click", ()=> {
       let start = document.getElementById("startRange").value;
@@ -95,6 +105,27 @@ function gapiLoaded() {
         newBookQR(startNumber, amount, shortName, sheetsId);
         addRows(index, amount, sheetsId, shortName, "", startNumber);
     }
+});
+
+downloadBtn.addEventListener("click", () => {
+  var doc = new jsPDF('p', 'mm', 'a3');
+  x = 3;
+  y = 3
+  qrNum = 0;
+
+  for(let i=0; i<imageUrls.length; i++){
+      qrNum = qrNum + 1
+      var img = new Image();
+      img.src = imageUrls[i];
+      if (qrNum > 6){
+          y = y + 50;
+          qrNum = 0;
+          x = 3;
+      }
+      doc.addImage(img, "png", x, y);
+      x =  x + 49;
+  }
+  doc.save("new.pdf");
 });
 
   function getValues(sheetsId, r) {
@@ -123,6 +154,7 @@ function gapiLoaded() {
         document.getElementById('text4').placeholder= values[5];
       }
       */
+      QRmultiGen(values)
     }, function(reason) {
       console.error('error: ' + reason.result.error.message);
     });
@@ -136,6 +168,7 @@ function gapiLoaded() {
         newItems[i] = "EM-" + name + "-" + ind + "," + sheetsId;
       }
       console.log(newItems)
+      QRmultiGen(newItems)
   }
 
   function newInsQR (startNumber, amount, name, company, sheetsId) {
@@ -146,6 +179,7 @@ function gapiLoaded() {
         newItems[i] = name + " " + ind + "," + sheetsId;
       }
       console.log(newItems)
+      QRmultiGen(newItems)
   }
 
   function addRows(index, amount, sheetsId, name, company, startNumber) {
@@ -234,6 +268,17 @@ function gapiLoaded() {
       shortName = document.getElementById("selectInstrument").options[index].value;
   }
 
+  function QRmultiGen(qrList){
+    console.log("multi")
+    for (var i = 0; i < qrList.length; i++) { 
+        let qrValue=qrList[i];
+        //generateBtn.innerText = "Generating QR Code...";
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
+        imageUrls.push(qrImg.src);
+        console.log(imageUrls);
+    }
+}
+
   function generateQR() {
     let qrValue=qrInput.value.trim();
     if(qrValue == ""){
@@ -250,10 +295,10 @@ function gapiLoaded() {
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
         imageUrls.push(qrImg.src);
         console.log(imageUrls);
-        qrImg.addEventListener("load", ()=>{
+        /*qrImg.addEventListener("load", ()=>{
             wrapper.classList.add("active");
             generateBtn.innerText="Generate QR Code";
-        });
+        });*/
     }
   }
 
@@ -307,15 +352,7 @@ function gapiLoaded() {
 
 
 
-const wrapper = document.querySelector(".wrapper"),
-//qrInput = wrapper.querySelector(".form input"),
-//generateBtn = wrapper.querySelector(".form button");
-qrImg = wrapper.querySelector(".qr-code img");
-let downloadBtn = document.getElementById("downloadbtn");
-let clearBtn = document.getElementById("clearbtn");
 
-let preValue;
-var imageUrls = [];
 
 /*generateBtn.addEventListener("click", () => {
     let qrValue=qrInput.value.trim();
@@ -372,10 +409,12 @@ clearBtn.addEventListener("click", ()=>{
 */
 
 
-qrInput.addEventListener("keyup", ()=>{
+/*qrInput.addEventListener("keyup", ()=>{
     console.log('hello');
     if(!qrInput.value.trim()){
         wrapper.classList.remove("active");
         preValue = "";
     }
 });
+*/
+

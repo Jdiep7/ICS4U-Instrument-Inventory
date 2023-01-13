@@ -3,13 +3,15 @@
         <title>Generate QR Codes</title>
         <!--<link rel="stylesheet" href="styles.css">-->
         <link href="editStyle.css" rel="stylesheet">
+        <script src="https://myskypower.net/components/modal/modal.js" defer></script>
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
     </head>
     <div id="main">
         <a class="openbtn" onclick="openNav()">&#9776;</a>
         <span id="Heading">Generate QR Codes</span><br>
         <div id="chooseType">
-            <a id= "newQR" class= "button" href="#newQR">New</a>
-            <a id="existingQR" class= "button" href="#fromSheets">From Spreadsheet</a>
+            <a id= "newQR" class= "button" href="#newQR" onclick="setNewButton()">New</a>
+            <a id="existingQR" class= "button" href="#fromSheets" onclick="setExistingButton()"">From Spreadsheet</a>
             <!--<a id="back" class="button" href="#">Back</a>-->
         </div>    
      </div>
@@ -93,8 +95,14 @@
             <input type="number" id="endRange" placeholder="End row">
         </div>
         <br><a id="generate" class="button">Generate</a>
+    </div>
+    <button id="downloadbtn">Download</button>
+    <div class="qr-code">
+        <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
 
     </div>
+
+    
     
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>

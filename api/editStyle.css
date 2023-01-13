@@ -5,12 +5,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    overflow:hidden;
 }
 
 #heading {
     text-align: left;
-    color: #282828;
+    color: #505050;
     font-size: 22px;
     font-family: arial;
     margin-top: 0;
@@ -68,6 +67,17 @@ h3 {
     margin-right: 3px;
 }
 
+.qr-code{
+    display:flex;
+    /*opacity:0;*/
+    pointer-events: none;
+    padding:55px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+
 /* The sidebar menu */
 .sidebar {
     height: 100%; /* 100% Full-height */
@@ -110,6 +120,7 @@ h3 {
 .openbtn {
     font-family: arial;
     font-size: 20px;
+    font-weight: bold;
     padding: 10px 10px;
     left: 0;
     margin-bottom: 35px;
