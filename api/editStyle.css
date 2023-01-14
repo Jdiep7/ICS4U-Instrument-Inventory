@@ -8,6 +8,52 @@
     overflow: hidden;
 }
 
+body{
+    display:flex;
+}
+
+.split{
+    /*resize:horizontal;*/
+    display: flex;
+    height:100%;
+    width: 50%;
+    position:fixed;
+    padding: 20px;
+    min-width:10px;
+    top:0;
+    
+}
+
+.left{
+    /*resize:horizontal;*/
+    margin-top: 106.5px;
+    flex: 1;
+    float:left;
+    left:0;
+    width:100%;
+    background-color:#ffffff;
+    
+}
+
+.right{
+    max-width: 100vw;
+    height:100%;
+    flex: 3;
+    resize:horizontal;
+    border-left: 3px dashed #7fc79a;
+    justify-content: left;
+    display:flex;
+    width:100%;
+    right:0;
+    background-color:#ffffff;
+    direction:rtl;
+}
+
+.holder{
+    margin-top:107px;
+    direction:ltr;
+}
+
 #heading {
     text-align: left;
     color: #505050;
@@ -19,6 +65,7 @@
     line-height: 1.4;
     font-weight: light;
 }
+
 
 h2 {
     text-align: left;
@@ -53,6 +100,12 @@ h3 {
     box-shadow: 5px;
     
 }
+
+#newQR{
+    float:left;
+}
+
+
 
 #generateNew {
     font-size: 15px;
@@ -179,41 +232,6 @@ table, th, td {
     width: 75%;
 }
 
-.split{
-    /*resize:horizontal;*/
-    height: 100%;
-    display: flex;
-    width: 50%;
-    position:fixed;
-    min-width:10px;
-    height: 100%;
-    /*top:0;*/
-    
-}
-
-.left{
-    /*resize:horizontal;*/
-    height: 100%;
-    flex: 1;
-    float:left;
-    left:0;
-    width:100%;
-    background-color:#ffffff;
-    
-}
-
-.right{
-    resize:horizontal;
-    height: 100%;
-    flex: 3;
-    border-left: 3px solid #c7c7c7;
-    justify-content: left;
-    display:flex;
-    width:100%;
-    right:0;
-    background-color:#ffffff;
-}
-
 ::-webkit-input-placeholder{
     text-align: left;
 }
@@ -277,10 +295,15 @@ table, th, td {
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
+    background-color:#ffffff;
+    width:100%;
+    position:absolute;
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     padding-left: 0;
+    z-index:9999;
+
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

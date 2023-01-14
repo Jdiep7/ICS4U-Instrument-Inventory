@@ -21,7 +21,7 @@
                     <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
                     <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
                 </select>
-                <!--<a id="back" class="button" href="#">Back</a>-->
+                Comment<a id="back" class="button" href="#">Back</a>Comment
             </div>    
         </div>
 
@@ -36,7 +36,7 @@
         <div class="split_and_qr">
             <div class="all_split">
 
-                <div class="split right">
+                <div class="split left">
                     <br><div id = "fromSheets">
                         <h2>From Spreadsheet</h2>
                         <div class="text">
@@ -53,71 +53,73 @@
 
                 </div>
                 
-                <div class="split left">
-                    <div id = "newQR">
-                        <h2>New QR</h2>
-                        <div class="text">
-                            <span class="focus-border"></span>
+                <div class="split right">
+                    <div class="holder">
+                        <div id = "newQR">
+                            <h2>New QR</h2>
+                            <div class="text">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h3>Index</h3>
+                                <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h3>From</h3>
+                                <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h3>Amount</h3>
+                                <input type="number" id="setAmount" class="effect" placeholder="Amount">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="newValues">
+                                <h3>Name</h3>
+                                <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
+                                like a hash map, to access both the full and shortened names of instruments.
+                                The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
+                                The setInstrument function runs whenever the option is changed.-->
+                                <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
+                                    <option value="none" selected disabled hidden>Instrument Name</option>
+                                    <option value="FL">Flute</option>
+                                    <option value="PIC">Piccolo</option>
+                                    <option value="OBOE">Oboe</option>
+                                    <option value="CL">Clarinet</option>
+                                    <option value="ACL">Alto Clarinet</option>
+                                    <option value="BCL">Bass Clarinet</option>
+                                    <option value="AS">Alto Sax</option>
+                                    <option value="TS">Tenor Sax</option>
+                                    <option value="BS">Bari Sax</option>
+                                    <option value="FH">French Horn</option>
+                                    <option value="TRPT">Trumpet</option>
+                                    <option value="TRBN">Trombone</option>
+                                    <option value="BARBC">Baritone</option>
+                                    <option value="BSN">Bassoon</option>
+                                    <option value="TUBA">Tuba</option>
+                                    <option value="PERC">Percussion</option>
+                                    <option value="EB">Electric Bass</option>
+                                    <option value="Piano">Piano</option>
+                                    <option value="Conductor">Conductor</option>
+                                </select>
+                            </div>
+                            <div class="text">
+                                <h3>Company</h3>
+                                <input type="text" id= "newCompany" class="effect" placeholder="Company">
+                                <span class="focus-border"></span>
+                            </div>
+                            <br><a id="generateNew">Generate</a>
                         </div>
-                        <div class="text">
-                            <h3>Index</h3>
-                            <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
-                            <span class="focus-border"></span>
+                        <div class="preview_table">
+                            <table id="sheet_preview">
+                                <tr>
+                                    <th id="table_heading">Index</th>
+                                    <th id="table_heading">Item</th>
+                                    <th id="table_heading">Company</th>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="text">
-                            <h3>From</h3>
-                            <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Amount</h3>
-                            <input type="number" id="setAmount" class="effect" placeholder="Amount">
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="newValues">
-                            <h3>Name</h3>
-                            <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
-                            like a hash map, to access both the full and shortened names of instruments.
-                            The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
-                            The setInstrument function runs whenever the option is changed.-->
-                            <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
-                                <option value="none" selected disabled hidden>Instrument Name</option>
-                                <option value="FL">Flute</option>
-                                <option value="PIC">Piccolo</option>
-                                <option value="OBOE">Oboe</option>
-                                <option value="CL">Clarinet</option>
-                                <option value="ACL">Alto Clarinet</option>
-                                <option value="BCL">Bass Clarinet</option>
-                                <option value="AS">Alto Sax</option>
-                                <option value="TS">Tenor Sax</option>
-                                <option value="BS">Bari Sax</option>
-                                <option value="FH">French Horn</option>
-                                <option value="TRPT">Trumpet</option>
-                                <option value="TRBN">Trombone</option>
-                                <option value="BARBC">Baritone</option>
-                                <option value="BSN">Bassoon</option>
-                                <option value="TUBA">Tuba</option>
-                                <option value="PERC">Percussion</option>
-                                <option value="EB">Electric Bass</option>
-                                <option value="Piano">Piano</option>
-                                <option value="Conductor">Conductor</option>
-                            </select>
-                        </div>
-                        <div class="text">
-                            <h3>Company</h3>
-                            <input type="text" id= "newCompany" class="effect" placeholder="Company">
-                            <span class="focus-border"></span>
-                        </div>
-                        <br><a id="generateNew">Generate</a>
-                    </div>
-                    <div class="preview_table">
-                        <table id="sheet_preview">
-                            <tr>
-                                <th id="table_heading">Index</th>
-                                <th id="table_heading">Item</th>
-                                <th id="table_heading">Company</th>
-                            </tr>
-                          </table>
                     </div>
                 </div>
             </div>

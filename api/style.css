@@ -35,18 +35,20 @@ body{
     float:left;
     left:0;
     width:100%;
-    background-color:#ffffff;
+    background-color:#48aa69;
 }
 
 .right{
+    max-width: 100vw;
+    height: 100vh;
     flex: 3;
     border-left: 3px dashed #7fc79a;
     resize:horizontal;
     justify-content: center;
     align-items: center;
     display:flex;
-    width:100%;
     right:0;
+    width:100%;
     background-color:#ffffff;
     direction:rtl;
 }
@@ -77,6 +79,8 @@ body{
     border: 1px solid rgb(192, 192, 192);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
+
 
 .wrapper.active{
     height:630px;
@@ -352,6 +356,8 @@ label {
     margin-left: 5px;
 }
 .box {
+    position:absolute;
+    left:-20px;
     text-align: center;
 }
 .button2 {
