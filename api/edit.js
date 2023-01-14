@@ -59,6 +59,7 @@ function gapiLoaded() {
 
   let genbtn = document.getElementById("generate");
   let genNewBtn = document.getElementById("generateNew");
+  let preBtn = document.getElementById("sheetsPreviewButton");
   var values;
   var sheetsId = "none";
   var longName = "none";
@@ -81,15 +82,26 @@ function gapiLoaded() {
     document.getElementById("newQR").style.color = '';
   }
 
+  preBtn.addEventListener("click", ()=> {
+    let start = document.getElementById("startRange").value;
+    let end = document.getElementById("endRange").value;
+    if (start < 5) {
+        start = 5;
+    }
+    r = "A" + start + ":B" + end;
+    sheetsGenerationPreview(start, r);
+  });
+
+
   genbtn.addEventListener("click", ()=> {
       let start = document.getElementById("startRange").value;
       let end = document.getElementById("endRange").value;
-      if (start < 4) {
-          start = 4;
+      if (start < 5) {
+          start = 5;
       }
       r = "A" + start + ":A" + end;
       console.log(r);
-      getValues(sheetsId, r);
+      getValues(sheetsId, r, start);
   });
   
   genNewBtn.addEventListener("click", ()=> {
@@ -154,11 +166,14 @@ downloadBtn.addEventListener("click", () => {
         document.getElementById('text4').placeholder= values[5];
       }
       */
+      
       QRmultiGen(values)
     }, function(reason) {
       console.error('error: ' + reason.result.error.message);
     });
   }
+
+
 
   function newBookQR (startNumber, amount, name, sheetsId) {
     let newItems = [];
@@ -222,6 +237,7 @@ downloadBtn.addEventListener("click", () => {
         //let allRows = Array(parseInt(amount)).fill(singleRow)
         console.log(allRows)
         let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
+        newGenerationPreview(startIndex, allRows);
         fillCells(allRows, range, sheetsId);
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
@@ -252,6 +268,60 @@ downloadBtn.addEventListener("click", () => {
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
+  }
+
+  function sheetsGenerationPreview(start, r) {
+    console.log("sheets preview")
+      //console.log(r)
+      var params = {
+        spreadsheetId: sheetsId,
+        ranges: [r],
+        includeGridData: false
+      };
+    
+      var request = gapi.client.sheets.spreadsheets.values.batchGet(params);
+      request.then(function(response) {
+        
+        //console.log(response.result.valueRanges[0].values);
+        this.values = `${response.result.valueRanges[0].values}`.split(",");
+        //console.log(response.result.valueRanges[0].values)
+        console.log(values)
+        for (let i = 0; i < values.length; i++) {
+          if (/\d/.test(values[i]) && /\d/.test(values[i + 1])) {
+            let index = parseInt(i + 1);
+            values.splice(index, 0, " ");
+            console.log(values);
+          }
+        }
+
+        let table = document.getElementById("sheet_preview");
+        for (let i = 1; i <= (values.length/2); i++) {
+          let row = table.insertRow(i);
+          for (let j = 0; j < 3; j++) {
+            if (j == 0) {
+              row.insertCell(j).innerHTML = parseInt(i) + parseInt(start) - 1;
+            } else {
+              row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i) - 1))-1];
+            }
+          }
+        }
+
+      }, function(reason) {
+        console.error('error: ' + reason.result.error.message);
+      });
+  }
+
+  function newGenerationPreview(startIndex, allRows) {
+    console.log("table")
+    let table = docuemnt.getElementById("sheet_preview");
+    for (let i = startIndex; i <= (allRows.length + startIndex); i++) {
+      let row = table.insertRow(i);
+      for (let j = 0; j < 3; j++) {
+        if (j == 0) {
+          row.insertCell(j).innerHTML = "i";
+        }
+      }
+    }
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
