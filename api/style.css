@@ -428,6 +428,7 @@ label {
     border-radius: 5px;
     background-color: #fff;
     padding-top: 20px 0;
+    text-align: left;
 }
 /*
 input[type=text], textarea {
@@ -444,10 +445,12 @@ input[type=text], textarea {
 }
 */
 .text{
-    width: 280px;
+    width: 240px;
     margin: 8px;
     position: relative;
     margin-bottom: 18px;
+    text-align: left;
+    direction:ltr;
 }
 
 ::-webkit-input-placeholder{
@@ -467,6 +470,9 @@ input[type=text], textarea {
     margin-bottom: 0;
     resize: vertical;
 }*/
+
+
+
 .effect ~ .focus-border {
     position: absolute;
     bottom: 0;
@@ -581,7 +587,7 @@ input[type=text], textarea {
 
 .effect{
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 0px;
     border: none;
     border-bottom: 2px solid rgb(163, 163, 163);
     background-color: #fff;
