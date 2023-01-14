@@ -313,12 +313,14 @@ downloadBtn.addEventListener("click", () => {
 
   function newGenerationPreview(startIndex, allRows) {
     console.log("table")
-    let table = docuemnt.getElementById("sheet_preview");
-    for (let i = startIndex; i <= (allRows.length + startIndex); i++) {
+    let table = document.getElementById("sheet_preview");
+    for (let i = 1; i <= allRows.length; i++) {
       let row = table.insertRow(i);
       for (let j = 0; j < 3; j++) {
         if (j == 0) {
-          row.insertCell(j).innerHTML = "i";
+          row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex);
+        } else {
+          row.insertCell(j).innerHTML = allRows[parseInt(i) - 1][parseInt(j) - 1];
         }
       }
     }

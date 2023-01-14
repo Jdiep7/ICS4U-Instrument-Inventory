@@ -35,6 +35,24 @@
 
         <div class="split_and_qr">
             <div class="all_split">
+
+                <div class="split right">
+                    <br><div id = "fromSheets">
+                        <h2>From Spreadsheet</h2>
+                        <div class="text">
+                            <h3>Starting Row</h3>
+                            <input type="number" id="startRange" placeholder="Row Number">
+                        </div>
+                        <div class="text">
+                            <h3>End Row</h3>
+                            <input type="number" id="endRange" placeholder="Row Number">
+                        </div>
+                        <br><a id = "sheetsPreviewButton" class="button">Preview</a>
+                        <a id="generate" class="button">Generate</a>
+                    </div>
+
+                </div>
+                
                 <div class="split left">
                     <div id = "newQR">
                         <h2>New QR</h2>
@@ -92,22 +110,6 @@
                         </div>
                         <br><a id="generateNew">Generate</a>
                     </div>
-                </div>
-    
-                <div class="split right">
-                    <br><div id = "fromSheets">
-                        <h2>From Spreadsheet</h2>
-                        <div class="text">
-                            <h3>Starting Row</h3>
-                            <input type="number" id="startRange" placeholder="Row Number">
-                        </div>
-                        <div class="text">
-                            <h3>End Row</h3>
-                            <input type="number" id="endRange" placeholder="Row Number">
-                        </div>
-                        <br><a id = "sheetsPreviewButton" class="button">Preview</a>
-                        <a id="generate" class="button">Generate</a>
-                    </div>
                     <div class="preview_table">
                         <table id="sheet_preview">
                             <tr>
@@ -118,18 +120,13 @@
                           </table>
                     </div>
                 </div>
-                
             </div>
             <div class="qr-code">
-                <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
                 <button id="downloadbtn">Download</button>
+                <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
+                <br>
             </div>
-            
         </div>
-        
-
-
-
     </body>
         
     <script type="text/javascript" src = "edit.js"></script>
