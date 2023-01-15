@@ -158,7 +158,6 @@ table, th, td {
 .split_and_qr {
     display: flex;
     height: 65%;
-    width: 75%;
 }
 
 .qr-code {
@@ -178,7 +177,7 @@ table, th, td {
     align-items:center;
     background: #ffffff00;
     justify-content:center;
-    width: 75%;
+    width: 75vw;
 }
 
 .split{
@@ -186,6 +185,8 @@ table, th, td {
     height: 65%;
     display: flex;
     width: 50%;
+    max-width: 75vw;
+    width: 100%;
     position:fixed;
     min-width:10px; 
     border-bottom: 3px solid #c7c7c7;
@@ -211,7 +212,7 @@ table, th, td {
     /*border-bottom: 3px solid #c7c7c7;*/
     justify-content: left;
     width:100%;
-    right:0;
+    right: 25vw;
     background-color:#ffffff;
     direction: rtl;
 }
