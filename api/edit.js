@@ -349,6 +349,7 @@ downloadBtn.addEventListener("click", () => {
         imageUrls.push(qrImg.src);
         console.log(imageUrls);
     }
+    downloadQR();
 }
 
   function generateQR() {

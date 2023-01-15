@@ -8,13 +8,20 @@
     	<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
-        <div class="split left">
-            <div id="main">
-                <a class="openbtn" id="opener" role="button">&#9776;</a>
-            </div>
-            
+        <div id="main">
+            <a class="openbtn" id="opener" role="button">&#9776;</a>
+            <span id="Heading">Generate QR Codes</span><br>
         </div>
-        <div class="split right">
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Scan</a>
+            <a href="edit.html">Sheets</a>
+            <a href="#account">Account</a>
+            <a href="#home">About</a>
+        </div>
+        <div class="split left" id="leftSplit">
+            <iframe id="frame" width="650" height ="400" src="https://docs.google.com/spreadsheets/d/1rn9yybI8sGbdTctP3am1leMb0rhkL4gI1L5KIPbvjxY/edit?usp=sharing"></iframe>
+        <div class="split right" id="rightSplit">
             <div class = "container">
                 <header>
                     <h1 id="gHeader">QR Code Scanner</h1>
@@ -83,13 +90,6 @@
                     </div>
                 </div>
             </div>
-            <div id="mySidebar" class="sidebar">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#">Scan</a>
-                <a href="edit.html">Sheets</a>
-                <a href="#account">Account</a>
-                <a href="#home">About</a>
-            </div>
         
             <pre id="content" style="white-space: pre-wrap;"></pre>
             <!--<script type="text/javascript" src = "signin.js"></script>-->
@@ -104,7 +104,16 @@
 <script>
     let goback = document.getElementById("gobackScan");
     let navOpener = document.getElementById("opener");
+    let rightSplit = document.getElementById("rightSplit");
+    let leftSplit = document.getElementById("leftSplit");
     let openStatus = false;
+
+    setInterval(function(){
+        let viewportWidth = window.innerWidth;
+        let adjustedWidth = viewportWidth - rightSplit.offsetWidth;
+        let newWidth = adjustedWidth.toString() + 'px';
+        leftSplit.style.width=newWidth;
+    }, 0.1);   
 
 
     navOpener.addEventListener("click", ()=>{
@@ -122,13 +131,13 @@
     function openNav() {
         openStatus = true;
         document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
     }
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
     function closeNav() {
         openStatus=false;
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
     }
+
+
 </script>
