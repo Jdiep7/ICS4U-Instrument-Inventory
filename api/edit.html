@@ -23,6 +23,10 @@
                 </select>
                 <!--<a id="back" class="button" href="#">Back</a>-->
             </div>    
+            <div class="submitPopup">
+                <h2>Spreadsheet Updated</h2>
+                <p>New items have been added to <a id="sheets_link" href = "https://docs.google.com/spreadsheets" target="_blank">the spreadsheet</a>.</p>
+            </div>
         </div>
 
         <div id="mySidebar" class="sidebar">
@@ -34,31 +38,10 @@
         </div>
 
         <div class="split_and_qr">
-            <div class="all_split">
-
-                <div class="split right">
-                    <br><div id = "fromSheets">
-                        <h2>From Spreadsheet</h2>
-                        <div class="text">
-                            <h3>Starting Row</h3>
-                            <input type="number" id="startRange" placeholder="Row Number">
-                        </div>
-                        <div class="text">
-                            <h3>End Row</h3>
-                            <input type="number" id="endRange" placeholder="Row Number">
-                        </div>
-                        <br><a id = "sheetsPreviewButton" class="button">Preview</a>
-                        <a id="generate" class="button">Generate</a>
-                    </div>
-
-                </div>
-                
+   
                 <div class="split left">
                     <div id = "newQR">
                         <h2>New QR</h2>
-                        <div class="text">
-                            <span class="focus-border"></span>
-                        </div>
                         <div class="text">
                             <h3>Index</h3>
                             <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
@@ -108,56 +91,82 @@
                             <input type="text" id= "newCompany" class="effect" placeholder="Company">
                             <span class="focus-border"></span>
                         </div>
-                        <br><a id="generateNew">Generate</a>
+                        <br>
+                        <a id = "newPreviewButton" class="button">Preview</a>
+                        <a id="generateNew" onclick="generateOrPreview()">Generate</a>
                     </div>
-                    <div class="preview_table">
-                        <table id="sheet_preview">
-                            <tr>
-                                <th id="table_heading">Index</th>
-                                <th id="table_heading">Item</th>
-                                <th id="table_heading">Company</th>
-                            </tr>
-                          </table>
-                    </div>
+
                 </div>
-            </div>
-            <div class="qr-code">
-                <button id="downloadbtn">Download</button>
-                <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
-                <br>
-            </div>
+
+                
+                <div class="split right">
+                    <br><div id = "fromSheets">
+                        <h2>From Spreadsheet</h2>
+                        <div class="text">
+                            <h3>Starting Row</h3>
+                            <input type="number" id="startRange" placeholder="Row Number">
+                        </div>
+                        <div class="text">
+                            <h3>End Row</h3>
+                            <input type="number" id="endRange" placeholder="Row Number">
+                        </div>
+                        <br><a id = "sheetsPreviewButton" class="button">Preview</a>
+                        <a id="generate" class="button">Generate</a>
+                    </div>
+            
+                </div>
+
+                <div class="qr-code">
+                    <button id="downloadbtn">Download</button>
+                    <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
+                    <br>
+                </div>
         </div>
+
+        <div class="preview_table">
+            <h2>Preview</h2>
+            <table id="sheet_preview">
+                <tr>
+                    <th id="table_heading">Index</th>
+                    <th id="table_heading">Item</th>
+                    <th id="table_heading">Company</th>
+                </tr>
+              </table>
+        </div>
+
     </body>
         
-    <script type="text/javascript" src = "edit.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script>
 
-        let navOpener = document.getElementById("opener");
-        let openStatus = false;
-
-
-        navOpener.addEventListener("click", ()=>{
-            if(openStatus==false){
-                openNav();
-            }else if(openStatus== true){
-                closeNav();
-            }
-        });
-
-            /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-        function openNav() {
-            openStatus = true;
-            document.getElementById("mySidebar").style.width = "250px";
-        }
-
-        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-        function closeNav() {
-            openStatus=false;
-            document.getElementById("mySidebar").style.width = "0";
-        }
-    </script>
 </html>
+
+<script type="text/javascript" src = "edit.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+<script async defer src="https://apis.google.com/js/api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>    
+<script>
+
+    let navOpener = document.getElementById("opener");
+    let openStatus = false;
+
+
+    navOpener.addEventListener("click", ()=>{
+        if(openStatus==false){
+            openNav();
+        }else if(openStatus== true){
+            closeNav();
+        }
+    });
+
+        /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+    function openNav() {
+        openStatus = true;
+        document.getElementById("mySidebar").style.width = "250px";
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+        openStatus=false;
+        document.getElementById("mySidebar").style.width = "0";
+    }
+</script>

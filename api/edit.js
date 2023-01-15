@@ -17,6 +17,7 @@ let gisInited = false;
 //const wrapper = document.querySelector(".wrapper"),
 //qrInput = wrapper.querySelector(".form input"),
 //generateBtn = wrapper.querySelector(".form button");
+const split_and_qr = document.querySelector(".split_and_qr")
 qrImg = document.querySelector(".qr-code img");
 let downloadBtn = document.getElementById("downloadbtn");
 let clearBtn = document.getElementById("clearbtn");
@@ -60,11 +61,13 @@ function gapiLoaded() {
   let genbtn = document.getElementById("generate");
   let genNewBtn = document.getElementById("generateNew");
   let preBtn = document.getElementById("sheetsPreviewButton");
+  let newPreBtn = document.getElementById("newPreviewButton");
   var values;
   var sheetsId = "none";
   var longName = "none";
   var shortName = "none";
   var r;
+  let isPreview = false;
 
   //document.getElementById("back").style.visibility = 'hidden';
   let isSelected = false;
@@ -99,25 +102,20 @@ function gapiLoaded() {
       if (start < 5) {
           start = 5;
       }
-      r = "A" + start + ":A" + end;
-      console.log(r);
-      getValues(sheetsId, r, start);
+      if (!isNaN(end)) {
+        end = 0;
+      }
+        r = "A" + start + ":A" + end;
+        console.log(r);
+        getValues(sheetsId, r, start);
+        setURL(sheetsId);
+      
   });
   
-  genNewBtn.addEventListener("click", ()=> {
-    let index = document.getElementById("setStartRange").value;
-    let startNumber = document.getElementById("setStartNumber").value;
-    let amount = document.getElementById("setAmount").value;
-    let company = document.getElementById("newCompany").value;
-    if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-        newInsQR(startNumber, amount, longName, company, sheetsId);
-        addRows(index, amount, sheetsId, longName, company, startNumber);
-    } 
-    if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
-        newBookQR(startNumber, amount, shortName, sheetsId);
-        addRows(index, amount, sheetsId, shortName, "", startNumber);
-    }
-});
+  newPreBtn.addEventListener("click", ()=> {
+    isPreview = true;
+    generateOrPreview()
+  });
 
 downloadBtn.addEventListener("click", () => {
   var doc = new jsPDF('p', 'mm', 'a3');
@@ -168,6 +166,7 @@ downloadBtn.addEventListener("click", () => {
       */
       
       QRmultiGen(values)
+      clearInputs();
     }, function(reason) {
       console.error('error: ' + reason.result.error.message);
     });
@@ -197,7 +196,7 @@ downloadBtn.addEventListener("click", () => {
       QRmultiGen(newItems)
   }
 
-  function addRows(index, amount, sheetsId, name, company, startNumber) {
+  function addRows(index, amount, sheetsId, allRows) {
     var params = {
       spreadsheetId: sheetsId
     };
@@ -227,17 +226,7 @@ downloadBtn.addEventListener("click", () => {
       request.then(function(response) {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
-        let allRows = [];
-        let ind;
-        for (let i = 0; i < amount; i++) {
-          ind = parseInt(i) + parseInt(startNumber);
-          allRows[i] = [(name + " " + ind), company]
-        }
-        //let singleRow = [nameAndNumber, company]
-        //let allRows = Array(parseInt(amount)).fill(singleRow)
-        console.log(allRows)
         let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
-        newGenerationPreview(startIndex, allRows);
         fillCells(allRows, range, sheetsId);
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
@@ -265,9 +254,55 @@ downloadBtn.addEventListener("click", () => {
       request.then(function(response) {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
+        clearInputs();
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
+  }
+
+  function generateOrPreview() {
+    let index = document.getElementById("setStartRange").value;
+    let startNumber = document.getElementById("setStartNumber").value;
+    let amount = document.getElementById("setAmount").value;
+    let company = document.getElementById("newCompany").value;
+    let allRows = [];
+    let ind;
+
+    //let singleRow = [nameAndNumber, company]
+    //let allRows = Array(parseInt(amount)).fill(singleRow)
+    console.log(allRows)
+    
+    
+    
+    if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
+      for (let i = 0; i < amount; i++) {
+        ind = parseInt(i) + parseInt(startNumber);
+        allRows[i] = [(longName + " " + ind), company]
+      }
+      if (isPreview) {
+        newGenerationPreview(index, allRows);
+      } else {
+        newInsQR(startNumber, amount, longName, company, sheetsId);
+        addRows(index, amount, sheetsId, allRows);
+      }
+      isPreview = false;
+    } 
+    if (sheetsId == "1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0") {
+      for (let i = 0; i < amount; i++) {
+        ind = parseInt(i) + parseInt(startNumber);
+        allRows[i] = [("EM-" + shortName + "-" + ind), company]
+      }
+      console.log(allRows)
+      if (isPreview) {
+        newGenerationPreview(index, allRows);
+      } else {
+        newBookQR(startNumber, amount, shortName, "", sheetsId);
+        addRows(index, amount, sheetsId, allRows);
+      }
+      isPreview = false;
+    }
+    console.log(isPreview)
+    setURL(sheetsId); 
   }
 
   function sheetsGenerationPreview(start, r) {
@@ -326,11 +361,23 @@ downloadBtn.addEventListener("click", () => {
     }
   }
 
+  function clearInputs() {
+    document.getElementById("selectSheet").selectedIndex = "";
+    document.getElementById("setStartRange").value = "";
+    document.getElementById("setStartNumber").value = "";
+    document.getElementById("setAmount").value = "";
+    document.getElementById("selectInstrument").selectedIndex = 0;
+    document.getElementById("newCompany").value = "";
+    document.getElementById("startRange").value = "";
+    document.getElementById("endRange").value = "";
+  }
+
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
   function setSheet() {
       let index = document.getElementById("selectSheet").selectedIndex;
       console.log(document.getElementById("selectSheet").options[index].text)
       sheetsId = document.getElementById("selectSheet").options[index].value;
+      setURL(sheetsId);
   }
 
   //Using the options from the instrument dropdown menu, sets the full/shortened name of selected instrument.
@@ -339,6 +386,7 @@ downloadBtn.addEventListener("click", () => {
       longName = document.getElementById("selectInstrument").options[index].text;
       shortName = document.getElementById("selectInstrument").options[index].value;
   }
+
 
   function QRmultiGen(qrList){
     console.log("multi")
@@ -393,6 +441,12 @@ downloadBtn.addEventListener("click", () => {
         x =  x + 49;
     }
     doc.save("new.pdf");
+  }
+
+  function setURL (sheetId) {
+    let newURL = "https://docs.google.com/spreadsheets/d/" + sheetId;
+    console.log(newURL)
+    document.getElementById("sheets_link").href = newURL;
   }
 
   function handleAuthClick() {
