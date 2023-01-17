@@ -395,17 +395,6 @@ label {
     color: #7fc79a;
 }
 
-.overlay_white {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.466);
-    transition: opacity 500ms;
-    visibility: hidden;
-}
-
 .overlay {
     position: fixed;
     top: 0;
@@ -422,13 +411,14 @@ label {
     opacity: 1;
 }
 .wrapper2 {
-    margin: 70px auto;
+    margin-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     width: 296px;
     position: relative;
-    transition: all 5s ease-in-out;
 }
 
 #frame{

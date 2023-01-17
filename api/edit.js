@@ -382,6 +382,8 @@ downloadBtn.addEventListener("click", () => {
       let index = document.getElementById("selectSheet").selectedIndex;
       console.log(document.getElementById("selectSheet").options[index].text)
       sheetsId = document.getElementById("selectSheet").options[index].value;
+      let sharingLink = "https://docs.google.com/spreadsheets/d/" + sheetsId + "/edit?usp=sharing";
+      document.getElementById("frame").src = sharingLink;
       setURL(sheetsId);
   }
 
