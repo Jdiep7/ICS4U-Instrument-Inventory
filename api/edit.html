@@ -39,7 +39,7 @@
 
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Scan</a>
+            <a href="qrscanner.html">Scan</a>
             <a href="edit.html">Sheets</a>
             <a href="#account">Account</a>
             <a href="#home">About</a>
@@ -49,7 +49,7 @@
                 <div class="split left" id="left_split">
                     <div class="inside_border">
                         <div id = "newQR_div">
-                            <div>
+                            <div class="leftInputDivs">
                                 <h2>New QR</h2>
                                 <div class="text">
                                     <h3>After Row</h3>
@@ -67,7 +67,7 @@
                                     <span class="focus-border"></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="leftInputDivs">
                                 <div class="newValues">
                                     <h3  class="leftInputWithMargin">Name</h3>
                                     <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
@@ -119,15 +119,24 @@
                 <div class="split right" id="right_split">
                     <div class="inside_border">
                         <div id = "fromSheets">
-                            <h2>From Spreadsheet</h2>
-                            <div class="text">
-                                <h3>Starting Row</h3>
-                                <input type="number" id="startRange" placeholder="Row Number">
+                            <div class="sheetsEmbedLink">
+                                <iframe id="frame" src="https://docs.google.com/spreadsheets/d/1rn9yybI8sGbdTctP3am1leMb0rhkL4gI1L5KIPbvjxY/edit?usp=sharing"></iframe>
                             </div>
-                            <div class="text">
-                                <h3>End Row</h3>
-                                <input type="number" id="endRange" placeholder="Row Number">
+                            <div>
+                                <div class="rightinputsOne">
+                                    <h3 class="leftInputWithMargin">End Row</h3>
+                                    <input type="number" id="endRange" class="rightInput" placeholder="Row Number">
+                                </div>
                             </div>
+                            <div>
+                                <h2 class="rightTitle">From Spreadsheet</h2>
+                                <div class="rightinputsTwo">
+                                    <h3>Starting Row</h3>
+                                    <input type="number" id="startRange" class="rightInput" placeholder="Row Number">
+                                </div>
+                            </div>
+                            
+                            
                             <br>
                             <div class="button_holder">
                                 <button id="clear_button" class="button" onclick="clearInputs()">Clear</button>
@@ -169,7 +178,7 @@
                             <h2>QR Code Preview</h2>
                         </div>
                         <button id="downloadbtn">Download</button>-->
-                        <iframe id = "pdfembed" src='https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf'></iframe>
+                        <iframe id = "pdfembed" src='CHRISTMAS.pdf'></iframe>
                         <br>
                     </div>
                 </div>
