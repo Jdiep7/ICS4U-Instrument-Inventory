@@ -5,7 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
+    overflow: auto;
     
 }
 
@@ -251,12 +251,12 @@ table, td {
 
 .qr-code{
     margin-left: 1vw;
-    height:89vh;
+    height:88.5vh;
     display:flex;
     width: 31.5vw;
     align-items: center;
     justify-content: center;
-    background: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
     border-radius: 8px;
 }
 
@@ -277,13 +277,13 @@ table, td {
 .split_and_qr {
     background-color: #f5f5f5;
     display: flex;
-    height:100%;
+    height:calc(100%-107px);
     margin: 0;
 }
 
 .qr-code img{
-    width: 35vw;
-    height:25%;
+    width: 100px;
+    height:100px;
 }
 
 .all_split{
@@ -305,7 +305,7 @@ table, td {
     width: 50%;
     max-width: 45vw;
     width: 100%;
-    position:fixed;
+    position:absolute;
     min-width:10px; 
     background-color: #f5f5f5;
     /*border-bottom: 3px solid #c7c7c7;*/
@@ -327,7 +327,7 @@ table, td {
     /*border-bottom: 3px solid #c7c7c7;*/
     justify-content: left;
     width:100%;
-    right: 45vw;
+    right: calc(45vw - (100vw - 100%));
     border-radius: 0 10px 10px 0;
     direction: rtl;
     text-align: left;
