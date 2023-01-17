@@ -43,7 +43,7 @@ body{
 }
 
 .right{
-    background-image: url("https://cdn.discordapp.com/attachments/925982769207717930/1064751771634905140/IMG_5031.jpg");
+    background-image: url("scanner_background.jpg");
     background-size: cover;
     max-width: 100vw;
     height: 100%;
