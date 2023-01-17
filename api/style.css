@@ -36,8 +36,8 @@ body{
     float:left;
     left:0;
     width:100%;
-    background-image:url("gradient-blue-green-hd-wallpaper.jpg");
-    background-size:cover;
+    background-image:url("stein.jpg");
+    background-size:contain;
     justify-content: center;
     align-items: center;
 }
@@ -411,6 +411,17 @@ label {
     visibility: visible;
     opacity: 1;
 }
+
+.whiteOverlay {
+    border: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(129, 140, 127, 0.596);
+}
+
 .wrapper2 {
     margin-top: 20vh;
     margin-left: auto;
@@ -589,6 +600,7 @@ input[type=text], textarea {
     padding-left: 0;
     z-index:10;
     border-bottom: 1px solid rgb(209, 209, 209);
+    box-shadow: 0px 0px 8px 2px #0000007a;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
