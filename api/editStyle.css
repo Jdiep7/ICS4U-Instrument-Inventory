@@ -44,6 +44,62 @@ h3 {
     text-align: left;
   }
 
+  input {
+    width: 30%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  input:focus {
+    outline:none;
+    border:1px solid #034123; 
+    color: #034123;
+  }
+
+  #selectInstrument {
+    width: 80%;
+    font-size: 13px;
+    padding: 8px, 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  #selectInstrument:focus:hover {
+    outline:none;
+    border:1px solid #034123; 
+    color: #034123;
+    }
+
+.sheet_preview_text {
+    margin-top: 10px;
+    padding: 20px;
+    color:rgb(75, 75, 75)
+}
+
+  .leftInput {
+    width: 80%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  .leftInputWithMargin {
+    margin-top: 25px;
+  }
+
 #chooseType {
     margin-top: 10px;
     /*background-color: #eeeeee;*/
@@ -144,6 +200,10 @@ button:hover {
 .wrapper2 .content {
     /*max-height: 30%;*/
     overflow: auto;
+}
+
+.newValues {
+    overflow: hidden;
 }
 
 .overlay {
@@ -298,7 +358,7 @@ td {
     width: 45vw;
     border-radius: 10px;
     height: fit-content;
-    max-height: 37vh;
+    max-height: 38vh;
     overflow: auto;
 }
 
@@ -309,9 +369,9 @@ td {
     margin: 0;
 }
 
-.qr-code img{
-    width: 100px;
-    height:100px;
+.qr-code iframe{
+    width: 110%;
+    height:110%;
 }
 
 .all_split{
@@ -363,7 +423,15 @@ td {
     text-align: left;
 }
 
-#fromSheets, #newQR_div {
+#fromSheets {
+    
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#newQR_div {
+    display: flex;
     padding: 15px;
     height: 100%;
     overflow: hidden;
@@ -371,7 +439,7 @@ td {
 
 #table_wrapper {
     padding: 15px;
-    height: 35vh;
+    height: 36vh;
     overflow: auto;
 }
 

@@ -227,6 +227,7 @@ downloadBtn.addEventListener("click", () => {
         console.log(response.result);
         let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
         fillCells(allRows, range, sheetsId);
+        
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
@@ -344,6 +345,7 @@ downloadBtn.addEventListener("click", () => {
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
+      document.getElementById("previewText").style.visibility="hidden";
   }
 
   function newGenerationPreview(startIndex, allRows) {
@@ -359,6 +361,7 @@ downloadBtn.addEventListener("click", () => {
         }
       }
     }
+    document.getElementById("previewText").style.visibility="hidden";
   }
 
   function clearInputs() {
@@ -371,6 +374,7 @@ downloadBtn.addEventListener("click", () => {
     document.getElementById("startRange").value = "";
     document.getElementById("endRange").value = "";
     document.getElementById("sheet_preview").getElementsByTagName('tbody')[0].innerHTML= "";
+    document.getElementById("previewText").style.visibility="visible";
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
@@ -394,10 +398,11 @@ downloadBtn.addEventListener("click", () => {
     for (var i = 0; i < qrList.length; i++) { 
         let qrValue=qrList[i];
         //generateBtn.innerText = "Generating QR Code...";
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
-        imageUrls.push(qrImg.src);
+        //qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
+        imageUrls.push(`https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`);
         //console.log(imageUrls);
     }
+    previewQrPdf()
 }
 
   function generateQR() {
@@ -442,6 +447,29 @@ downloadBtn.addEventListener("click", () => {
         x =  x + 49;
     }
     doc.save("new.pdf");
+  }
+
+  function previewQrPdf() {
+    var doc = new jsPDF('p', 'mm', 'a3');
+    x = 3;
+    y = 3
+    qrNum = 0;
+
+    for(let i=0; i<imageUrls.length; i++){
+        qrNum = qrNum + 1
+        var img = new Image();
+        img.src = imageUrls[i];
+        if (qrNum > 6){
+            y = y + 50;
+            qrNum = 0;
+            x = 3;
+        }
+        doc.addImage(img, "png", x, y);
+        x =  x + 49;
+    }
+    let PdfUri = doc.output("datauri");
+    console.log(PdfUri)
+    document.getElementById("pdfembed").src = PdfUri;
   }
 
   function setURL (sheetId) {

@@ -49,56 +49,61 @@
                 <div class="split left" id="left_split">
                     <div class="inside_border">
                         <div id = "newQR_div">
-                            <h2>New QR</h2>
-                            <div class="text">
-                                <h3>Index</h3>
-                                <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
-                                <span class="focus-border"></span>
+                            <div>
+                                <h2>New QR</h2>
+                                <div class="text">
+                                    <h3>After Row</h3>
+                                    <input type="number" id="setStartRange" class="leftInput" placeholder="Row Number">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <div class="text">
+                                    <h3>Item Number</h3>
+                                    <input type="number" id="setStartNumber" class="leftInput" placeholder="Start Number">
+                                    <span class="focus-border"></span>
+                                </div>
+                                <div class="text">
+                                    <h3>Amount</h3>
+                                    <input type="number" id="setAmount" class="leftInput" placeholder="Number of Items">
+                                    <span class="focus-border"></span>
+                                </div>
                             </div>
-                            <div class="text">
-                                <h3>From</h3>
-                                <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
-                                <span class="focus-border"></span>
+                            <div>
+                                <div class="newValues">
+                                    <h3  class="leftInputWithMargin">Name</h3>
+                                    <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
+                                    like a hash map, to access both the full and shortened names of instruments.
+                                    The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
+                                    The setInstrument function runs whenever the option is changed.-->
+                                    <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
+                                        <option value="none" selected disabled hidden>Instrument Name</option>
+                                        <option value="FL">Flute</option>
+                                        <option value="PIC">Piccolo</option>
+                                        <option value="OBOE">Oboe</option>
+                                        <option value="CL">Clarinet</option>
+                                        <option value="ACL">Alto Clarinet</option>
+                                        <option value="BCL">Bass Clarinet</option>
+                                        <option value="AS">Alto Sax</option>
+                                        <option value="TS">Tenor Sax</option>
+                                        <option value="BS">Bari Sax</option>
+                                        <option value="FH">French Horn</option>
+                                        <option value="TRPT">Trumpet</option>
+                                        <option value="TRBN">Trombone</option>
+                                        <option value="BARBC">Baritone</option>
+                                        <option value="BSN">Bassoon</option>
+                                        <option value="TUBA">Tuba</option>
+                                        <option value="PERC">Percussion</option>
+                                        <option value="EB">Electric Bass</option>
+                                        <option value="Piano">Piano</option>
+                                        <option value="Conductor">Conductor</option>
+                                    </select>
+                                </div>
+                                <div class="text">
+                                    <h3>Company</h3>
+                                    <input type="text" id= "newCompany" class="leftInput" placeholder="Company Name">
+                                    <span class="focus-border"></span>
+                                </div>
                             </div>
-                            <div class="text">
-                                <h3>Amount</h3>
-                                <input type="number" id="setAmount" class="effect" placeholder="Amount">
-                                <span class="focus-border"></span>
-                            </div>
-                            <div class="newValues">
-                                <h3>Name</h3>
-                                <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
-                                like a hash map, to access both the full and shortened names of instruments.
-                                The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
-                                The setInstrument function runs whenever the option is changed.-->
-                                <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
-                                    <option value="none" selected disabled hidden>Instrument Name</option>
-                                    <option value="FL">Flute</option>
-                                    <option value="PIC">Piccolo</option>
-                                    <option value="OBOE">Oboe</option>
-                                    <option value="CL">Clarinet</option>
-                                    <option value="ACL">Alto Clarinet</option>
-                                    <option value="BCL">Bass Clarinet</option>
-                                    <option value="AS">Alto Sax</option>
-                                    <option value="TS">Tenor Sax</option>
-                                    <option value="BS">Bari Sax</option>
-                                    <option value="FH">French Horn</option>
-                                    <option value="TRPT">Trumpet</option>
-                                    <option value="TRBN">Trombone</option>
-                                    <option value="BARBC">Baritone</option>
-                                    <option value="BSN">Bassoon</option>
-                                    <option value="TUBA">Tuba</option>
-                                    <option value="PERC">Percussion</option>
-                                    <option value="EB">Electric Bass</option>
-                                    <option value="Piano">Piano</option>
-                                    <option value="Conductor">Conductor</option>
-                                </select>
-                            </div>
-                            <div class="text">
-                                <h3>Company</h3>
-                                <input type="text" id= "newCompany" class="effect" placeholder="Company">
-                                <span class="focus-border"></span>
-                            </div>
+                            
                             <br>
                             
                             <div class="button_holder">
@@ -153,17 +158,18 @@
 
                                 </tbody>
                               </table>
+                              <p class="sheet_preview_text" id="previewText">Spreadsheet preview will appear here.</p>
                         </div>
                     </div>
                 </div>
             
                 <div class="qr-code">
                     <div class="inside_border_qr">
-                        <div class="heading_holder">
+                        <!--<div class="heading_holder">
                             <h2>QR Code Preview</h2>
                         </div>
-                        <button id="downloadbtn">Download</button>
-                        <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
+                        <button id="downloadbtn">Download</button>-->
+                        <iframe id = "pdfembed" src='https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf'></iframe>
                         <br>
                     </div>
                 </div>
