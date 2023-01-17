@@ -436,6 +436,7 @@ label {
 #frame{
     padding:5px;
     resize:both;
+    border-radius: 8px;
 }
 
 .wrapper2 .close{
@@ -596,11 +597,86 @@ input[type=text], textarea {
     position:absolute;
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     padding-left: 0;
     z-index:10;
     border-bottom: 1px solid rgb(209, 209, 209);
     box-shadow: 0px 0px 8px 2px #0000007a;
+}
+#chooseType {
+    margin-top: 10px;
+    /*background-color: #eeeeee;*/
+    border-top:1px solid rgb(209, 209, 209);
+    border-bottom: 1px solid rgb(209, 209, 209);
+    padding: 12px;
+    padding-left: 20px;
+    box-shadow: 5px;
+    /*align-items: center;*/
+}
+
+.main_button {
+    font-size: 15px;
+    font-weight: normal;
+    padding: 7px;
+    color: #5c5c5c;
+    text-decoration: none;
+    cursor: pointer;
+    background: #48aa6900;
+    border-radius: 3px;
+    border: hidden;
+    justify-items: center;
+}
+
+.main_button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.open_tab_span {
+    display: block;
+    text-align: center;
+}
+
+.tabicon {
+    display: flex;
+    text-align: center;
+}
+
+select {
+    font-size: 15px;
+    font-weight: normal;
+    padding: 7px;
+    padding-left: 3px;
+    margin: -7px;
+    margin-left: -2px;
+    color: #5c5c5c;
+    text-decoration: none;
+    cursor: pointer;
+    background: #48aa6900;
+    border-radius: 3px;
+    border: hidden;
+    outline: none;
+}
+
+select:focus:hover {
+    color: #188038;
+    background-color: #e6f4ea;
+    outline: none;
+}
+
+select:hover {
+    background-color: rgb(240, 240, 240);
+    outline: none;
+}
+
+select * {
+    color: #5c5c5c; 
+    background: #ffffff;
+}
+
+.vl {
+    border-left: 1px solid  rgb(209, 209, 209);
+    height: 40px;
+    margin-right: 7px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

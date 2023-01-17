@@ -12,6 +12,22 @@
         <div id="main">
             <a class="openbtn" id="opener" role="button">&#9776;</a>
             <span id="Heading">Scan QR Codes</span><br>
+            <div id="chooseType">
+                <a id= "scanner" class= "main_button" onclick="setNewButton()">Qr Code Scanner</a>
+                <a id= "sheetsEmbed" class= "main_button" onclick="setExisting()">Spreadsheet View</a>
+                <span class="vl"></span>
+                <select name="selectSheet" id="selectSheet" onchange="setSheet()">
+                    <option value="none" selected disabled hidden>Select Spreadsheet</option>
+                    <option value="1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY">Instruments</option>
+                    <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
+                </select>
+                <button class="main_button">Open in Google Sheets
+                    <!--<span class="tabicon">
+                        <span class="open_tab_span"><img class="open_tab_icon" width="20px" height="20px"src="https://static.thenounproject.com/png/3629744-200.png"></span>    Open in Google Sheets
+                    </span>-->
+                </button>
+            </div> 
+
         </div>
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -22,7 +38,7 @@
         </div>
 
         <div class="split left" id="leftSplit">
-            <iframe id="frame" width="650" height ="400" src="https://docs.google.com/spreadsheets/d/1rn9yybI8sGbdTctP3am1leMb0rhkL4gI1L5KIPbvjxY/edit?usp=sharing"></iframe>
+            <iframe id="frame" width="650" height ="400" frameBorder="0" src="https://docs.google.com/spreadsheets/d/1r8QDUbOMKQwqkpX3vv8jYXc3li3qPMnoqrzmxGSui1I/edit?usp=sharing"></iframe>
         <div class="split right" id="rightSplit">
             <div class="whiteOverlay split right">
 
@@ -145,5 +161,27 @@
         document.getElementById("mySidebar").style.width = "0";
     }
 
+    let isSelected = false;
+  function setExisting() {
+    document.getElementById("sheetsEmbed").style.backgroundColor = '#e6f4ea';
+    document.getElementById("sheetsEmbed").style.color = '#188038';
+    document.getElementById("scanner").style.backgroundColor = '';
+    document.getElementById("scanner").style.color = '';
+    document.getElementById("rightSplit").style.width = "0vw";
+  }
 
+  function setNewButton() {
+    document.getElementById("scanner").style.color = '#188038';
+    document.getElementById("scanner").style.backgroundColor = '#e6f4ea';
+    document.getElementById("sheetsEmbed").style.backgroundColor = '';
+    document.getElementById("sheetsEmbed").style.color = '';
+    document.getElementById("rightSplit").style.width = "100vw";
+  }
+
+  function setSheet() {
+      let index = document.getElementById("selectSheet").selectedIndex;
+      sheetsId = document.getElementById("selectSheet").options[index].value;
+      let sharingLink = "https://docs.google.com/spreadsheets/d/" + sheetsId + "/edit?usp=sharing&chrome=false&widget=false";
+      document.getElementById("frame").src = sharingLink;
+  }
 </script>
