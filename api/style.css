@@ -36,7 +36,8 @@ body{
     float:left;
     left:0;
     width:100%;
-    background-color:#ffff;
+    background-image:url("gradient-blue-green-hd-wallpaper.jpg");
+    background-size:cover;
     justify-content: center;
     align-items: center;
 }
