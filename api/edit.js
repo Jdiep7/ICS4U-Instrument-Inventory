@@ -76,6 +76,7 @@ function gapiLoaded() {
     document.getElementById("newQR").style.color = '#188038';
     document.getElementById("existingQR").style.backgroundColor = '';
     document.getElementById("existingQR").style.color = '';
+    document.getElementById("right_split").style.width = "0vw";
   }
 
   function setExistingButton() {
@@ -83,6 +84,7 @@ function gapiLoaded() {
     document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
     document.getElementById("newQR").style.backgroundColor = '';
     document.getElementById("newQR").style.color = '';
+    document.getElementById("right_split").style.width = "75vw";
   }
 
   preBtn.addEventListener("click", ()=> {
@@ -101,9 +103,6 @@ function gapiLoaded() {
       let end = document.getElementById("endRange").value;
       if (start < 5) {
           start = 5;
-      }
-      if (!isNaN(end)) {
-        end = 0;
       }
         r = "A" + start + ":A" + end;
         console.log(r);
@@ -171,7 +170,7 @@ downloadBtn.addEventListener("click", () => {
       console.error('error: ' + reason.result.error.message);
     });
   }
-
+  
 
 
   function newBookQR (startNumber, amount, name, sheetsId) {
@@ -228,6 +227,7 @@ downloadBtn.addEventListener("click", () => {
         console.log(response.result);
         let range = "A" + (startIndex + 1) + ":B" + (endIndex + 1)
         fillCells(allRows, range, sheetsId);
+        
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
@@ -255,6 +255,7 @@ downloadBtn.addEventListener("click", () => {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
         clearInputs();
+        window.location.href = "#confirm";
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
@@ -329,14 +330,14 @@ downloadBtn.addEventListener("click", () => {
           }
         }
 
-        let table = document.getElementById("sheet_preview");
-        for (let i = 1; i <= (values.length/2); i++) {
+        let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
+        for (let i = 0; i < (values.length/2); i++) {
           let row = table.insertRow(i);
           for (let j = 0; j < 3; j++) {
             if (j == 0) {
-              row.insertCell(j).innerHTML = parseInt(i) + parseInt(start) - 1;
+              row.insertCell(j).innerHTML = parseInt(i) + parseInt(start);
             } else {
-              row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i) - 1))-1];
+              row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i)))-1];
             }
           }
         }
@@ -344,21 +345,23 @@ downloadBtn.addEventListener("click", () => {
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
+      document.getElementById("previewText").style.visibility="hidden";
   }
 
   function newGenerationPreview(startIndex, allRows) {
     console.log("table")
-    let table = document.getElementById("sheet_preview");
-    for (let i = 1; i <= allRows.length; i++) {
+    let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
+    for (let i = 0; i < allRows.length; i++) {
       let row = table.insertRow(i);
       for (let j = 0; j < 3; j++) {
         if (j == 0) {
-          row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex);
+          row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex) + 1;
         } else {
-          row.insertCell(j).innerHTML = allRows[parseInt(i) - 1][parseInt(j) - 1];
+          row.insertCell(j).innerHTML = allRows[parseInt(i)][parseInt(j) - 1];
         }
       }
     }
+    document.getElementById("previewText").style.visibility="hidden";
   }
 
   function clearInputs() {
@@ -370,6 +373,8 @@ downloadBtn.addEventListener("click", () => {
     document.getElementById("newCompany").value = "";
     document.getElementById("startRange").value = "";
     document.getElementById("endRange").value = "";
+    document.getElementById("sheet_preview").getElementsByTagName('tbody')[0].innerHTML= "";
+    document.getElementById("previewText").style.visibility="visible";
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
@@ -377,6 +382,8 @@ downloadBtn.addEventListener("click", () => {
       let index = document.getElementById("selectSheet").selectedIndex;
       console.log(document.getElementById("selectSheet").options[index].text)
       sheetsId = document.getElementById("selectSheet").options[index].value;
+      let sharingLink = "https://docs.google.com/spreadsheets/d/" + sheetsId + "/edit?usp=sharing";
+      document.getElementById("frame").src = sharingLink;
       setURL(sheetsId);
   }
 
@@ -393,10 +400,11 @@ downloadBtn.addEventListener("click", () => {
     for (var i = 0; i < qrList.length; i++) { 
         let qrValue=qrList[i];
         //generateBtn.innerText = "Generating QR Code...";
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
-        imageUrls.push(qrImg.src);
-        console.log(imageUrls);
+        //qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
+        imageUrls.push(`https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`);
+        //console.log(imageUrls);
     }
+    previewQrPdf()
 }
 
   function generateQR() {
@@ -441,6 +449,29 @@ downloadBtn.addEventListener("click", () => {
         x =  x + 49;
     }
     doc.save("new.pdf");
+  }
+
+  function previewQrPdf() {
+    var doc = new jsPDF('p', 'mm', 'a3');
+    x = 3;
+    y = 3
+    qrNum = 0;
+
+    for(let i=0; i<imageUrls.length; i++){
+        qrNum = qrNum + 1
+        var img = new Image();
+        img.src = imageUrls[i];
+        if (qrNum > 6){
+            y = y + 50;
+            qrNum = 0;
+            x = 3;
+        }
+        doc.addImage(img, "png", x, y);
+        x =  x + 49;
+    }
+    let PdfUri = doc.output("datauri");
+    console.log(PdfUri)
+    document.getElementById("pdfembed").src = PdfUri;
   }
 
   function setURL (sheetId) {

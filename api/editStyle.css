@@ -5,7 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
+    overflow: auto;
+    
 }
 
 #heading {
@@ -43,6 +44,110 @@ h3 {
     text-align: left;
   }
 
+  input {
+    width: 30%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  input:focus {
+    outline:none;
+    border:1px solid #034123; 
+    color: #034123;
+  }
+
+  #selectInstrument {
+    width: 80%;
+    font-size: 13px;
+    padding: 8px, 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  #selectInstrument:focus:hover {
+    outline:none;
+    border:1px solid #034123; 
+    color: #034123;
+    }
+
+.sheet_preview_text {
+    margin-top: 10px;
+    padding: 20px;
+    color:rgb(75, 75, 75)
+}
+
+.leftInputDivs {
+    width: 50%;
+}
+
+  .leftInput {
+    width: 80%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  .rightInput {
+    width: 80%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: left;
+    border:1px solid rgb(209, 209, 209); 
+    border-radius: 3px;
+    background: #fafafa;
+  }
+
+  .leftInputWithMargin {
+    margin-top: 25px;
+  }
+
+  .rightTitle {
+    position: absolute;
+    left: 15px;
+
+  }
+
+  .rightInputstwo {
+    position: absolute;
+    margin-top: 25px;
+    left: 15px;
+    width: 40%
+  }
+
+  .rightInputsone {
+    position: absolute;
+    left: 50%;
+    width: 40%
+  }
+
+  .sheetsEmbedLink {
+    position: absolute;
+    margin-top: 100px;
+    left: 15px;
+    width: 100%;
+    height: 40vh;
+  }
+
+  .sheetsEmbedLink iframe {
+    margin-top: -130px;
+    width: 95%;
+    height: 42vh;
+  }
+
 #chooseType {
     margin-top: 10px;
     /*background-color: #eeeeee;*/
@@ -54,21 +159,37 @@ h3 {
     
 }
 
-#generateNew {
+button {
     font-size: 15px;
     font-weight: normal;
     padding: 7px;
     color: #ffffff;
-    background: #22a565;
+    background: #034123;
     border-radius: 3px;
     cursor: pointer;
+    border: none;
+    overflow: hidden;
+    margin-right: 8px;
 }
 
-#generateNew:hover {
-    background: #2baf7c;
+button:hover {
+    background: #0f5339;
 }
 
-.button {
+#clear_button {
+    font-size: 15px;
+    font-weight: normal;
+    padding: 7px;
+    color: #919191;
+    background: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    border:1px solid rgb(209, 209, 209);
+}
+
+.main_button {
     font-size: 15px;
     font-weight: normal;
     padding: 7px;
@@ -78,9 +199,117 @@ h3 {
     background: #48aa6900;
     border-radius: 3px;
     border: hidden;
+    
 }
 
+.inside_border {
+    background-color: #fff;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
 
+.inside_border_qr {
+    background-color: #fff;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submitPopup {
+    background: #fff;
+    padding: 20px;
+    position: relative;
+}
+
+.wrapper2 {
+    position: absolute;
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 296px;
+    position: relative;
+}
+
+.wrapper2 .close{
+    position: absolute;
+    top:15px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    color: #333;
+}
+.wrapper2 .content {
+    /*max-height: 30%;*/
+    overflow: auto;
+}
+
+.newValues {
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .8);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9999;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sheetsConfirm {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .sheetsConfirm .noSheetsText {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+
+  .sheetsConfirm .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+
+  .sheetsConfirm .noSheetsText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+
+  
 
 select {
     font-size: 15px;
@@ -114,23 +343,33 @@ select * {
     background: #ffffff;
 }
 
-.button:hover {
+.main_button:hover {
     background-color: rgb(240, 240, 240);
 }
 
+
 table {
+    padding: 20px;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    left: 10vw;
 }
 
 th {
-    color: #188038;
-    background: #e6f4ea;
-    font-weight: normal;
+    text-align: left;
+    color: #000000;
+    font-weight: bold;
+    font-size: 15.5px;
+    padding: 8px 28px 8px 4px;
+    border-bottom: 1px solid rgb(160, 160, 160);
 }
 
-table, th, td {
-    border: 1px solid rgb(209, 209, 209);
-    padding: 3px;
+td {
+    text-align: left;
+    font-size: 15.5px;
+    padding: 8px 28px 8px 4px;
+    border-bottom: 1px solid  rgb(209, 209, 209);
 }
 
 .vl {
@@ -145,29 +384,43 @@ table, th, td {
 }
 
 .qr-code{
+    margin-left: 1vw;
+    height:88.5vh;
     display:flex;
-    /*opacity:0;*/
-    pointer-events: none;
-    padding:55px 0;
-    border-radius: 5px;
+    width: 31.5vw;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ccc;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border-top: 15px solid #f5f5f5;
+    border-bottom: 15px solid #f5f5f5;
+    overflow: hidden;
+}
+
+.preview_table {
+    border: 15px solid #f5f5f5;
+    border-top: 0;
+    text-align: center;
+    margin-top: 51vh;
+    background-color: #f5f5f5;
+    margin-left: 10vw;
+    width: 45vw;
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 38vh;
+    overflow: auto;
 }
 
 .split_and_qr {
+    background-color: #f5f5f5;
     display: flex;
-    height: 65%;
+    height:calc(100%-110px);
+    margin: 0;
 }
 
-.qr-code {
-    width:25%;
+.qr-code iframe{
+    width: 100%;
     height:100%;
-}
-
-.qr-code img{
-    width:25%;
-    height:25%;
 }
 
 .all_split{
@@ -178,43 +431,77 @@ table, th, td {
     background: #ffffff00;
     justify-content:center;
     width: 75vw;
+    
 }
 
 .split{
     /*resize:horizontal;*/
-    height: 65%;
+    border: 15px solid #f5f5f5;
+    height: 50vh;
     display: flex;
     width: 50%;
-    max-width: 75vw;
+    max-width: 45vw;
     width: 100%;
-    position:fixed;
+    position:absolute;
     min-width:10px; 
-    border-bottom: 3px solid #c7c7c7;
+    background-color: #f5f5f5;
+    /*border-bottom: 3px solid #c7c7c7;*/
     /*top:0;*/
-    
+    overflow: hidden;
+
 }
 
 .left{
-    /*resize:horizontal;*/
     flex: 1;
     float:left;
-    left:0;
+    left:10vw;
     width:100%;
-    background-color:#ffffff;
-    
+    border-radius: 10px;
 }
 
 .right{
-    max-width: 100vw;
     resize:horizontal;
     flex: 3;
-    border-left: 3px solid #c7c7c7;
+    /*border-right: 3px solid #c7c7c7;*/
     /*border-bottom: 3px solid #c7c7c7;*/
     justify-content: left;
     width:100%;
-    right: 25vw;
-    background-color:#ffffff;
+    right: calc(45vw - (100vw - 100%));
+    border-radius: 0 10px 10px 0;
     direction: rtl;
+    text-align: left;
+}
+
+#fromSheets {
+    display: flex;
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#newQR_div {
+    display: flex;
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#table_wrapper {
+    padding: 15px;
+    height: 36vh;
+    overflow: auto;
+}
+
+.button_holder {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    overflow: hidden;
+}
+
+.heading_holder {
+    margin-right: 8px;
 }
 
 ::-webkit-input-placeholder{
@@ -282,8 +569,9 @@ table, th, td {
 #main {
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     padding-left: 0;
+    z-index: 8888;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
