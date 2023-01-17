@@ -69,7 +69,7 @@ button {
 }
 
 button:hover {
-    background: #2baf7c;
+    background: #0f5339;
 }
 
 #clear_button {
@@ -241,7 +241,7 @@ select * {
 
 
 table {
-    padding: 100px;
+    padding: 20px;
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
@@ -257,7 +257,7 @@ th {
     border-bottom: 1px solid rgb(160, 160, 160);
 }
 
-table, td {
+td {
     text-align: left;
     font-size: 15.5px;
     padding: 8px 28px 8px 4px;
@@ -382,6 +382,11 @@ table, td {
     bottom: 12px;
     overflow: hidden;
 }
+
+.heading_holder {
+    margin-right: 8px;
+}
+
 ::-webkit-input-placeholder{
     text-align: left;
 }
