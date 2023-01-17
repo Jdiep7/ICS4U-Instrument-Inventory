@@ -76,6 +76,7 @@ function gapiLoaded() {
     document.getElementById("newQR").style.color = '#188038';
     document.getElementById("existingQR").style.backgroundColor = '';
     document.getElementById("existingQR").style.color = '';
+    document.getElementById("right_split").style.width = "0vw";
   }
 
   function setExistingButton() {
@@ -83,6 +84,7 @@ function gapiLoaded() {
     document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
     document.getElementById("newQR").style.backgroundColor = '';
     document.getElementById("newQR").style.color = '';
+    document.getElementById("right_split").style.width = "75vw";
   }
 
   preBtn.addEventListener("click", ()=> {
@@ -101,9 +103,6 @@ function gapiLoaded() {
       let end = document.getElementById("endRange").value;
       if (start < 5) {
           start = 5;
-      }
-      if (!isNaN(end)) {
-        end = 0;
       }
         r = "A" + start + ":A" + end;
         console.log(r);
@@ -171,7 +170,7 @@ downloadBtn.addEventListener("click", () => {
       console.error('error: ' + reason.result.error.message);
     });
   }
-
+  
 
 
   function newBookQR (startNumber, amount, name, sheetsId) {
@@ -255,6 +254,7 @@ downloadBtn.addEventListener("click", () => {
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
         clearInputs();
+        window.location.href = "#confirm";
       }, function(reason) {
         console.error('error: ' + reason.result.error.message);
       });
@@ -329,14 +329,14 @@ downloadBtn.addEventListener("click", () => {
           }
         }
 
-        let table = document.getElementById("sheet_preview");
-        for (let i = 1; i <= (values.length/2); i++) {
+        let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
+        for (let i = 0; i < (values.length/2); i++) {
           let row = table.insertRow(i);
           for (let j = 0; j < 3; j++) {
             if (j == 0) {
-              row.insertCell(j).innerHTML = parseInt(i) + parseInt(start) - 1;
+              row.insertCell(j).innerHTML = parseInt(i) + parseInt(start);
             } else {
-              row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i) - 1))-1];
+              row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i)))-1];
             }
           }
         }
@@ -348,14 +348,14 @@ downloadBtn.addEventListener("click", () => {
 
   function newGenerationPreview(startIndex, allRows) {
     console.log("table")
-    let table = document.getElementById("sheet_preview");
-    for (let i = 1; i <= allRows.length; i++) {
+    let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
+    for (let i = 0; i < allRows.length; i++) {
       let row = table.insertRow(i);
       for (let j = 0; j < 3; j++) {
         if (j == 0) {
           row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex);
         } else {
-          row.insertCell(j).innerHTML = allRows[parseInt(i) - 1][parseInt(j) - 1];
+          row.insertCell(j).innerHTML = allRows[parseInt(i)][parseInt(j) - 1];
         }
       }
     }
@@ -370,6 +370,7 @@ downloadBtn.addEventListener("click", () => {
     document.getElementById("newCompany").value = "";
     document.getElementById("startRange").value = "";
     document.getElementById("endRange").value = "";
+    document.getElementById("sheet_preview").getElementsByTagName('tbody')[0].innerHTML= "";
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
@@ -395,7 +396,7 @@ downloadBtn.addEventListener("click", () => {
         //generateBtn.innerText = "Generating QR Code...";
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`
         imageUrls.push(qrImg.src);
-        console.log(imageUrls);
+        //console.log(imageUrls);
     }
 }
 

@@ -22,11 +22,19 @@
                     <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
                 </select>
                 <!--<a id="back" class="button" href="#">Back</a>-->
-            </div>    
-            <div class="submitPopup">
-                <h2>Spreadsheet Updated</h2>
-                <p>New items have been added to <a id="sheets_link" href = "https://docs.google.com/spreadsheets" target="_blank">the spreadsheet</a>.</p>
+            </div> 
+
+            <div class="overlay" id = "confirm">
+                <div class="wrapper2">
+                    <h2>Spreadsheet Updated</h2>
+                        <p>New items have been added to <a id="sheets_link" href = "https://docs.google.com/spreadsheets" target="_blank">the spreadsheet</a>.</p>
+                        <br><a href = "#" class="button">OK</a>
+                </div>
             </div>
+            <div class="sheetsConfirm">
+                <span class="noSheetsText" id="noSheets">Please select a spreadsheet</span>
+            </div>
+            
         </div>
 
         <div id="mySidebar" class="sidebar">
@@ -38,101 +46,125 @@
         </div>
 
         <div class="split_and_qr">
-   
-                <div class="split left">
-                    <div id = "newQR">
-                        <h2>New QR</h2>
-                        <div class="text">
-                            <h3>Index</h3>
-                            <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
-                            <span class="focus-border"></span>
+            <div class="split_wrapper">
+            
+                <div class="split left" id="left_split">
+                    <div class="inside_border">
+                        <div id = "newQR_div">
+                            <h2>New QR</h2>
+                            <div class="text">
+                                <h3>Index</h3>
+                                <input type="number" id="setStartRange" class="effect" placeholder="Start Row">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h3>From</h3>
+                                <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="text">
+                                <h3>Amount</h3>
+                                <input type="number" id="setAmount" class="effect" placeholder="Amount">
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="newValues">
+                                <h3>Name</h3>
+                                <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
+                                like a hash map, to access both the full and shortened names of instruments.
+                                The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
+                                The setInstrument function runs whenever the option is changed.-->
+                                <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
+                                    <option value="none" selected disabled hidden>Instrument Name</option>
+                                    <option value="FL">Flute</option>
+                                    <option value="PIC">Piccolo</option>
+                                    <option value="OBOE">Oboe</option>
+                                    <option value="CL">Clarinet</option>
+                                    <option value="ACL">Alto Clarinet</option>
+                                    <option value="BCL">Bass Clarinet</option>
+                                    <option value="AS">Alto Sax</option>
+                                    <option value="TS">Tenor Sax</option>
+                                    <option value="BS">Bari Sax</option>
+                                    <option value="FH">French Horn</option>
+                                    <option value="TRPT">Trumpet</option>
+                                    <option value="TRBN">Trombone</option>
+                                    <option value="BARBC">Baritone</option>
+                                    <option value="BSN">Bassoon</option>
+                                    <option value="TUBA">Tuba</option>
+                                    <option value="PERC">Percussion</option>
+                                    <option value="EB">Electric Bass</option>
+                                    <option value="Piano">Piano</option>
+                                    <option value="Conductor">Conductor</option>
+                                </select>
+                            </div>
+                            <div class="text">
+                                <h3>Company</h3>
+                                <input type="text" id= "newCompany" class="effect" placeholder="Company">
+                                <span class="focus-border"></span>
+                            </div>
+                            <br>
+                            <a id = "newPreviewButton" class="button">Preview</a>
+                            <a id="generateNew" onclick="generateOrPreview()">Generate</a>
                         </div>
-                        <div class="text">
-                            <h3>From</h3>
-                            <input type="number" id="setStartNumber" class="effect" placeholder="Start Number">
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Amount</h3>
-                            <input type="number" id="setAmount" class="effect" placeholder="Amount">
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="newValues">
-                            <h3>Name</h3>
-                            <!--Dropdown menu for choosing instrument. I am able use the value and text elements of each option
-                            like a hash map, to access both the full and shortened names of instruments.
-                            The full name is used in the Instrument spreadsheet, while the shortened name is used in the Book spreadsheet.
-                            The setInstrument function runs whenever the option is changed.-->
-                            <select name="selectInstrument" id="selectInstrument" onchange="setInstrument()">
-                                <option value="none" selected disabled hidden>Instrument Name</option>
-                                <option value="FL">Flute</option>
-                                <option value="PIC">Piccolo</option>
-                                <option value="OBOE">Oboe</option>
-                                <option value="CL">Clarinet</option>
-                                <option value="ACL">Alto Clarinet</option>
-                                <option value="BCL">Bass Clarinet</option>
-                                <option value="AS">Alto Sax</option>
-                                <option value="TS">Tenor Sax</option>
-                                <option value="BS">Bari Sax</option>
-                                <option value="FH">French Horn</option>
-                                <option value="TRPT">Trumpet</option>
-                                <option value="TRBN">Trombone</option>
-                                <option value="BARBC">Baritone</option>
-                                <option value="BSN">Bassoon</option>
-                                <option value="TUBA">Tuba</option>
-                                <option value="PERC">Percussion</option>
-                                <option value="EB">Electric Bass</option>
-                                <option value="Piano">Piano</option>
-                                <option value="Conductor">Conductor</option>
-                            </select>
-                        </div>
-                        <div class="text">
-                            <h3>Company</h3>
-                            <input type="text" id= "newCompany" class="effect" placeholder="Company">
-                            <span class="focus-border"></span>
-                        </div>
-                        <br>
-                        <a id = "newPreviewButton" class="button">Preview</a>
-                        <a id="generateNew" onclick="generateOrPreview()">Generate</a>
                     </div>
-
                 </div>
 
                 
-                <div class="split right">
-                    <br><div id = "fromSheets">
-                        <h2>From Spreadsheet</h2>
-                        <div class="text">
-                            <h3>Starting Row</h3>
-                            <input type="number" id="startRange" placeholder="Row Number">
+                <div class="split right" id="right_split">
+                    <div class="inside_border">
+                        <div id = "fromSheets">
+                            <h2>From Spreadsheet</h2>
+                            <div class="text">
+                                <h3>Starting Row</h3>
+                                <input type="number" id="startRange" placeholder="Row Number">
+                            </div>
+                            <div class="text">
+                                <h3>End Row</h3>
+                                <input type="number" id="endRange" placeholder="Row Number">
+                            </div>
+                            <br>
+                            <button class="button"onclick="clearInputs()">Clear</button>
+                            <a id = "sheetsPreviewButton" class="button">Preview</a>
+                            <a id="generate" class="button">Generate</a>
                         </div>
-                        <div class="text">
-                            <h3>End Row</h3>
-                            <input type="number" id="endRange" placeholder="Row Number">
-                        </div>
-                        <br><a id = "sheetsPreviewButton" class="button">Preview</a>
-                        <a id="generate" class="button">Generate</a>
                     </div>
             
                 </div>
+            </div>
 
+                <div class="preview_table">
+                    <div class="inside_border">
+                        <div id="table_wrapper">
+                            <h2>Preview</h2>
+                            <table id="sheet_preview">
+                                <thead>
+                                    <tr>
+                                        <th id="table_heading">Index</th>
+                                        <th id="table_heading">Item</th>
+                                        <th id="table_heading">Company</th>
+                                        <th id="table_heading">Class</th>
+                                        <th id="table_heading">Student Name</th>
+                                        <th id="table_heading">Condition</th>
+                                        <th id="table_heading">Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            
                 <div class="qr-code">
                     <button id="downloadbtn">Download</button>
                     <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
                     <br>
                 </div>
+               
         </div>
+        
 
-        <div class="preview_table">
-            <h2>Preview</h2>
-            <table id="sheet_preview">
-                <tr>
-                    <th id="table_heading">Index</th>
-                    <th id="table_heading">Item</th>
-                    <th id="table_heading">Company</th>
-                </tr>
-              </table>
-        </div>
+
 
     </body>
         
@@ -148,7 +180,6 @@
 
     let navOpener = document.getElementById("opener");
     let openStatus = false;
-
 
     navOpener.addEventListener("click", ()=>{
         if(openStatus==false){
@@ -169,4 +200,5 @@
         openStatus=false;
         document.getElementById("mySidebar").style.width = "0";
     }
+
 </script>

@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
+    
 }
 
 #heading {
@@ -78,9 +79,103 @@ h3 {
     background: #48aa6900;
     border-radius: 3px;
     border: hidden;
+    
 }
 
+.inside_border {
+    background-color: #fff;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
 
+.submitPopup {
+    background: #fff;
+    padding: 20px;
+    position: relative;
+}
+
+.wrapper2 {
+    position: absolute;
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 296px;
+    position: relative;
+}
+
+.wrapper2 .close{
+    position: absolute;
+    top:15px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    color: #333;
+}
+.wrapper2 .content {
+    /*max-height: 30%;*/
+    overflow: auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .8);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9999;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sheetsConfirm {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .sheetsConfirm .noSheetsText {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+
+  .sheetsConfirm .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+
+  .sheetsConfirm .noSheetsText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+
+  
 
 select {
     font-size: 15px;
@@ -118,19 +213,29 @@ select * {
     background-color: rgb(240, 240, 240);
 }
 
+
 table {
+    padding: 100px;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    left: 10vw;
 }
 
 th {
-    color: #188038;
-    background: #e6f4ea;
-    font-weight: normal;
+    text-align: left;
+    color: #000000;
+    font-weight: bold;
+    font-size: 15.5px;
+    padding: 8px 28px 8px 4px;
+    border-bottom: 1px solid rgb(160, 160, 160);
 }
 
-table, th, td {
-    border: 1px solid rgb(209, 209, 209);
-    padding: 3px;
+table, td {
+    text-align: left;
+    font-size: 15.5px;
+    padding: 8px 28px 8px 4px;
+    border-bottom: 1px solid  rgb(209, 209, 209);
 }
 
 .vl {
@@ -145,28 +250,39 @@ table, th, td {
 }
 
 .qr-code{
+    margin-left: 1vw;
+    height:89vh;
     display:flex;
-    /*opacity:0;*/
-    pointer-events: none;
-    padding:55px 0;
-    border-radius: 5px;
+    width: 31.5vw;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ccc;
+    background: rgb(0, 0, 0);
+    border-radius: 8px;
+}
+
+.preview_table {
+    border: 15px solid #f5f5f5;
+    border-top: 0;
+    text-align: center;
+    margin-top: 56vh;
+    background-color: #f5f5f5;
+    margin-left: 10vw;
+    width: 45vw;
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 33vh;
+    overflow: auto;
 }
 
 .split_and_qr {
+    background-color: #f5f5f5;
     display: flex;
-    height: 65%;
-}
-
-.qr-code {
-    width:25%;
     height:100%;
+    margin: 0;
 }
 
 .qr-code img{
-    width:25%;
+    width: 35vw;
     height:25%;
 }
 
@@ -178,42 +294,54 @@ table, th, td {
     background: #ffffff00;
     justify-content:center;
     width: 75vw;
+    
 }
 
 .split{
     /*resize:horizontal;*/
-    height: 65%;
+    border: 15px solid #f5f5f5;
+    height: 55vh;
     display: flex;
     width: 50%;
-    max-width: 75vw;
+    max-width: 45vw;
     width: 100%;
     position:fixed;
     min-width:10px; 
-    border-bottom: 3px solid #c7c7c7;
+    background-color: #f5f5f5;
+    /*border-bottom: 3px solid #c7c7c7;*/
     /*top:0;*/
-    
 }
 
 .left{
-    /*resize:horizontal;*/
     flex: 1;
     float:left;
-    left:0;
+    left:10vw;
     width:100%;
-    background-color:#ffffff;
-    
+    border-radius: 10px;
 }
 
 .right{
     resize:horizontal;
     flex: 3;
-    border-left: 3px solid #c7c7c7;
+    /*border-right: 3px solid #c7c7c7;*/
     /*border-bottom: 3px solid #c7c7c7;*/
     justify-content: left;
     width:100%;
-    right: 25vw;
-    background-color:#ffffff;
+    right: 45vw;
+    border-radius: 0 10px 10px 0;
     direction: rtl;
+    text-align: left;
+}
+
+#fromSheets, #newQR_div {
+    padding: 15px;
+    height: 100%;
+}
+
+#table_wrapper {
+    padding: 15px;
+    height: 31vh;
+    overflow: auto;
 }
 
 ::-webkit-input-placeholder{
@@ -281,8 +409,9 @@ table, th, td {
 #main {
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     padding-left: 0;
+    z-index: 8888;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
