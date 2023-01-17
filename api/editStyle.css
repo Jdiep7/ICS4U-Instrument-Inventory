@@ -144,7 +144,7 @@ h3 {
 
   .sheetsEmbedLink iframe {
     border-radius: 5px;
-    margin-top: -130px;
+    margin-top: -153px;
     width: 95%;
     height: 42vh;
   }
@@ -386,7 +386,7 @@ td {
 
 .qr-code{
     margin-left: 1vw;
-    height:88.5vh;
+    height:89vh;
     display:flex;
     width: 31.5vw;
     align-items: center;

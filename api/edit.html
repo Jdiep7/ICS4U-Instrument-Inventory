@@ -14,7 +14,7 @@
             <span id="Heading">Generate QR Codes</span><br>
             <div id="chooseType">
                 <a id= "newQR" class= "main_button" onclick="setNewButton()">New</a>
-                <a id="existingQR" class= "main_button" onclick="setExistingButton()"">From Spreadsheet</a>
+                <a id="existingQR" class= "main_button" onclick="setExistingButton()">From Spreadsheet</a>
                 <span class="vl"></span>
                 <select name="selectSheet" id="selectSheet" class="effect" onchange="setSheet()">
                     <option value="none" selected disabled hidden>Select Spreadsheet</option>
@@ -109,7 +109,7 @@
                             <div class="button_holder">
                                 <button id = "newPreviewButton" class="button">Preview</button>
                                 <button id="generateNew" onclick="generateOrPreview()">Generate</button>
-                                <button id="clear_button" class="button" onclick="clearInputs()">Clear</button>
+                                <button id="clear_button" class="button" onclick="clearInputsBtn()">Clear</button>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                             
                             <br>
                             <div class="button_holder">
-                                <button id="clear_button" class="button" onclick="clearInputs()">Clear</button>
+                                <button id="clear_button" class="button" onclick="clearInputsBtn()">Clear</button>
                                 <button id="generate" class="button">Generate</button>
                                 <button id = "sheetsPreviewButton" class="button">Preview</button>
                             </div>

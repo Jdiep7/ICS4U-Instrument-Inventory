@@ -180,6 +180,7 @@ downloadBtn.addEventListener("click", () => {
         ind = parseInt(i) + parseInt(startNumber);
         newItems[i] = "EM-" + name + "-" + ind + "," + sheetsId;
       }
+      console.log(sheetsId)
       console.log(newItems)
       QRmultiGen(newItems)
   }
@@ -303,6 +304,7 @@ downloadBtn.addEventListener("click", () => {
       isPreview = false;
     }
     console.log(isPreview)
+    console.log(sheetsId);
     setURL(sheetsId); 
   }
 
@@ -375,6 +377,22 @@ downloadBtn.addEventListener("click", () => {
     document.getElementById("endRange").value = "";
     document.getElementById("sheet_preview").getElementsByTagName('tbody')[0].innerHTML= "";
     document.getElementById("previewText").style.visibility="visible";
+    /*document.getElementById("pdfembed").src = "QRgenerator.pdf";*/
+  }
+
+  function clearInputsBtn() {
+    document.getElementById("selectSheet").selectedIndex = "";
+    document.getElementById("setStartRange").value = "";
+    document.getElementById("setStartNumber").value = "";
+    document.getElementById("setAmount").value = "";
+    document.getElementById("selectInstrument").selectedIndex = 0;
+    document.getElementById("newCompany").value = "";
+    document.getElementById("startRange").value = "";
+    document.getElementById("endRange").value = "";
+    document.getElementById("sheet_preview").getElementsByTagName('tbody')[0].innerHTML= "";
+    document.getElementById("previewText").style.visibility="visible";
+    document.getElementById("pdfembed").src = "QRgenerator.pdf";
+    clearQR();
   }
 
   //Called on spreadsheet selection dropdown menu. Sets the selected spreadsheet's ID
@@ -382,7 +400,7 @@ downloadBtn.addEventListener("click", () => {
       let index = document.getElementById("selectSheet").selectedIndex;
       console.log(document.getElementById("selectSheet").options[index].text)
       sheetsId = document.getElementById("selectSheet").options[index].value;
-      let sharingLink = "https://docs.google.com/spreadsheets/d/" + sheetsId + "/edit?usp=sharing";
+      let sharingLink = "https://docs.google.com/spreadsheets/d/" + sheetsId + "/edit?usp=sharing&chrome=false&widget=false";
       document.getElementById("frame").src = sharingLink;
       setURL(sheetsId);
   }
