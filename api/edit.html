@@ -13,8 +13,8 @@
             <a class="openbtn" id="opener" role="button">&#9776;</a>
             <span id="Heading">Generate QR Codes</span><br>
             <div id="chooseType">
-                <a id= "newQR" class= "button" onclick="setNewButton()">New</a>
-                <a id="existingQR" class= "button" onclick="setExistingButton()"">From Spreadsheet</a>
+                <a id= "newQR" class= "main_button" onclick="setNewButton()">New</a>
+                <a id="existingQR" class= "main_button" onclick="setExistingButton()"">From Spreadsheet</a>
                 <span class="vl"></span>
                 <select name="selectSheet" id="selectSheet" class="effect" onchange="setSheet()">
                     <option value="none" selected disabled hidden>Select Spreadsheet</option>
@@ -100,8 +100,12 @@
                                 <span class="focus-border"></span>
                             </div>
                             <br>
-                            <a id = "newPreviewButton" class="button">Preview</a>
-                            <a id="generateNew" onclick="generateOrPreview()">Generate</a>
+                            
+                            <div class="button_holder">
+                                <button id = "newPreviewButton" class="button">Preview</button>
+                                <button id="generateNew" onclick="generateOrPreview()">Generate</button>
+                                <button id="clear_button" class="button" onclick="clearInputs()">Clear</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,9 +124,12 @@
                                 <input type="number" id="endRange" placeholder="Row Number">
                             </div>
                             <br>
-                            <button class="button"onclick="clearInputs()">Clear</button>
-                            <a id = "sheetsPreviewButton" class="button">Preview</a>
-                            <a id="generate" class="button">Generate</a>
+                            <div class="button_holder">
+                                <button id="clear_button" class="button" onclick="clearInputs()">Clear</button>
+                                <button id="generate" class="button">Generate</button>
+                                <button id = "sheetsPreviewButton" class="button">Preview</button>
+                            </div>
+                            
                         </div>
                     </div>
             
@@ -153,9 +160,11 @@
                 </div>
             
                 <div class="qr-code">
-                    <button id="downloadbtn">Download</button>
-                    <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
-                    <br>
+                    <div class="inside_border_qr">
+                        <button id="downloadbtn">Download</button>
+                        <img src="Qrcode_wikipedia_fr_v2clean.png" alt="qr-code">
+                        <br>
+                    </div>
                 </div>
                
         </div>

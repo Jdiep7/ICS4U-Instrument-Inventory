@@ -353,7 +353,7 @@ downloadBtn.addEventListener("click", () => {
       let row = table.insertRow(i);
       for (let j = 0; j < 3; j++) {
         if (j == 0) {
-          row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex);
+          row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex) + 1;
         } else {
           row.insertCell(j).innerHTML = allRows[parseInt(i)][parseInt(j) - 1];
         }
