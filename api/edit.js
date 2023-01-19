@@ -58,10 +58,12 @@ function gapiLoaded() {
     }
   }
 
+  let steinify = false;
   let genbtn = document.getElementById("generate");
   let genNewBtn = document.getElementById("generateNew");
   let preBtn = document.getElementById("sheetsPreviewButton");
   let newPreBtn = document.getElementById("newPreviewButton");
+  let steinBtn = document.getElementById("steinify");
   var values;
   var sheetsId = "none";
   var longName = "none";
@@ -69,9 +71,29 @@ function gapiLoaded() {
   var r;
   let isPreview = false;
 
+  let newQRBtn = document.getElementById("newQR");
+  let existingQRBtn = document.getElementById("existingQR")
+
+  steinBtn.addEventListener("click", ()=>{
+      if (steinify == false) {
+        document.getElementById("pageStyle").setAttribute("href", "editStyle_steinify.css");  
+        document.getElementById("steinify").style.color = '#188038';
+        document.getElementById("steinify").style.backgroundColor = '#e6f4ea';
+        steinify = true;
+      } else {
+        document.getElementById("pageStyle").setAttribute("href", "editStyle.css");  
+        document.getElementById("steinify").style.backgroundColor = '';
+        document.getElementById("steinify").style.color = '';
+        steinify = false;
+      }
+  });
+
+
+
   //document.getElementById("back").style.visibility = 'hidden';
   let isSelected = false;
-  let steinify = false;
+
+  
   function setNewButton() {
     if (steinify == false) {
       document.getElementById("newQR").style.color = '#1b2282';

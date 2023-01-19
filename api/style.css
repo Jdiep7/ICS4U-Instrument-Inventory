@@ -658,8 +658,8 @@ select {
 }
 
 select:focus:hover {
-    color: #188038;
-    background-color: #e6f4ea;
+    color: #1b2282;
+    background-color: #f1f2fc;
     outline: none;
 }
 

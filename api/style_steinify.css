@@ -36,7 +36,7 @@ body{
     float:left;
     left:0;
     width:100%;
-    background-image:url("stein.jpg");
+    background-image:url(stein.jpg);
     background-size:contain;
     justify-content: center;
     align-items: center;

@@ -4,9 +4,9 @@
     	<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     	<script type="text/javascript" src = "https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-		<link rel="stylesheet" href="https://myskypower.net/components/modal/modal.css">
+		<link  rel="stylesheet" href="https://myskypower.net/components/modal/modal.css">
         <script src="https://myskypower.net/components/modal/modal.js" defer></script>
-    	<link href="style.css" rel="stylesheet">
+    	<link id ="pageStyle" href="style.css" rel="stylesheet">
 	</head>
 	<body>
         <div id="main">
@@ -26,6 +26,8 @@
                         <span class="open_tab_span"><img class="open_tab_icon" width="20px" height="20px"src="https://static.thenounproject.com/png/3629744-200.png"></span>    Open in Google Sheets
                     </span>-->
                 </button>
+                <span class="vl"></span>
+                <button class="main_button" id="steinify">Steinify!</button>
             </div> 
 
         </div>
@@ -39,9 +41,9 @@
 
         <div class="split left" id="leftSplit">
             <iframe id="frame" width="650" height ="400" frameBorder="0" src="https://docs.google.com/spreadsheets/d/1r8QDUbOMKQwqkpX3vv8jYXc3li3qPMnoqrzmxGSui1I/edit?usp=sharing"></iframe>
+        </div>
         <div class="split right" id="rightSplit">
             <div class="whiteOverlay split right">
-
             
             <div class = "container">
                 <header>
@@ -162,21 +164,49 @@
     }
 
     let isSelected = false;
-  function setExisting() {
-    document.getElementById("sheetsEmbed").style.backgroundColor = '#e6f4ea';
-    document.getElementById("sheetsEmbed").style.color = '#188038';
-    document.getElementById("scanner").style.backgroundColor = '';
-    document.getElementById("scanner").style.color = '';
+    let steinify = false;
+
+    function setNewButton() {
+    if (steinify == false) {
+      document.getElementById("scanner").style.color = '#1b2282';
+      document.getElementById("scanner").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("scanner").style.backgroundColor = '#e6f4ea';
+      document.getElementById("scanner").style.color = '#188038';
+    }
+    document.getElementById("sheetsEmbed").style.backgroundColor = '';
+    document.getElementById("sheetsEmbed").style.color = '';
     document.getElementById("rightSplit").style.width = "0vw";
   }
 
-  function setNewButton() {
-    document.getElementById("scanner").style.color = '#188038';
-    document.getElementById("scanner").style.backgroundColor = '#e6f4ea';
-    document.getElementById("sheetsEmbed").style.backgroundColor = '';
-    document.getElementById("sheetsEmbed").style.color = '';
+  function setExisting() {
+    if (steinify == false) {
+      document.getElementById("sheetsEmbed").style.color = '#1b2282';
+      document.getElementById("sheetsEmbed").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("sheetsEmbed").style.color = '#188038';
+      document.getElementById("sheetsEmbed").style.backgroundColor = '#e6f4ea';
+    }
+    document.getElementById("scanner").style.backgroundColor = '';
+    document.getElementById("scanner").style.color = '';
     document.getElementById("rightSplit").style.width = "100vw";
   }
+
+  let steinBtn = document.getElementById("steinify");
+
+  steinBtn.addEventListener("click", ()=>{
+      if (steinify == false) {
+        document.getElementById("pageStyle").setAttribute("href", "style_steinify.css");  
+        document.getElementById("steinify").style.color = '#188038';
+        document.getElementById("steinify").style.backgroundColor = '#e6f4ea';
+        steinify = true;
+      } else {
+        document.getElementById("pageStyle").setAttribute("href", "style.css");  
+        document.getElementById("steinify").style.backgroundColor = '';
+        document.getElementById("steinify").style.color = '';
+        steinify = false;
+      }
+  });
 
   function setSheet() {
       let index = document.getElementById("selectSheet").selectedIndex;

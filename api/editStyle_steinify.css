@@ -396,29 +396,33 @@ td {
     width: 31.5vw;
     align-items: center;
     justify-content: center;
-    background: #eeeeee;
+    background: #eeeeee00;
     border-radius: 8px;
-    border-top: 15px solid #eeeeee;
-    border-bottom: 15px solid #eeeeee;
+    border-top: 15px solid #eeeeee00;
+    border-bottom: 15px solid #eeeeee00;
     overflow: hidden;
+    z-index: 100;
 }
 
 .preview_table {
-    border: 15px solid #eeeeee;
+    border: 15px solid #eeeeee00;
     border-top: 0;
     text-align: center;
     margin-top: 51vh;
-    background-color: #eeeeee;
+    background-color: #eeeeee00;
     margin-left: 10vw;
     width: 45vw;
     border-radius: 10px;
     height: fit-content;
     max-height: 38vh;
     overflow: auto;
+    z-index: 100;
 }
 
 .split_and_qr {
-    background-color: #eeeeee;
+    background-color: #eeeeee00;
+    background-image: url(scanner_background.jpg);
+    background-size:contain;
     display: flex;
     height:calc(100%-110px);
     margin: 0;
@@ -442,7 +446,7 @@ td {
 
 .split{
     /*resize:horizontal;*/
-    border: 15px solid #eeeeee;
+    border: 15px solid #eeeeee00;
     height: 50vh;
     display: flex;
     width: 50%;
@@ -450,7 +454,7 @@ td {
     width: 100%;
     position:absolute;
     min-width:10px; 
-    background-color: #eeeeee;
+    background-color: #eeeeee00;
     /*border-bottom: 3px solid #c7c7c7;*/
     /*top:0;*/
     overflow: hidden;
@@ -476,6 +480,18 @@ td {
     border-radius: 0 10px 10px 0;
     direction: rtl;
     text-align: left;
+}
+.whiteOverlay {
+    border: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /*top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;*/
+    background: rgba(129, 140, 127, 0.596);
+    
 }
 
 #fromSheets {
