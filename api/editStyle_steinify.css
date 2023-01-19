@@ -57,9 +57,8 @@ h3 {
 
   input:focus {
     outline:none;
-    border:1px solid #1b2282; 
-    color: #1b2282;
-    background-color:#f1f2fc;
+    border:1px solid #034123; 
+    color: #034123;
   }
 
   #selectInstrument {
@@ -76,8 +75,8 @@ h3 {
 
   #selectInstrument:focus:hover {
     outline:none;
-    border:1px solid #1b2282; 
-    color: #1b2282;
+    border:1px solid #034123; 
+    color: #034123;
     }
 
 .sheet_preview_text {
@@ -166,7 +165,7 @@ button {
     font-weight: normal;
     padding: 7px;
     color: #ffffff;
-    background: #1b2282;
+    background: #034123;
     border-radius: 3px;
     cursor: pointer;
     border: none;
@@ -175,7 +174,7 @@ button {
 }
 
 button:hover {
-    background: rgb(49, 54, 139);
+    background: #0f5339;
 }
 
 #clear_button {
@@ -189,12 +188,6 @@ button:hover {
     border: none;
     overflow: hidden;
     border:1px solid rgb(209, 209, 209);
-}
-
-#clear_button:hover {
-    border:1px solid #1b2282; 
-    color: #1b2282;
-    background-color:#f1f2fc;
 }
 
 .main_button {

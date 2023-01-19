@@ -71,17 +71,28 @@ function gapiLoaded() {
 
   //document.getElementById("back").style.visibility = 'hidden';
   let isSelected = false;
+  let steinify = false;
   function setNewButton() {
-    document.getElementById("newQR").style.backgroundColor = '#e6f4ea';
-    document.getElementById("newQR").style.color = '#188038';
+    if (steinify == false) {
+      document.getElementById("newQR").style.color = '#1b2282';
+      document.getElementById("newQR").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("newQR").style.backgroundColor = '#e6f4ea';
+      document.getElementById("newQR").style.color = '#188038';
+    }
     document.getElementById("existingQR").style.backgroundColor = '';
     document.getElementById("existingQR").style.color = '';
     document.getElementById("right_split").style.width = "0vw";
   }
 
   function setExistingButton() {
-    document.getElementById("existingQR").style.color = '#188038';
-    document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
+    if (steinify == false) {
+      document.getElementById("existingQR").style.color = '#1b2282';
+      document.getElementById("existingQR").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("existingQR").style.color = '#188038';
+      document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
+    }
     document.getElementById("newQR").style.backgroundColor = '';
     document.getElementById("newQR").style.color = '';
     document.getElementById("right_split").style.width = "75vw";
