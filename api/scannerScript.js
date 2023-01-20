@@ -86,12 +86,12 @@ function handleAuthClick() {
       // when establishing a new session.
       tokenClient.requestAccessToken({
         prompt: '',
-        hint: 'ethan.mei06@gmail.com'});
+        hint: ''});
     } else {
       // Skip display of account chooser and consent dialog for an existing session.
       tokenClient.requestAccessToken({
         prompt: '',
-        hint: 'ethan.mei06@gmail.com'});
+        hint: ''});
     }
   }
 
