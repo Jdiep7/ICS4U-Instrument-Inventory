@@ -520,7 +520,7 @@ downloadBtn.addEventListener("click", () => {
         doc.addImage(img, "png", x, y);
         x =  x + 49;
     }
-    let PdfUri = doc.output("datauri");
+    let PdfUri = doc.output("dataurl");
     console.log(PdfUri)
     document.getElementById("pdfembed").src = PdfUri;
   }
