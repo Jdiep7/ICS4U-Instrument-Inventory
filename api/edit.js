@@ -58,10 +58,12 @@ function gapiLoaded() {
     }
   }
 
+  let steinify = false;
   let genbtn = document.getElementById("generate");
   let genNewBtn = document.getElementById("generateNew");
   let preBtn = document.getElementById("sheetsPreviewButton");
   let newPreBtn = document.getElementById("newPreviewButton");
+  let steinBtn = document.getElementById("steinify");
   var values;
   var sheetsId = "none";
   var longName = "none";
@@ -69,19 +71,50 @@ function gapiLoaded() {
   var r;
   let isPreview = false;
 
+  let newQRBtn = document.getElementById("newQR");
+  let existingQRBtn = document.getElementById("existingQR")
+
+  steinBtn.addEventListener("click", ()=>{
+      if (steinify == false) {
+        document.getElementById("pageStyle").setAttribute("href", "editStyle_steinify.css");  
+        document.getElementById("steinify").style.color = '#188038';
+        document.getElementById("steinify").style.backgroundColor = '#e6f4ea';
+        steinify = true;
+      } else {
+        document.getElementById("pageStyle").setAttribute("href", "editStyle.css");  
+        document.getElementById("steinify").style.backgroundColor = '';
+        document.getElementById("steinify").style.color = '';
+        steinify = false;
+      }
+  });
+
+
+
   //document.getElementById("back").style.visibility = 'hidden';
   let isSelected = false;
+
+  
   function setNewButton() {
-    document.getElementById("newQR").style.backgroundColor = '#e6f4ea';
-    document.getElementById("newQR").style.color = '#188038';
+    if (steinify == false) {
+      document.getElementById("newQR").style.color = '#1b2282';
+      document.getElementById("newQR").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("newQR").style.backgroundColor = '#e6f4ea';
+      document.getElementById("newQR").style.color = '#188038';
+    }
     document.getElementById("existingQR").style.backgroundColor = '';
     document.getElementById("existingQR").style.color = '';
     document.getElementById("right_split").style.width = "0vw";
   }
 
   function setExistingButton() {
-    document.getElementById("existingQR").style.color = '#188038';
-    document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
+    if (steinify == false) {
+      document.getElementById("existingQR").style.color = '#1b2282';
+      document.getElementById("existingQR").style.backgroundColor = '#f1f2fc';
+    } else {
+      document.getElementById("existingQR").style.color = '#188038';
+      document.getElementById("existingQR").style.backgroundColor = '#e6f4ea';
+    }
     document.getElementById("newQR").style.backgroundColor = '';
     document.getElementById("newQR").style.color = '';
     document.getElementById("right_split").style.width = "75vw";

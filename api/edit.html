@@ -2,7 +2,7 @@
     <head>
         <title>Generate QR Codes</title>
         <!--<link rel="stylesheet" href="styles.css">-->
-        <link href="editStyle.css" rel="stylesheet">
+        <link id="pageStyle" href="editStyle.css" rel="stylesheet">
         <script src="https://myskypower.net/components/modal/modal.js" defer></script>
         <link rel="stylesheet" href="https://myskypower.net/components/modal/modal.css">
 
@@ -24,6 +24,8 @@
                 <span class="vl"></span>
                 <button class="main_button openNewTabButton">Open in Google Sheets</button>
                 <!--<a id="back" class="button" href="#">Back</a>-->
+                <span class="vl"></span>
+                <button class="main_button" id="steinify">Steinify!</button>
             </div> 
 
             <div class="overlay" id = "confirm">
@@ -33,6 +35,7 @@
                         <br><a href = "#" class="button">OK</a>
                 </div>
             </div>
+            
             <div class="sheetsConfirm">
                 <span class="noSheetsText" id="noSheets">Please select a spreadsheet</span>
             </div>
@@ -48,6 +51,8 @@
         </div>
 
         <div class="split_and_qr">
+            <div class="whiteOverlay">
+            </div>
                 <div class="split left" id="left_split">
                     <div class="inside_border">
                         <div id = "newQR_div">
@@ -203,6 +208,7 @@
 <script>
 
     let navOpener = document.getElementById("opener");
+    
     let openStatus = false;
 
     navOpener.addEventListener("click", ()=>{
@@ -225,4 +231,5 @@
         document.getElementById("mySidebar").style.width = "0";
     }
 
+    
 </script>
