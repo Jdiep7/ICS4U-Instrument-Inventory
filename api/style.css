@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins'); 
-@import url('https://fonts.googleapis.com/css?family=Raleway'); 
+@import url('https://fonts.googleapis.com/css?family=Roboto'); 
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto';
     overflow:hidden;
     
 }
@@ -56,7 +55,7 @@ body{
     display:flex;
     right:0;
     width:100%;
-    background-color:#ffffff;
+    background-color:#eeeeee;
     direction:rtl;
 }
 
@@ -77,14 +76,12 @@ body{
 }
 
 .container{
-    height:300px;
+    height:235px;
     width:410px;
     background: #fff;
     border-radius: 7px;
     padding: 20px 25px 0;
     transition: height 0.2s ease;
-    border: 1px solid rgb(192, 192, 192);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 
@@ -94,7 +91,7 @@ body{
 }
 
 .container.scannerActive{
-    height:550px;
+    height:460px;
 }
 
 
@@ -128,9 +125,7 @@ header p{
 .form input{
     font-size:18px;
     padding: 0 17px;
-    border: 1px solid #999;
     margin-top: 5px;
-    background:rgb(240, 240, 240);
     direction:ltr;
 }
 
@@ -167,9 +162,9 @@ header p{
 }
 
 .form button:hover{
-    color: rgb(70, 116, 64);
-    background: rgb(217, 247, 216);
-    border: 1px solid rgb(201, 231, 198);
+    border:1px solid #1b2282; 
+    color: #1b2282;
+    background-color:#f1f2fc;
 }
 
 .qr-code{
@@ -420,7 +415,6 @@ label {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(132, 132, 132, 0.241);
 }
 
 .wrapper2 {
@@ -559,7 +553,6 @@ input[type=text], textarea {
 }
 
 #heading {
-    font-family:"Raleway", "sans-serif";
     text-align: left;
     color: #505050;
     font-size: 22px;
@@ -587,7 +580,7 @@ input[type=text], textarea {
 }
 
 .openbtn:hover {
-    background-color: #898989;
+    background-color: rgb(240, 240, 240);
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -678,6 +671,12 @@ select * {
     border-left: 1px solid  rgb(209, 209, 209);
     height: 40px;
     margin-right: 7px;
+}
+.vlMargin {
+    border-left: 1px solid  rgb(209, 209, 209);
+    height: 40px;
+    margin-left: 6px;
+    margin-right: 2px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

@@ -558,6 +558,9 @@ downloadBtn.addEventListener("click", () => {
     }
   }
 
+  function openSpreadsheetTab() {
+    window.open("https://docs.google.com/spreadsheets/d/" + sheetsId, "_blank").focus();
+  }
 
 
 
