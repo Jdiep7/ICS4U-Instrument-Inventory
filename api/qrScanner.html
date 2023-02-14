@@ -13,7 +13,7 @@
             <a class="openbtn" id="opener" role="button">&#9776;</a>
             <span id="Heading">Scan QR Codes</span><br>
             <div id="chooseType">
-                <a id= "scanner" class= "main_button" onclick="setNewButton()">Spreadsheet View</a>
+                <a id= "scanner" class= "main_button" onclick="setNewButton()">View Spreadsheet</a>
                 <a id= "sheetsEmbed" class= "main_button" onclick="setExisting()">Qr Code Scanner</a>
                 <span class="vl"></span>
                 <select name="selectSheet" id="selectSheet" onchange="setSheet()">
@@ -22,7 +22,7 @@
                     <option value="1FFqn2Oh-zi8j8foW5iq8qd_-m-hLk8LVrAXJpPa3Lo0">Books</option>
                 </select>
                 <span class="vlMargin"></span>
-                <button class="main_button">Open in Google Sheets
+                <button class="main_button" onclick="openSpreadsheetTab()">Open in Google Sheets
                     <!--<span class="tabicon">
                         <span class="open_tab_span"><img class="open_tab_icon" width="20px" height="20px"src="https://static.thenounproject.com/png/3629744-200.png"></span>    Open in Google Sheets
                     </span>-->

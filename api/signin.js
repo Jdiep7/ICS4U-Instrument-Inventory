@@ -90,7 +90,7 @@ function getValues(sheetsId, r) {
     }
     */
     if (sheetsId == "1mWEevuxx14kUZDClKsAREUGJvUWeXwoPDNK12aJPijY") {
-      document.getElementById('title_name').innerHTML= "Book";
+      document.getElementById('title_name').innerHTML= "Instrument";
       if (values[0] != "") {
         document.getElementById('item_name').innerHTML= values[0];
       }

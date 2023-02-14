@@ -565,6 +565,8 @@ downloadBtn.addEventListener("click", () => {
 
 
 
+
+
 /*generateBtn.addEventListener("click", () => {
     let qrValue=qrInput.value.trim();
     if(qrValue == ""){
