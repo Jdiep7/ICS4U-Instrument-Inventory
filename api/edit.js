@@ -368,11 +368,15 @@ downloadBtn.addEventListener("click", () => {
         let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
         for (let i = 0; i < (values.length/2); i++) {
           let row = table.insertRow(i);
-          for (let j = 0; j < 3; j++) {
+          for (let j = 0; j < 5; j++) {
             if (j == 0) {
               row.insertCell(j).innerHTML = parseInt(i) + parseInt(start);
-            } else {
+            } else if (j < 3) {
+              console.log("yes")
               row.insertCell(j).innerHTML = values[parseInt(j) + (2*(parseInt(i)))-1];
+            } else {
+              console.log("space")
+              row.insertCell(j).innerHTML = " ";
             }
           }
         }
@@ -388,11 +392,13 @@ downloadBtn.addEventListener("click", () => {
     let table = document.getElementById("sheet_preview").getElementsByTagName('tbody')[0];
     for (let i = 0; i < allRows.length; i++) {
       let row = table.insertRow(i);
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < 5; j++) {
         if (j == 0) {
           row.insertCell(j).innerHTML = parseInt(i) + parseInt(startIndex) + 1;
-        } else {
+        } else if (j < 3) {
           row.insertCell(j).innerHTML = allRows[parseInt(i)][parseInt(j) - 1];
+        } else {
+          row.insertCell(j).innerHTML = " ";
         }
       }
     }
